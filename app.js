@@ -1,7 +1,12 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const api = require('./api')
-const app = express()
 
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true
+})
+
+const app = express()
 app.use(express.json())
 
 app.use('/api', api)

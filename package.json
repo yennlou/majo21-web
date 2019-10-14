@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/server.js"
+    "start": "env-cmd -f ./personal/config/dev.env nodemon ./bin/www"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +13,10 @@
     "extends": "standard"
   },
   "dependencies": {
+    "env-cmd": "^10.0.1",
     "express": "^4.17.1",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.7.4",
     "ramda": "^0.26.1"
   },
   "devDependencies": {
