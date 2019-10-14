@@ -4,28 +4,49 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f ./personal/config/dev.env nodemon ./bin/www"
+    "start": "env-cmd -f ./personal/config/dev.env nodemon ./bin/www",
+    "fe:dev": "cd frontend && webpack-dev-server --mode development",
+    "fe:build": "cd frontend && webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "babelConfig": {},
   "eslintConfig": {
-    "extends": "standard"
+    "extends": [
+      "standard",
+      "standard-react"
+    ],
+    "rules": {
+      "react/prop-types": 0
+    }
   },
   "dependencies": {
     "env-cmd": "^10.0.1",
     "express": "^4.17.1",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.4",
-    "ramda": "^0.26.1"
+    "ramda": "^0.26.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "babel-loader": "^8.0.6",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-standard": "^4.0.1",
-    "nodemon": "^1.19.3"
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.19.3",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
   }
 }
