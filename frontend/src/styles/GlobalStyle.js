@@ -4,6 +4,7 @@ const ResetCss = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 16px;
+    font-family: menlo, monospace;
   }
 
   *,
@@ -24,8 +25,9 @@ const ResetCss = createGlobalStyle`
     height: auto;
   }
 
-  body {
-    background-color: ${props => props.theme.data.BACKGROUND};
+  #app {
+    height: 100vh;
+    background-color: ${props => props.theme.data.BG};
   }
 `
 

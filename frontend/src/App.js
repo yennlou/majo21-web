@@ -4,25 +4,34 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 import GlobalStyle from './styles/GlobalStyle'
 import lightTheme from './styles/themes/light'
 import darkTheme from './styles/themes/dark'
+import Sidebar from './components/Sidebar'
+
+const Layout = styled.div`
+  display: flex;
+  height: 100%;
+`
 
 const App = () => {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
-      <Router>
-        <Switch>
-          <Route path='/'>
-            <div>
+      <Layout>
+        <Sidebar />
+        <Router>
+          <Switch>
+            <Route path='/'>
+              <div>
               Hello React!
-            </div>
-          </Route>
-        </Switch>
-      </Router>
+              </div>
+            </Route>
+          </Switch>
+        </Router>
+      </Layout>
     </ThemeProvider>
   )
 }
