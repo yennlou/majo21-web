@@ -10,27 +10,35 @@ import GlobalStyle from './styles/GlobalStyle'
 import lightTheme from './styles/themes/light'
 import darkTheme from './styles/themes/dark'
 import Sidebar from './components/Sidebar'
+import Header from './components/Header'
 
 const Layout = styled.div`
   display: flex;
   height: 100%;
 `
+const Main = styled.div`
+  padding: 32px 80px;
+  flex-grow: 1;
+`
 
 const App = () => {
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={darkTheme}>
       <GlobalStyle />
       <Layout>
         <Sidebar />
-        <Router>
-          <Switch>
-            <Route path='/'>
-              <div>
-              Hello React!
-              </div>
-            </Route>
-          </Switch>
-        </Router>
+        <Main>
+          <Header />
+          <Router>
+            <Switch>
+              <Route path='/'>
+                <div>
+                 &nbsp;
+                </div>
+              </Route>
+            </Switch>
+          </Router>
+        </Main>
       </Layout>
     </ThemeProvider>
   )
