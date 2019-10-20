@@ -1,5 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
+
+import { setTheme } from '../../redux/config/actions'
 
 const HeaderLayout = styled.div`
   display: flex;
@@ -56,7 +59,7 @@ const ThemeOptionDark = styled(ThemeOption)`
   background-color: ${({ theme }) => theme.pallete.BLACKRUSSIAN};
 `
 
-const Header = () => {
+const Header = ({ setThemeLight, setThemeDark }) => {
   return (
     <HeaderLayout>
       <HeaderLeft>
@@ -64,8 +67,8 @@ const Header = () => {
       </HeaderLeft>
       <HeaderRight>
         <ThemeSwitcher>
-          <ThemeOptionLight />
-          <ThemeOptionDark />
+          <ThemeOptionLight onClick={setThemeLight} />
+          <ThemeOptionDark onClick={setThemeDark} />
         </ThemeSwitcher>
         <NavMenu>
           <li>Blog</li>
@@ -76,4 +79,9 @@ const Header = () => {
   )
 }
 
-export default Header
+const mapDispatchToProps = dispatch => ({
+  setThemeLight: () => dispatch(setTheme('light')),
+  setThemeDark: () => dispatch(setTheme('dark'))
+})
+
+export default connect(null, mapDispatchToProps)(Header)

@@ -1,9 +1,6 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 import styled, { ThemeProvider } from 'styled-components'
 
 import GlobalStyle from './styles/GlobalStyle'
@@ -21,27 +18,34 @@ const Main = styled.div`
   flex-grow: 1;
 `
 
-const App = () => {
+const themeCollection = {
+  light: lightTheme,
+  dark: darkTheme
+}
+
+const App = ({ theme }) => {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={themeCollection[theme]}>
       <GlobalStyle />
       <Layout>
         <Sidebar />
         <Main>
           <Header />
-          <Router>
-            <Switch>
-              <Route path='/'>
-                <div>
+          <Switch>
+            <Route path='/'>
+              <div>
                  &nbsp;
-                </div>
-              </Route>
-            </Switch>
-          </Router>
+              </div>
+            </Route>
+          </Switch>
         </Main>
       </Layout>
     </ThemeProvider>
   )
 }
 
-export default App
+const mapStateToProps = ({ config: { theme } }) => ({
+  theme
+})
+
+export default connect(mapStateToProps)(App)
