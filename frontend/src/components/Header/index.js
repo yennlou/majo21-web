@@ -8,6 +8,7 @@ import NavMenu from './NavMenu'
 const HeaderLayout = styled.div`
   display: flex;
   width: 100%;
+  height: 100px;
   align-items: center;
 `
 
