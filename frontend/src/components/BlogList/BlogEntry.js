@@ -17,19 +17,21 @@ const EntryWrapper = styled.div`
     height: calc(100% + 8px);
     bottom: -18px;
     right: -18px;
-    border: 4px solid ${({ theme }) => theme.data.SIDEBAR_FONT}; 
-
+    border: 4px solid ${({ theme }) => theme.data.BLOG_BORDER}60; 
+    /* border: 4px solid ${({ theme }) => theme.data.SIDEBAR_FONT};  */
   }
 `
 
 const EntryTitle = styled.h3`
   font-size: 36px;
-  padding: 30px;
+  padding: 24px;
+  color: ${({ theme }) => theme.data.BG};
+  background-color: ${({ theme }) => theme.data.BLOG_FONT};
 `
 
 const EntryBody = styled.div`
   font-size: 18px;
-  padding: 0 50px;
+  padding: 20px 50px;
 `
 
 const BlogEntry = () => (

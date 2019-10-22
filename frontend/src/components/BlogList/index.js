@@ -11,6 +11,7 @@ const BlogListWrapper = styled.div`
   > * {
     width: calc(50% - 40px);
     margin-bottom: 40px;
+    margin-right: 16px;
   }
 `
 

@@ -27,6 +27,7 @@ const ResetCss = createGlobalStyle`
 
   #app {
     height: 100vh;
+    overflow: hidden;
     background-color: ${props => props.theme.data.BG};
   }
 `
