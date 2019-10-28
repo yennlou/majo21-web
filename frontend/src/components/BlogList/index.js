@@ -24,4 +24,4 @@ const BlogList = () => (
   </BlogListWrapper>
 )
 
-export default BlogList
+export default styled(BlogList)``

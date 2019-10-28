@@ -24,8 +24,8 @@ const ThemeOptionDark = styled(ThemeOption)`
   background-color: ${({ theme }) => theme.pallete.BLACKRUSSIAN};
 `
 
-const ThemeSwitcher = ({ setThemeLight, setThemeDark }) => (
-  <ThemeSwitcherWrapper>
+const ThemeSwitcher = ({ className, setThemeLight, setThemeDark }) => (
+  <ThemeSwitcherWrapper className={className}>
     <ThemeOptionLight onClick={setThemeLight} />
     <ThemeOptionDark onClick={setThemeDark} />
   </ThemeSwitcherWrapper>
@@ -36,4 +36,4 @@ const mapDispatchToProps = dispatch => ({
   setThemeDark: () => dispatch(setTheme('dark'))
 })
 
-export default connect(null, mapDispatchToProps)(ThemeSwitcher)
+export default styled(connect(null, mapDispatchToProps)(ThemeSwitcher))``

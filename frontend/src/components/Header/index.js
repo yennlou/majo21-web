@@ -21,7 +21,7 @@ const HeaderRight = styled.div`
   display: flex;
   align-items: center;
 
-  > *:first-child {
+  ${ThemeSwitcher} {
     margin-left: 40px;
   }
 `
