@@ -53,13 +53,13 @@ const EntryBody = styled.div`
   padding: 20px 50px;
 `
 
-const BlogEntry = () => (
+const BlogEntry = ({ title, excerpt }) => (
   <EntryWrapper>
     <EntryTitle>
-      SOME TITLE LALALALALALALA
+      {title}
     </EntryTitle>
     <Delimiter />
-    <EntryBody>Lorem ipusmLorem ipusmLorem ipusmLorem ipusmLorem ipusmLorem ipusmLorem ipusmLorem </EntryBody>
+    <EntryBody>{excerpt}</EntryBody>
   </EntryWrapper>
 )
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
@@ -16,12 +16,18 @@ const BlogViewWrapper = styled.div`
   }
 `
 
-const BlogView = ({ directory }) => (
-  <BlogViewWrapper>
-    <BlogList data={directory} />
-    <Pagination />
-  </BlogViewWrapper>
-)
+const BlogView = ({ directory }) => {
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageStart = (currentPage - 1) * 4
+  const pageEnd = Math.min(pageStart + 4, directory.length)
+  const blogList = directory.slice(pageStart, pageEnd)
+  return (
+    <BlogViewWrapper>
+      <BlogList data={blogList} />
+      <Pagination size={Math.ceil(directory.length / 4)} value={currentPage} onChange={setCurrentPage} />
+    </BlogViewWrapper>
+  )
+}
 
 const mapStateToProps = ({ blog: { directory } }) => ({
   directory

@@ -10,6 +10,7 @@ const IndexWrapper = styled.div`
   font-size: 14px;
   position: relative;
   margin-bottom: 20px;
+  cursor: pointer;
 `
 const IndexText = styled.div`
   display: table-cell;
@@ -17,24 +18,28 @@ const IndexText = styled.div`
   padding: 6px;
 `
 
-const IndexItem = ({ children, active }) => (
-  <IndexWrapper active={active}>
+const IndexItem = ({ children, ...otherProps }) => (
+  <IndexWrapper {...otherProps}>
     <IndexText>{children}</IndexText>
   </IndexWrapper>
 )
 
 const PaginationWrapper = styled.div``
 
-const Pagination = ({ className }) => {
+const Pagination = ({ className, size = 1, value = 1, onChange }) => {
   return (
     <PaginationWrapper className={className}>
-      <IndexItem>01</IndexItem>
-      <IndexItem>02</IndexItem>
-      <IndexItem active>03</IndexItem>
-      <IndexItem>04</IndexItem>
-      <IndexItem>05</IndexItem>
-      <IndexItem>06</IndexItem>
-      <IndexItem>07</IndexItem>
+      {[...Array(size).keys()].map(idx =>
+        (
+          <IndexItem
+            key={idx}
+            active={idx + 1 === value}
+            onClick={() => { onChange(idx + 1) }}
+          >
+            {String(idx + 1).padStart(2, '0')}
+          </IndexItem>
+        )
+      )}
     </PaginationWrapper>
   )
 }
