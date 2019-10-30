@@ -15,12 +15,9 @@ const BlogListWrapper = styled.div`
   }
 `
 
-const BlogList = () => (
+const BlogList = ({ data }) => (
   <BlogListWrapper>
-    <BlogEntry />
-    <BlogEntry />
-    <BlogEntry />
-    <BlogEntry />
+    {(data.map(entry => (<BlogEntry key={entry.id} />)))}
   </BlogListWrapper>
 )
 
