@@ -46,6 +46,7 @@ const EntryTitle = styled.h3`
   padding-bottom: 14px;
   color: ${({ theme }) => theme.data.BG};
   background-color: ${({ theme }) => theme.data.BLOG_FONT};
+  text-transform: uppercase;
 `
 
 const EntryBody = styled.div`
