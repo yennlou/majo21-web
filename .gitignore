@@ -7,3 +7,4 @@ node_modules
 ### Local ###
 # folder named local doesn't show up in vscode...
 personal
+package-lock.json
