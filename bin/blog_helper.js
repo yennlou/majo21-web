@@ -25,6 +25,9 @@ argv
   })
   .command('reload_all', 'Reload all blogs', async () => {
     connectMongoose()
+    Blog.deleteMany({}, () => {
+      console.log('Blogs are all deleted')
+    })
     const blogIterator = generateBlogFromGithub()
     for await (const blogData of blogIterator) {
       const blog = new Blog(blogData)
