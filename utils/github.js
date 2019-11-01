@@ -1,4 +1,5 @@
 const axios = require('axios')
+const base64 = require('./base64')
 
 const githubAPI = axios.create({
   baseURL: 'https://api.github.com/repos/yennlou/Majo21'
@@ -24,7 +25,7 @@ const generateBlogFromGithub = async function * () {
     const { data } = await githubAPI.get('/contents/blogs/' + blog.encodedName)
     yield {
       title: blog.title,
-      content: data.content
+      content: base64.decode(data.content)
     }
   }
 }
