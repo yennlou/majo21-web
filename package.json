@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "env-cmd -f ./personal/config/dev.env nodemon ./bin/www",
+    "blog": "env-cmd -f ./personal/config/dev.env node ./bin/blog_helper.js",
     "fe:dev": "cd frontend && webpack-dev-server --mode development",
     "fe:build": "cd frontend && webpack --mode production"
   },
