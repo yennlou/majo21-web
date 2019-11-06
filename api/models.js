@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 // BlOG
 const blogSchema = new mongoose.Schema({
-  title: {
+  name: {
     type: String,
     required: true,
     trim: true
@@ -11,8 +11,6 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-}, {
-  timestamps: true
 })
 
 const Blog = mongoose.model('Blog', blogSchema)

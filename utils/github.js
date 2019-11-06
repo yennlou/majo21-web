@@ -24,7 +24,7 @@ const generateBlogFromGithub = async function * () {
   for (const blog of blogList) {
     const { data } = await githubAPI.get('/contents/blogs/' + blog.encodedName)
     yield {
-      title: blog.title,
+      name: blog.title,
       content: base64.decode(data.content)
     }
   }

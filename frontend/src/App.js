@@ -9,7 +9,7 @@ import darkTheme from './styles/themes/dark'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 
-import BlogView from './views/BlogView'
+import BlogListView from './views/BlogListView'
 
 const Layout = styled.div`
   display: flex;
@@ -33,12 +33,13 @@ const App = ({ theme }) => {
       <Layout>
         <Sidebar />
         <Main>
-          <Header />
           <Switch>
-            <Route path='/'>
-              <div>
-                <BlogView />
-              </div>
+            <Route exact path='/'>
+              <Header />
+              <BlogListView />
+            </Route>
+            <Route exact path='/articles/:articleId'>
+              <div>blog view</div>
             </Route>
           </Switch>
         </Main>

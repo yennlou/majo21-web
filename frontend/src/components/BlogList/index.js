@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 
 import BlogEntry from './BlogEntry'
@@ -15,10 +16,17 @@ const BlogListWrapper = styled.div`
   }
 `
 
-const BlogList = ({ data }) => (
+const BlogList = ({ data, history }) => (
   <BlogListWrapper>
-    {(data.map(({ id, ...entry }) => (<BlogEntry key={id} {...entry} />)))}
+    {
+      (data.map(({ id, ...entry }) =>
+        <BlogEntry
+          key={id}
+          onClick={() => { history.push('/article/2') }}
+          {...entry}
+        />))
+    }
   </BlogListWrapper>
 )
 
-export default styled(BlogList)``
+export default styled(withRouter(BlogList))``
