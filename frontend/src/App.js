@@ -10,6 +10,7 @@ import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 
 import BlogListView from './views/BlogListView'
+import BlogView from './views/BlogView'
 
 const Layout = styled.div`
   display: flex;
@@ -39,7 +40,7 @@ const App = ({ theme }) => {
               <BlogListView />
             </Route>
             <Route exact path='/articles/:articleId'>
-              <div>blog view</div>
+              <BlogView />
             </Route>
           </Switch>
         </Main>
