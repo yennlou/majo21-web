@@ -1,8 +1,8 @@
 ---
-title:  "test blog"
-description: "Lorem Lorem Lorem Loremlalalalala"
-createdAt: "2019-10-10 10:10:10"
-updatedAt: "2019-10-10 10:10:11"
+title:  test blog
+description: Lorem Lorem Lorem Loremlalalalala
+createdAt: 2019-10-10 10:10:10
+updatedAt: 2019-10-10 10:10:11
 ---
 
 # Welcome
