@@ -22,7 +22,7 @@ const BlogList = ({ data, history }) => (
       (data.map(({ id, ...entry }) =>
         <BlogEntry
           key={id}
-          onClick={() => { history.push('/article/2') }}
+          onClick={() => { history.push(`/articles/${id}`) }}
           {...entry}
         />))
     }

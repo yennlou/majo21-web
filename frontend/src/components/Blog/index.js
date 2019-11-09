@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const BlogWrapper = styled.div`
-  padding: 20px;
+  padding: 40px 0;
   color: ${({ theme }) => theme.data.BLOG_FONT}
 `
 
@@ -14,19 +14,17 @@ const BlogTitle = styled.h3`
   color: ${({ theme }) => theme.data.BG};
 `
 
-const BlogBody = styled.h3`
+const BlogBody = styled.div`
   font-size: 16px;
 `
 
-const Blog = ({ title, content }) => {
+const Blog = ({ title, html }) => {
   return (
     <BlogWrapper>
       <BlogTitle>
         {title}
       </BlogTitle>
-      <BlogBody>
-        {content}
-      </BlogBody>
+      <BlogBody dangerouslySetInnerHTML={{ __html: html }} />
     </BlogWrapper>
   )
 }

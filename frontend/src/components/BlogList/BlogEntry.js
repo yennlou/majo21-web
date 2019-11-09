@@ -54,8 +54,8 @@ const EntryBody = styled.div`
   padding: 20px 50px;
 `
 
-const BlogEntry = ({ title, description }) => (
-  <EntryWrapper>
+const BlogEntry = ({ title, description, ...otherProps }) => (
+  <EntryWrapper {...otherProps}>
     <EntryTitle>
       {title}
     </EntryTitle>

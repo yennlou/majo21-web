@@ -1,18 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import Blog from '../../components/Blog'
+import { selectBlog } from '../../redux/blog/selectors'
 
-const BlogViewWrapper = styled.div`
-  padding: 60px 0px;
-`
+import { fetchCollectionStartAsync } from '../../redux/blog/actions'
+const BlogViewWrapper = styled.div``
 
-const title = 'SOME LONG TITLE'
-const content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+const BlogView = ({ blog, fetchCollectionStartAsync }) => {
+  useEffect(fetchCollectionStartAsync, [])
+  return (
+    <BlogViewWrapper>
+      <Blog {...blog} />
+    </BlogViewWrapper>
+  )
+}
 
-const BlogView = () => (
-  <BlogViewWrapper>
-    <Blog title={title} content={content} />
-  </BlogViewWrapper>
-)
+const mapStateToProps = (state, ownProps) => {
+  return (
+    {
+      blog: selectBlog(ownProps.match.params.blogId)(state)
+    }
+  )
+}
 
-export default BlogView
+const mapDispatchToProps = dispatch => ({
+  fetchCollectionStartAsync: () => dispatch(fetchCollectionStartAsync())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlogView)

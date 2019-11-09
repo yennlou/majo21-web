@@ -1,5 +1,6 @@
 import BlogActionTypes from './types'
 import service from '../../utils/service'
+import showdown from 'showdown'
 
 export const fetchCollectionStart = () => ({
   type: BlogActionTypes.FETCH_COLLECTION_START
@@ -15,18 +16,25 @@ export const fetchCollectionFailure = errMsg => ({
   payload: errMsg
 })
 
+const parseDataToBlog = (data) => {
+  const { content, _id: id } = data
+  const conv = new showdown.Converter({ metadata: true })
+  const html = conv.makeHtml(content)
+  const metadata = conv.getMetadata()
+  return {
+    id,
+    html,
+    ...metadata
+  }
+}
+
 export const fetchCollectionStartAsync = () => {
   return dispatch => {
     service
       .get('/api/articles')
       .then(({ data }) => {
         dispatch(fetchCollectionSuccess(
-          data.map(({ _id, name, content }) =>
-            ({
-              id: _id,
-              title: name,
-              description: content
-            }))
+          data.map(parseDataToBlog)
         ))
       })
       .catch(err => {

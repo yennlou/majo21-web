@@ -1,7 +1,7 @@
 import BlogActionTypes from './types'
 
 const INITIAL_STATE = {
-  directory: [],
+  collection: [],
   isFetching: false,
   errMsg: undefined
 }
@@ -17,7 +17,7 @@ const blogReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        directory: action.payload
+        collection: action.payload
       }
     case BlogActionTypes.FETCH_COLLECTION_FAILURE:
       return {

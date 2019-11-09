@@ -17,24 +17,22 @@ const BlogListViewWrapper = styled.div`
   }
 `
 
-const BlogListView = ({ directory, fetchCollectionStartAsync }) => {
+const BlogListView = ({ collection, fetchCollectionStartAsync }) => {
   const [currentPage, setCurrentPage] = useState(1)
-  useEffect(() => {
-    fetchCollectionStartAsync()
-  }, [])
+  useEffect(fetchCollectionStartAsync, [])
   const pageStart = (currentPage - 1) * 4
-  const pageEnd = Math.min(pageStart + 4, directory.length)
-  const blogList = directory.slice(pageStart, pageEnd)
+  const pageEnd = Math.min(pageStart + 4, collection.length)
+  const blogList = collection.slice(pageStart, pageEnd)
   return (
     <BlogListViewWrapper>
       <BlogList data={blogList} />
-      <Pagination size={Math.ceil(directory.length / 4)} value={currentPage} onChange={setCurrentPage} />
+      <Pagination size={Math.ceil(collection.length / 4)} value={currentPage} onChange={setCurrentPage} />
     </BlogListViewWrapper>
   )
 }
 
-const mapStateToProps = ({ blog: { directory } }) => ({
-  directory
+const mapStateToProps = ({ blog: { collection } }) => ({
+  collection
 })
 
 const mapDispatchToProps = dispatch => ({
