@@ -24,6 +24,7 @@ const EntryWrapper = styled.div`
   width: 300px;
   border: 2px solid ${({ theme }) => theme.data.BLOG_BORDER};
   color: ${({ theme }) => theme.data.BLOG_FONT};
+  cursor: pointer;
 
   &::after {
     content: "";

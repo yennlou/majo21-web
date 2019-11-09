@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import Demo from '../Demo'
@@ -23,6 +24,7 @@ const TextLogo = styled.span`
   letter-spacing: 4px;
   padding: 34px;
   margin-bottom: 4px;
+  cursor: pointer;
 `
 
 const Contact = styled.div`
@@ -32,9 +34,10 @@ const Contact = styled.div`
 `
 
 const Sidebar = ({ theme }) => {
+  const history = useHistory()
   return (
     <SidebarWrapper>
-      <TextLogo>
+      <TextLogo onClick={() => (history.push('/'))}>
         MAJO21
       </TextLogo>
       <Demo />

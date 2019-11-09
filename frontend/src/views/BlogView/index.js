@@ -5,12 +5,31 @@ import Blog from '../../components/Blog'
 import { selectBlog } from '../../redux/blog/selectors'
 
 import { fetchCollectionStartAsync } from '../../redux/blog/actions'
-const BlogViewWrapper = styled.div``
+const BlogViewWrapper = styled.div`
+  padding: 40px 0 0 0;
+`
 
-const BlogView = ({ blog, fetchCollectionStartAsync }) => {
+const BackLink = styled.a`
+  font-size: 16px;
+  background-color: ${({ theme }) => theme.data.BG};
+  color: ${({ theme }) => theme.data.BLOG_FONT};
+  padding: 4px;
+  line-height: 24px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.data.BLOG_FONT};
+    color: ${({ theme }) => theme.data.BG};    
+  }
+`
+
+const BlogView = ({ blog, fetchCollectionStartAsync, history }) => {
   useEffect(fetchCollectionStartAsync, [])
   return (
     <BlogViewWrapper>
+      <BackLink onClick={() => history.push('/')}>
+        &lt; Back
+      </BackLink>
       <Blog {...blog} />
     </BlogViewWrapper>
   )

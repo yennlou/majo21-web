@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const BlogWrapper = styled.div`
-  padding: 40px 0;
+  padding: 24px 0 40px;
   color: ${({ theme }) => theme.data.BLOG_FONT}
 `
 
