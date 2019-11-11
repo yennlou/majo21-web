@@ -1,5 +1,5 @@
 ---
-title:  Markdown: Syntax
+title: Markdown&#58; Syntax
 description: Lorem Lorem Lorem Lorem
 createdAt: 2019-10-10 10:10:10
 ---
