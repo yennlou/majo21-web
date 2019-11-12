@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import mdTheme from './md-themes/turing'
 
 const BlogWrapper = styled.div`
   padding: 24px 0 40px;
@@ -15,6 +16,7 @@ const BlogTitle = styled.h3`
 `
 
 const BlogBody = styled.div`
+  ${mdTheme}
   font-size: 16px;
 `
 
