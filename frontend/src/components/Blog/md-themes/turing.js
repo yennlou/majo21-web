@@ -77,11 +77,25 @@ const theme = css`
     content: counter(h2) "." counter(h3) ". ";
   }
 
-  p, ul, ol {
+  p, ul, ol, pre {
     margin: 1em 0;
     ul {
       margin: 0 0 0 2em;
     }
+  }
+
+  ul, ol {
+    margin-left: 2em;
+  }
+
+  pre {
+    padding: 1em 2em;
+    color: ${({ theme }) => theme.data.SIDEBAR_FONT};
+    background: ${({ theme }) => theme.data.SIDEBAR_BG};
+  }
+
+  code {
+    color: ${({ theme }) => theme.data.SIDEBAR_FONT};
   }
 `
 
