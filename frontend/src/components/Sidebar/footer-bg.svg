@@ -1,16 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="520" viewBox="0 0 786 560">
+<svg width="516px" height="226px" viewBox="0 0 516 226" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <style>
-      .cls-1 {
+      #sidebar-footer-bg {
         fill: currentColor;
       }
     </style>
   </defs>
-  <g id="Group_1" data-name="Group 1" transform="translate(159 -743)">
-    <circle id="Ellipse_1" data-name="Ellipse 1" class="cls-1" cx="170.5" cy="170.5" r="170.5" transform="translate(-77 743)"/>
-    <circle id="Ellipse_2" data-name="Ellipse 2" class="cls-1" cx="170.5" cy="170.5" r="170.5" transform="translate(43 878)"/>
-    <circle id="Ellipse_3" data-name="Ellipse 3" class="cls-1" cx="170.5" cy="170.5" r="170.5" transform="translate(144 770)"/>
-    <circle id="Ellipse_4" data-name="Ellipse 4" class="cls-1" cx="170.5" cy="170.5" r="170.5" transform="translate(286 928)"/>
-    <circle id="Ellipse_5" data-name="Ellipse 5" class="cls-1" cx="170.5" cy="170.5" r="170.5" transform="translate(-159 961)"/>
+  <g id="temp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="Artboard" transform="translate(-104.000000, -48.000000)" fill="#000000" fill-rule="nonzero">
+          <path d="M267.048346,48 C300.124319,48 329.875235,62.2362581 350.507916,84.9155948 C368.446329,72.8817281 390.03196,65.8625954 413.256997,65.8625954 C473.2936,65.8625954 522.375365,112.765833 525.858339,171.928356 C576.321077,180.326141 615.45575,222.226677 619.630911,273.999336 L104.319892,273.999522 C113.098993,243.243846 134.60441,217.855689 162.777471,203.893723 C157.281192,190.618767 154.249364,176.062935 154.249364,160.798982 C154.249364,98.5018245 204.751188,48 267.048346,48 Z" id="sidebar-footer-bg"></path>
+      </g>
   </g>
 </svg>

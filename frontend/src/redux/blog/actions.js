@@ -21,7 +21,7 @@ const makeToc = (html) => {
   const parser = new DOMParser()
   const doc = parser.parseFromString(`<div>${html}</div>`, 'text/xml')
 
-  let tocList = '<ul>'
+  let tocList = '<h2 id="toc">Table of content</h2><ul>'
   let prev = 'h2'
   for (const el of doc.all) {
     if (el.tagName === 'h2') {
@@ -39,7 +39,7 @@ const makeToc = (html) => {
     }
   }
   if (prev === 'h3') tocList += '</ul>'
-  tocList += '</ul><hr>'
+  tocList += '</ul>'
   return tocList
 }
 

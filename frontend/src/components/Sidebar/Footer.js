@@ -11,7 +11,7 @@ const FooterWrapper = styled.div`
 
 const FooterBG = styled(SVGCloud)`
   position: absolute;
-  bottom: -135px;
+  bottom: 0px;
   left: -80px;
 `
 const Copyright = styled.div`

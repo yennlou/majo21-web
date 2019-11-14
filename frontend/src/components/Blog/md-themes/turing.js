@@ -10,7 +10,7 @@ const theme = css`
   }
 
   h1, h2, h3, h4, h5, h6, p, li {
-    font-size: 16px;
+    font-size: inherit;
   }
   
   h1, h2 {
@@ -24,7 +24,7 @@ const theme = css`
     margin-bottom: 1em
   }
 
-  h1, h2, h3, em, th {
+  h1, h2:not(#toc), h3, em, th {
     text-decoration: underline;
   }
 
@@ -33,29 +33,29 @@ const theme = css`
   }
 
   blockquote, strong {
-    color: #b39a1d; 
+    color: ${({ theme }) => theme.data.BLOG_STRONG};
   }
 
   blockquote {
-    margin-left: 30px;
-    margin-right: 30px
+    margin-left: 2em;
+    margin-right: 2em
   }
 
   a {
     color: ${({ theme }) => theme.data.BLOG_FONT};
     &:hover {
-      background-color: ${({ theme }) => theme.data.BLOG_FONT};
-      color: ${({ theme }) => theme.data.BG};
+      background-color: ${({ theme }) => theme.data.BLOG_LINK_BG};
+      color: ${({ theme }) => theme.data.BLOG_LINK};
       text-decoration: none;
     }
   }
 
-  em, strong {
-    font-style: normal;
+  em {
+    font-style: italic;
   }
 
-  ul {
-    list-style-type: square 
+  strong {
+    font-style: normal;
   }
 
 /* Numbering */
@@ -67,7 +67,7 @@ const theme = css`
     counter-reset: h3 
   }
 
-  h2:before {
+  h2:not(#toc):before {
     counter-increment: h2;
     content: counter(h2) ". ";
   }
@@ -84,19 +84,31 @@ const theme = css`
     }
   }
 
+  ul {
+    list-style-type: square 
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
   ul, ol {
     margin-left: 2em;
   }
 
   pre {
     padding: 1em 2em;
-    color: ${({ theme }) => theme.data.SIDEBAR_FONT};
-    background: ${({ theme }) => theme.data.SIDEBAR_BG};
+    color: #b39a1d;
+    background: ${({ theme }) => theme.data.BLOG_CODE_BG};
+    font-family: menlo, monospace;
+    font-weight: lighter;
   }
 
   code {
-    color: ${({ theme }) => theme.data.SIDEBAR_FONT};
+    background: ${({ theme }) => theme.data.BLOG_CODE_BG};
+    color: ${({ theme }) => theme.data.BLOG_CODE};
   }
+
 `
 
 export default theme

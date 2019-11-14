@@ -5,9 +5,6 @@ createdAt: 2019-10-10 10:10:10
 updatedAt: 2019-10-10 10:10:11
 ---
 
-An h1 header
-============
-
 Paragraphs are separated by a blank line.
 
 2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists
