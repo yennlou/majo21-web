@@ -19,11 +19,10 @@ const BlogListWrapper = styled.div`
 const BlogList = ({ data, history }) => (
   <BlogListWrapper>
     {
-      (data.map(({ id, ...entry }) =>
+      (data.map((props) =>
         <BlogEntry
-          key={id}
-          onClick={() => { history.push(`/articles/${id}`) }}
-          {...entry}
+          key={props.id}
+          {...props}
         />))
     }
   </BlogListWrapper>

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { Link, withRouter } from 'react-router-dom'
 const Delimiter = styled(({ className }) => (
   <svg
     width='100%'
@@ -24,10 +24,10 @@ const EntryWrapper = styled.div`
   width: 300px;
   border: 2px solid ${({ theme }) => theme.data.BLOG_BORDER};
   color: ${({ theme }) => theme.data.BLOG_FONT};
-  cursor: pointer;
 
   &::after {
     content: "";
+    pointer-events: none;
     position: absolute;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
@@ -38,6 +38,7 @@ const EntryWrapper = styled.div`
 
   ${Delimiter} {
     fill: ${({ theme }) => theme.data.BLOG_FONT};
+    height: 20px;
   }
 `
 
@@ -48,21 +49,55 @@ const EntryTitle = styled.h3`
   color: ${({ theme }) => theme.data.BG};
   background-color: ${({ theme }) => theme.data.BLOG_FONT};
   text-transform: uppercase;
+  cursor: pointer;
 `
 
 const EntryBody = styled.div`
   font-size: 18px;
-  padding: 20px 50px;
+  padding: 10px 50px 40px 50px;
+  line-height: 1.6;
+
+  ul {
+    list-style-type: square;
+    text-decoration: underline;
+    ul {
+      margin-left: 2em;
+    }
+  }
+
+  a {
+    cursor: pointer;
+    color: ${({ theme }) => theme.data.BLOG_FONT};
+    &:hover {
+      background-color: ${({ theme }) => theme.data.BLOG_LINK_BG};
+      color: ${({ theme }) => theme.data.BLOG_LINK};
+      text-decoration: none;
+    }
+  }
 `
 
-const BlogEntry = ({ title, description, ...otherProps }) => (
+const BlogEntry = ({ title, id, description, toc, history, ...otherProps }) => (
   <EntryWrapper {...otherProps}>
-    <EntryTitle>
+    <EntryTitle onClick={() => { history.push(`/articles/${id}`) }}>
       {title}
     </EntryTitle>
     <Delimiter />
-    <EntryBody>{description}</EntryBody>
+    <EntryBody>
+      <ul>
+        {
+          toc.map(header => {
+            if (!Array.isArray(header)) {
+              return (
+                <li key={header.id}>
+                  <Link to={`/articles/${id}#${header.id}`}>{header.content}</Link>
+                </li>
+              )
+            }
+          })
+        }
+      </ul>
+    </EntryBody>
   </EntryWrapper>
 )
 
-export default BlogEntry
+export default withRouter(BlogEntry)
