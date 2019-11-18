@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { debounced } from '../../utils/function'
+import { setQuery } from '../../redux/config/actions'
 
 const SearchInput = styled.input`
   color: ${({ theme }) => theme.data.NAV_FONT};
@@ -17,30 +19,44 @@ const SearchInput = styled.input`
 
 class Search extends React.Component {
   state = {
-    query: ''
+    input: ''
   }
 
   onDebounce = debounced(() => {
-    console.log('query confirmd: ' + this.state.query)
+    this.props.setQuery(this.state.input)
   })
 
-  handleQueryInputChange = (e) => {
+  handleInputChange = (e) => {
     this.setState({
-      query: e.target.value
+      input: e.target.value
     })
     this.onDebounce()
   }
 
+  componentDidMount () {
+    this.setState({
+      input: this.props.query
+    })
+  }
+
   render () {
-    const { query } = this.state
+    const { input } = this.state
     return (
       <SearchInput
         type='text'
-        value={query}
-        onChange={this.handleQueryInputChange}
+        value={input}
+        onChange={this.handleInputChange}
       />
     )
   }
 }
 
-export default Search
+const mapStateToProps = ({ config: { query } }) => ({
+  query
+})
+
+const mapDispatchToProps = dispatch => ({
+  setQuery: (query) => dispatch(setQuery(query))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)

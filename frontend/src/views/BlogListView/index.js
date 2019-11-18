@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
+import { selectBlogCollectionByQuery } from '../../redux/blog/selectors'
 import { fetchCollectionStartAsync } from '../../redux/blog/actions'
 import BlogList from '../../components/BlogList'
 import Pagination from '../../components/Pagination'
@@ -17,7 +18,7 @@ const BlogListViewWrapper = styled.div`
   }
 `
 
-const BlogListView = ({ collection, fetchCollectionStartAsync }) => {
+const BlogListView = ({ collection, query, selectedCollection, fetchCollectionStartAsync }) => {
   const [currentPage, setCurrentPage] = useState(1)
   useEffect(fetchCollectionStartAsync, [])
   const pageStart = (currentPage - 1) * 4
@@ -31,8 +32,9 @@ const BlogListView = ({ collection, fetchCollectionStartAsync }) => {
   )
 }
 
-const mapStateToProps = ({ blog: { collection } }) => ({
-  collection
+const mapStateToProps = (state) => ({
+  query: state.config.query,
+  collection: selectBlogCollectionByQuery(state.config.query)(state)
 })
 
 const mapDispatchToProps = dispatch => ({

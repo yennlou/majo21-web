@@ -12,3 +12,9 @@ export const selectBlog = blogId =>
     [selectCollection],
     collection => collection.find(blog => blog.id === blogId)
   )
+
+export const selectBlogCollectionByQuery = query =>
+  createSelector(
+    [selectCollection],
+    collection => collection.filter(blog => blog.title.toUpperCase().includes(query.toUpperCase()))
+  )
