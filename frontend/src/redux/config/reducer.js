@@ -1,7 +1,7 @@
 import { ConfigActionTypes } from './types'
 
 const INITIAL_STATE = {
-  theme: 'dark'
+  theme: 'light'
 }
 
 const configReducer = (state = INITIAL_STATE, action) => {

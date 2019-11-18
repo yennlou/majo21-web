@@ -9,7 +9,6 @@ import App from './App.js'
 const browserHistory = createBrowserHistory()
 
 browserHistory.listen(location => {
-  console.log('????', location)
   const { hash } = window.location
   if (hash !== '') {
     setTimeout(() => {
