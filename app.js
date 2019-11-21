@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URL, {
 const app = express()
 app.use(express.json())
 app.use(cors())
-
 app.use('/api', api)
+app.use(express.static('./frontend/dist'))
 
 module.exports = app

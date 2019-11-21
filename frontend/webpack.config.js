@@ -1,12 +1,21 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    app: './src/index.js'
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
+    chunkFilename: '[name].[chunkhash].js',
     publicPath: '/'
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   devServer: {
     historyApiFallback: true
@@ -27,6 +36,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html'
