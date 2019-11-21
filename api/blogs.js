@@ -17,7 +17,7 @@ const postNewBlog = async (req, res) => {
 // ROUTER
 const blogsAPI = (router) => {
   router.get('/articles', getBlogList)
-  router.post('/articles', postNewBlog)
+  // router.post('/articles', postNewBlog)
   return router
 }
 
