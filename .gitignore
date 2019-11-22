@@ -8,3 +8,11 @@ node_modules
 # folder named local doesn't show up in vscode...
 personal
 package-lock.json
+
+### Elastic Beanstalk ###
+.elasticbeanstalk/
+.ebextensions/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
