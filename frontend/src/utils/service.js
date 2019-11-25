@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 var service = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: process.env.SERVER_BASE_URL,
   headers: {
     'Access-Control-Allow-Origin': '*'
   }
