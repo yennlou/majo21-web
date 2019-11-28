@@ -23,8 +23,11 @@ const BackLink = styled.a`
   }
 `
 
-const BlogView = ({ blog, fetchCollectionStartAsync, history }) => {
-  useEffect(fetchCollectionStartAsync, [])
+const BlogView = ({ blog, isFetched, fetchCollectionStartAsync, history }) => {
+  useEffect(() => {
+    if (isFetched) return
+    fetchCollectionStartAsync()
+  }, [])
   return (
     <BlogViewWrapper>
       <BackLink onClick={() => history.push('/')}>
@@ -38,6 +41,7 @@ const BlogView = ({ blog, fetchCollectionStartAsync, history }) => {
 const mapStateToProps = (state, ownProps) => {
   return (
     {
+      isFetched: state.blog.isFetched,
       blog: selectBlog(ownProps.match.params.blogId)(state)
     }
   )

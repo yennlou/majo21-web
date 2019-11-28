@@ -2,6 +2,7 @@ import BlogActionTypes from './types'
 
 const INITIAL_STATE = {
   collection: [],
+  isFetched: false,
   isFetching: false,
   errMsg: undefined
 }
@@ -17,6 +18,7 @@ const blogReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
+        isFetched: true,
         collection: action.payload
       }
     case BlogActionTypes.FETCH_COLLECTION_FAILURE:

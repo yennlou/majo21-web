@@ -20,7 +20,6 @@ const EntryWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 280px;
   width: 300px;
   border: 2px solid ${({ theme }) => theme.data.BLOG_BORDER};
   color: ${({ theme }) => theme.data.BLOG_FONT};

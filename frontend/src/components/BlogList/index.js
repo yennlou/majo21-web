@@ -5,14 +5,14 @@ import styled from 'styled-components'
 import BlogEntry from './BlogEntry'
 
 const BlogListWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  width: calc(100% - 10px);
+  column-count: 2;
+  column-gap: 46px;
 
   > * {
-    width: calc(50% - 40px);
+    width: 100%;
     margin-bottom: 40px;
-    margin-right: 16px;
+    break-inside: avoid;
   }
 `
 

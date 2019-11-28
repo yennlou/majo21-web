@@ -18,9 +18,12 @@ const BlogListViewWrapper = styled.div`
   }
 `
 
-const BlogListView = ({ collection, query, selectedCollection, fetchCollectionStartAsync }) => {
+const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
   const [currentPage, setCurrentPage] = useState(1)
-  useEffect(fetchCollectionStartAsync, [])
+  useEffect(() => {
+    if (isFetched) return
+    fetchCollectionStartAsync()
+  }, [])
   const pageStart = (currentPage - 1) * 4
   const pageEnd = Math.min(pageStart + 4, collection.length)
   const blogList = collection.slice(pageStart, pageEnd)
@@ -33,7 +36,7 @@ const BlogListView = ({ collection, query, selectedCollection, fetchCollectionSt
 }
 
 const mapStateToProps = (state) => ({
-  query: state.config.query,
+  isFetched: state.blog.isFetched,
   collection: selectBlogCollectionByQuery(state.config.query)(state)
 })
 
