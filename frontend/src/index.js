@@ -19,10 +19,13 @@ browserHistory.listen(location => {
   }
 })
 
-ReactDOM.render((
+const renderApp = () => ReactDOM.render((
   <Provider store={store}>
     <Router history={browserHistory}>
       <App />
     </Router>
   </Provider>
-), document.getElementById('app'))
+), document.getElementById('app')
+)
+
+renderApp()

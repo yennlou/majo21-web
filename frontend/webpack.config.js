@@ -8,9 +8,9 @@ module.exports = {
     app: './src/index.js'
   },
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
-    chunkFilename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[hash].js',
     publicPath: '/'
   },
   optimization: {
@@ -26,9 +26,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        use: ['babel-loader']
       },
       {
         test: /\.svg$/,
