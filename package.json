@@ -66,6 +66,7 @@
     "html-webpack-plugin": "^3.2.0",
     "nodemon": "^1.19.3",
     "react-hot-loader": "^4.12.18",
+    "svg-sprite-loader": "^4.1.6",
     "webpack": "^4.41.1",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2"

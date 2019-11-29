@@ -30,7 +30,12 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        exclude: /sprite.svg$/,
         use: ['@svgr/webpack']
+      },
+      {
+        test: /sprite.svg$/,
+        use: 'svg-sprite-loader'
       }
     ]
   },

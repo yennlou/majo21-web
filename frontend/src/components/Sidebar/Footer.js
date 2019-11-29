@@ -25,7 +25,7 @@ const Footer = ({ theme }, children) => {
   return (
     <FooterWrapper>
       <FooterBG />
-      <Copyright>Created BY Majo21</Copyright>
+      <Copyright>Designed by Majo21</Copyright>
     </FooterWrapper>
   )
 }

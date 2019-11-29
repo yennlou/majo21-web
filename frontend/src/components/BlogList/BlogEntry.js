@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, withRouter } from 'react-router-dom'
+
+import Icon from '../Icon'
+
 const Delimiter = styled(({ className }) => (
   <svg
     width='100%'
@@ -41,7 +44,7 @@ const EntryWrapper = styled.div`
   }
 `
 
-const EntryTitle = styled.h3`
+const EntryHeader = styled.div`
   font-size: 36px;
   padding: 24px;
   padding-bottom: 14px;
@@ -49,6 +52,19 @@ const EntryTitle = styled.h3`
   background-color: ${({ theme }) => theme.data.BLOG_FONT};
   text-transform: uppercase;
   cursor: pointer;
+`
+
+const EntryTitle = styled.h3`
+  font-size: 36px;
+  margin-bottom: 16px;
+`
+
+const EntryInfo = styled.div`
+  font-size: 14px;
+  display: flex;
+  > span {
+    margin-right: 10px;
+  }
 `
 
 const EntryBody = styled.div`
@@ -77,9 +93,12 @@ const EntryBody = styled.div`
 
 const BlogEntry = ({ title, id, description, toc, history, ...otherProps }) => (
   <EntryWrapper {...otherProps}>
-    <EntryTitle onClick={() => { history.push(`/articles/${id}`) }}>
-      {title}
-    </EntryTitle>
+    <EntryHeader onClick={() => { history.push(`/articles/${id}`) }}>
+      <EntryTitle>{title}</EntryTitle>
+      <EntryInfo>
+        <Icon name='calendar' />
+      </EntryInfo>
+    </EntryHeader>
     <Delimiter />
     <EntryBody>
       <ul>
