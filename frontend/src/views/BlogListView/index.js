@@ -12,9 +12,9 @@ const BlogListViewWrapper = styled.div`
   position: relative;
 
   ${Pagination} {
-    position: absolute;
-    right: -54px;
-    top: 16px;
+    position: fixed;
+    right: 20px;
+    top: 116px;
   }
 `
 
@@ -24,13 +24,13 @@ const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
     if (isFetched) return
     fetchCollectionStartAsync()
   }, [])
-  const pageStart = (currentPage - 1) * 4
-  const pageEnd = Math.min(pageStart + 4, collection.length)
+  const pageStart = (currentPage - 1) * 8
+  const pageEnd = Math.min(pageStart + 8, collection.length)
   const blogList = collection.slice(pageStart, pageEnd)
   return (
     <BlogListViewWrapper>
       <BlogList data={blogList} />
-      <Pagination size={Math.ceil(collection.length / 4)} value={currentPage} onChange={setCurrentPage} />
+      <Pagination size={Math.ceil(collection.length / 8)} value={currentPage} onChange={setCurrentPage} />
     </BlogListViewWrapper>
   )
 }

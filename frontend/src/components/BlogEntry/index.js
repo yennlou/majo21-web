@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link, withRouter } from 'react-router-dom'
 
-import Icon from '../Icon'
+import BlogEntryInfo from './BlogEntryInfo'
 
 const Delimiter = styled(({ className }) => (
   <svg
@@ -59,18 +59,6 @@ const EntryTitle = styled.h3`
   margin-bottom: 20px;
 `
 
-const EntryInfo = styled.div`
-  font-size: 14px;
-  display: flex;
-  > span {
-    margin-right: 16px;
-  }
-
-  svg {
-    margin-right: 6px;
-  }
-`
-
 const EntryBody = styled.div`
   font-size: 18px;
   padding: 10px 50px 40px 50px;
@@ -95,20 +83,11 @@ const EntryBody = styled.div`
   }
 `
 
-const BlogEntry = ({ title, id, description, createdAt, toc, history, readingTime, ...otherProps }) => (
+const BlogEntry = ({ title, id, description, toc, history, ...otherProps }) => (
   <EntryWrapper {...otherProps}>
     <EntryHeader onClick={() => { history.push(`/articles/${id}`) }}>
       <EntryTitle>{title}</EntryTitle>
-      <EntryInfo>
-        <span>
-          <Icon name='calendar' />
-          {createdAt.split(' ')[0]}
-        </span>
-        <span>
-          <Icon name='stopwatch' />
-          {readingTime}
-        </span>
-      </EntryInfo>
+      <BlogEntryInfo {...otherProps} />
     </EntryHeader>
     <Delimiter />
     <EntryBody>

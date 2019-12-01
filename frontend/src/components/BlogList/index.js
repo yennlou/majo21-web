@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 
-import BlogEntry from './BlogEntry'
+import BlogEntry from '../BlogEntry'
 
 const BlogListWrapper = styled.div`
   width: calc(100% - 10px);

@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+
 import mdTheme from './md-themes/turing'
+import BlogEntryInfo from '../BlogEntry/BlogEntryInfo'
 
 const BlogWrapper = styled.div`
   padding: 24px 0 40px;
-  color: ${({ theme }) => theme.data.BLOG_FONT}
+  color: ${({ theme }) => theme.data.BLOG_FONT};
 `
 
 const BlogTitle = styled.h3`
@@ -20,12 +22,13 @@ const BlogBody = styled.div`
   font-size: 16px;
 `
 
-const Blog = ({ title, html }) => {
+const Blog = ({ title, html, ...otherProps }) => {
   return (
     <BlogWrapper>
       <BlogTitle>
         {title}
       </BlogTitle>
+      <BlogEntryInfo {...otherProps} />
       <BlogBody dangerouslySetInnerHTML={{ __html: html }} />
     </BlogWrapper>
   )
