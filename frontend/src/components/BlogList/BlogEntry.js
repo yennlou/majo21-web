@@ -56,14 +56,18 @@ const EntryHeader = styled.div`
 
 const EntryTitle = styled.h3`
   font-size: 36px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 `
 
 const EntryInfo = styled.div`
   font-size: 14px;
   display: flex;
   > span {
-    margin-right: 10px;
+    margin-right: 16px;
+  }
+
+  svg {
+    margin-right: 6px;
   }
 `
 
@@ -91,12 +95,19 @@ const EntryBody = styled.div`
   }
 `
 
-const BlogEntry = ({ title, id, description, toc, history, ...otherProps }) => (
+const BlogEntry = ({ title, id, description, createdAt, toc, history, readingTime, ...otherProps }) => (
   <EntryWrapper {...otherProps}>
     <EntryHeader onClick={() => { history.push(`/articles/${id}`) }}>
       <EntryTitle>{title}</EntryTitle>
       <EntryInfo>
-        <Icon name='calendar' />
+        <span>
+          <Icon name='calendar' />
+          {createdAt.split(' ')[0]}
+        </span>
+        <span>
+          <Icon name='stopwatch' />
+          {readingTime}
+        </span>
       </EntryInfo>
     </EntryHeader>
     <Delimiter />

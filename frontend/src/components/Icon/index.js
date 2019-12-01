@@ -9,6 +9,8 @@ const Svg = styled.svg`
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
+  position: relative;
+  bottom: -1px;
 `
 
 const Icon = ({ name }) => (
@@ -17,4 +19,4 @@ const Icon = ({ name }) => (
   </Svg>
 )
 
-export default Icon
+export default styled(Icon)``
