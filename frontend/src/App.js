@@ -11,6 +11,7 @@ import Header from './components/Header'
 
 import BlogListView from './views/BlogListView'
 import BlogView from './views/BlogView'
+import GalleryView from './views/GalleryView'
 
 const Layout = styled.div`
   display: flex;
@@ -46,6 +47,10 @@ const App = ({ theme }) => {
               path='/articles/:blogId'
               component={BlogView}
             />
+            <Route exact path='/gallery'>
+              <Header />
+              <GalleryView />
+            </Route>
           </Switch>
         </Main>
       </Layout>

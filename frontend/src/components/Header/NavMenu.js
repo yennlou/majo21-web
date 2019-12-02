@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const NavMenuUl = styled.ul`
   /* width: 220px; */
@@ -19,8 +20,8 @@ const NavMenuUl = styled.ul`
 
 const NavMenu = () => (
   <NavMenuUl>
-    <li>Blog</li>
-    <li>Gallery</li>
+    <li><Link to='/'>Blog</Link></li>
+    <li><Link to='/gallery'>Gallery</Link></li>
   </NavMenuUl>
 )
 

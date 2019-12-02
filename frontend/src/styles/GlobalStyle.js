@@ -16,6 +16,11 @@ const ResetCss = createGlobalStyle`
     font-size: inherit;
   }
 
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
   ol, ul {
     list-style: none;
   }
