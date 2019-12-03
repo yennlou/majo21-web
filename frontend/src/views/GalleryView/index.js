@@ -1,9 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { connect } from 'react-redux'
 
-const GalleryView = () => {
+import { selectCollection } from '../../redux/gallery/selectors'
+import Gallery from '../../components/Gallery'
+import Pagination from '../../components/Pagination'
+
+const GalleryViewWrapper = styled.div`
+  padding: 10px 0 40px;
+`
+
+const GalleryView = ({ collection }) => {
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 8
+  const pageStart = (currentPage - 1) * pageSize
+  const pageEnd = Math.min(pageStart + pageSize, collection.length)
+  const galleryData = collection.slice(pageStart, pageEnd)
   return (
-    <div>Gallery View</div>
+    <GalleryViewWrapper>
+      <Gallery data={galleryData} />
+      <Pagination size={Math.ceil(collection.length / pageSize)} value={currentPage} onChange={setCurrentPage} />
+    </GalleryViewWrapper>
   )
 }
 
-export default GalleryView
+const mapStateToProps = (state) => ({
+  collection: selectCollection(state)
+})
+
+export default connect(
+  mapStateToProps
+)(GalleryView)

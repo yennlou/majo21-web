@@ -16,6 +16,10 @@ const NavMenuUl = styled.ul`
   li:not(:last-child) {
     margin-right: 42px;
   }
+  
+  a {
+    text-decoration: none;
+  }
 `
 
 const NavMenu = () => (

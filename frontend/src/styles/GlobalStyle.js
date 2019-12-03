@@ -18,7 +18,6 @@ const ResetCss = createGlobalStyle`
 
   a {
     color: inherit;
-    text-decoration: inherit;
   }
 
   ol, ul {

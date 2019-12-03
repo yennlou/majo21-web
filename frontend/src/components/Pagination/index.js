@@ -11,6 +11,9 @@ const IndexWrapper = styled.div`
   position: relative;
   margin-bottom: 20px;
   cursor: pointer;
+  position: fixed;
+  right: 20px;
+  top: 116px;
 `
 const IndexText = styled.div`
   display: table-cell;

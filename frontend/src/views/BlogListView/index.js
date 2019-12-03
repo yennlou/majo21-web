@@ -10,12 +10,6 @@ import Pagination from '../../components/Pagination'
 const BlogListViewWrapper = styled.div`
   padding: 10px 0 40px;
   position: relative;
-
-  ${Pagination} {
-    position: fixed;
-    right: 20px;
-    top: 116px;
-  }
 `
 
 const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
