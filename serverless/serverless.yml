@@ -1,0 +1,13 @@
+service: serverless
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+
+stage: dev
+region: ap-southeast-2
+
+functions:
+  hello:
+    handler: handler.hello
