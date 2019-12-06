@@ -18,14 +18,14 @@ resources:
       Properties:
         TableName: ${self:provider.environment.BLOG_TABLE}
         AttributeDefinitions:
-          - AttributeName: post_type
+          - AttributeName: post_id
             AttributeType: S
           - AttributeName: timestamp
             AttributeType: N
-          - AttributeName: post_id
+          - AttributeName: post_type
             AttributeType: S
         KeySchema:
-          - AttributeName: post_type
+          - AttributeName: post_id
             KeyType: HASH
           - AttributeName: timestamp
             KeyType: RANGE
@@ -33,13 +33,15 @@ resources:
           ReadCapacityUnits: 10
           WriteCapacityUnits: 1
         GlobalSecondaryIndexes:
-          - IndexName: post_id-index
+          - IndexName: post_type-index
             KeySchema:
-              - AttributeName: post_id
+              - AttributeName: post_type
                 KeyType: HASH
+              - AttributeName: timestamp
+                KeyType: RANGE
             Projection:
               ProjectionType: ALL
             ProvisionedThroughput:
               ReadCapacityUnits: 10
-              WriteCapacityUnits: 1
+              WriteCapacityUnits: 2
               
