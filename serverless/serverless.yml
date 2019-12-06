@@ -17,13 +17,13 @@ resources:
       DeletionPolicy: Retain
       Properties:
         TableName: ${self:provider.environment.BLOG_TABLE}
-        AttributeDefinition:
-          - AttributeName: post_id
-            AttributeType: S
+        AttributeDefinitions:
           - AttributeName: post_type
             AttributeType: S
           - AttributeName: timestamp
             AttributeType: N
+          - AttributeName: post_id
+            AttributeType: S
         KeySchema:
           - AttributeName: post_type
             KeyType: HASH
@@ -32,3 +32,14 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 10
           WriteCapacityUnits: 1
+        GlobalSecondaryIndexes:
+          - IndexName: post_id-index
+            KeySchema:
+              - AttributeName: post_id
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 10
+              WriteCapacityUnits: 1
+              
