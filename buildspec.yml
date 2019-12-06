@@ -6,6 +6,7 @@ phases:
       nodejs: 12
     commands:
       - echo Installing Serverless...
+      - npm config set prefix /usr/local
       - npm install -g serverless
   pre_build:
     commands:
