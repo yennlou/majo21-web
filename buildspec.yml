@@ -6,6 +6,7 @@ phases:
       nodejs: 12
     commands:
       - echo Installing Serverless...
+      - export SLS_DEBUG=true
       - npm install -g serverless@1.59
   pre_build:
     commands:
