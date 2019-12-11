@@ -29,6 +29,9 @@ functions:
           path: posts/t/blog
           method: post
           cors: true
+  load-posts:
+    handler: api/loadPosts.handler
+    description: Load posts from github
     
 resources:
   Resources:
