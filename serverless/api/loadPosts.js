@@ -11,9 +11,10 @@ exports.handler = async (event) => {
     const blogIterator = generateBlogFromGithub()
     for await (const blog of blogIterator) {
       await db.put({
-        id: uuidv4(),
+        post_id: uuidv4(),
         ...blog,
-        type: 'blog'
+        timestamp: (new Date()).getTime(),
+        post_type: 'blog'
       })
     }
     return makeResponse({
