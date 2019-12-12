@@ -21,7 +21,7 @@ provider:
         - dynamodb:Query
         - dynamodb:PutItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.BLOG_TABLE}"
+      Resource: "*"
 
 functions:
   get-posts:
