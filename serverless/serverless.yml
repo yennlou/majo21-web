@@ -30,7 +30,7 @@ functions:
     events:
       - http:
           path: posts/t/blog
-          method: post
+          method: get
           cors: true
   load-posts:
     handler: api/loadPosts.handler
