@@ -13,7 +13,6 @@ exports.handler = async (event) => {
       await db.put({
         post_id: uuidv4(),
         ...blog,
-        timestamp: (new Date()).getTime(),
         post_type: 'blog'
       })
     }
