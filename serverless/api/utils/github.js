@@ -1,5 +1,6 @@
 const axios = require('axios')
 const base64 = require('./base64')
+const parseMarkdown = require('./parseMarkdown')
 
 const githubAPI = axios.create({
   baseURL: 'https://api.github.com/repos/yennlou/Majo21'
@@ -7,25 +8,29 @@ const githubAPI = axios.create({
 githubAPI.defaults.headers.common.Authorization = 'Token ' + process.env.GITHUB_TOKEN
 
 const getBlogListFromGithub = async () => {
-  const { data } = await githubAPI.get('/contents/blogs')
-  return data.map((blog) => {
-    const { name } = blog
-    const title = name.split('.').slice(0, -1).join('.')
-    return {
-      name,
-      title,
-      encodedName: encodeURI(name)
-    }
-  })
+  try {
+    const { data } = await githubAPI.get('/contents/blogs')
+    return data.map((blog) => {
+      const { name } = blog
+      return encodeURI(name)
+    })
+  } catch (err) {
+    console.log(err)
+    return []
+  }
 }
 
 const generateBlogFromGithub = async function * () {
   const blogList = await getBlogListFromGithub()
-  for (const blog of blogList) {
-    const { data } = await githubAPI.get('/contents/blogs/' + blog.encodedName)
-    yield {
-      name: blog.title,
-      content: base64.decode(data.content)
+  for (const blogName of blogList) {
+    try {
+      const { data } = await githubAPI.get('/contents/blogs/' + blogName)
+      const content = base64.decode(data.content)
+      yield {
+        ...parseMarkdown(content)
+      }
+    } catch (err) {
+      console.log(err)
     }
   }
 }

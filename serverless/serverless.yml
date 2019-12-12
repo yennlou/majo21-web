@@ -1,5 +1,8 @@
 service: blog-backend
 
+package:
+  excludeDevDependencies: true
+
 plugins:
   - serverless-offline
 
