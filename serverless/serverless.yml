@@ -21,7 +21,7 @@ provider:
         - dynamodb:Query
         - dynamodb:PutItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.BLOG_TABLE}"
+      Resource: "*"
 
 functions:
   get-posts:
@@ -30,7 +30,7 @@ functions:
     events:
       - http:
           path: posts/t/blog
-          method: post
+          method: get
           cors: true
   load-posts:
     handler: api/loadPosts.handler

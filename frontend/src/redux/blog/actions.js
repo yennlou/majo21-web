@@ -20,7 +20,7 @@ export const fetchCollectionStartAsync = () => {
   return dispatch => {
     dispatch(fetchCollectionStart)
     service
-      .get('/api/articles')
+      .get('/posts/t/blog')
       .then(({ data }) => {
         dispatch(fetchCollectionSuccess(
           data.map(parseDataToBlog)
