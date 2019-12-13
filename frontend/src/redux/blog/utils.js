@@ -1,4 +1,3 @@
-import showdown from 'showdown'
 import readTimeEstimate from 'read-time-estimate'
 
 const makeToc = (html) => {
@@ -35,18 +34,15 @@ const makeToc = (html) => {
 }
 
 export const parseDataToBlog = (data) => {
-  const { content, _id: id } = data
-  const conv = new showdown.Converter({ metadata: true })
-  const html = conv.makeHtml(content)
+  const { post_id: postId, markdown, html, ...otherAttrs } = data
 
   const toc = makeToc(html)
-  const metadata = conv.getMetadata()
 
   return {
-    id,
+    id: postId,
     html: '<h2 id="toc">Table of content</h2>' + toc.toc + html,
     toc: toc.data,
-    readingTime: readTimeEstimate(content).humanizedDuration,
-    ...metadata
+    readingTime: readTimeEstimate(markdown).humanizedDuration,
+    ...otherAttrs
   }
 }
