@@ -35,6 +35,9 @@ functions:
   load-posts:
     handler: api/loadPosts.handler
     description: Load posts from github
+  update-on-github-push:
+    handler: api/updateOnGithubPush.handler
+    description: update posts on github push
     
 resources:
   Resources:
