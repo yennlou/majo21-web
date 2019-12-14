@@ -38,6 +38,10 @@ functions:
   update-on-github-push:
     handler: api/updateOnGithubPush.handler
     description: update posts on github push
+    events:
+      - http:
+          path: webhooks/github/e/push
+          method: post
     
 resources:
   Resources:
