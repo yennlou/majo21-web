@@ -1,6 +1,3 @@
-const AWS = require('aws-sdk')
-AWS.config.update({ region: 'ap-southeast-2' })
-
 const uuidv4 = require('uuid/v4')
 const db = require('./utils/db')
 const { handleException, makeResponse } = require('./utils/http')
