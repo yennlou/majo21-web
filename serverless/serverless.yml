@@ -57,6 +57,8 @@ resources:
             AttributeType: N
           - AttributeName: post_type
             AttributeType: S
+          - AttributeName: path
+            AttributeType: S
         KeySchema:
           - AttributeName: post_id
             KeyType: HASH
