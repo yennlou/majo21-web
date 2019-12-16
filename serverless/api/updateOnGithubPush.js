@@ -4,15 +4,16 @@ const github = require('./utils/github')
 
 exports.handler = async (event) => {
   try {
-    const { commits, ref } = JSON.parse(event.body)[0]
+    const { commits, ref } = JSON.parse(event.body)
+    const commit = commits[0]
     if (!ref.endsWith('dev')) {
       return makeResponse({
         message: 'non-dev branch push event'
       })
     }
     const PostFilter = x => x.startsWith('blogs/')
-    const addList = [...commits.added, ...commits.modified].filter(PostFilter)
-    const removeList = [...commits.removed, ...commits.modified].filter(PostFilter)
+    const addList = [...commit.added, ...commit.modified].filter(PostFilter)
+    const removeList = [...commit.removed, ...commit.modified].filter(PostFilter)
 
     for (const path of removeList) {
       const post = await github.getBlogFromGithubByPath(path)
