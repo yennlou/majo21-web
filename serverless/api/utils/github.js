@@ -22,7 +22,7 @@ const getBlogListFromGithub = async () => {
 }
 
 const getBlogFromGithubByPath = async (path) => {
-  const { data } = await githubAPI.get('/contents/' + path + '?ref=dev')
+  const { data } = await githubAPI.get('/contents/' + encodeURI(path) + '?ref=dev')
   const content = base64.decode(data.content)
   return {
     post_id: uuidv4(),
