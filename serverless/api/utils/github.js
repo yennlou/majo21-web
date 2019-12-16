@@ -27,6 +27,7 @@ const generateBlogFromGithub = async function * () {
       const { data } = await githubAPI.get('/contents/blogs/' + blogName)
       const content = base64.decode(data.content)
       yield {
+        path: data.path,
         ...parseMarkdown(content)
       }
     } catch (err) {
