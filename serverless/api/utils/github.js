@@ -1,3 +1,4 @@
+const uuidv4 = require('uuid/v4')
 const axios = require('axios')
 const base64 = require('./base64')
 const parseMarkdown = require('./parseMarkdown')
@@ -20,16 +21,23 @@ const getBlogListFromGithub = async () => {
   }
 }
 
+const getBlogFromGithubByPath = async (path) => {
+  const { data } = await githubAPI.get('/contents/' + path)
+  const content = base64.decode(data.content)
+  return {
+    post_id: uuidv4(),
+    post_type: 'blog',
+    path: data.path,
+    ...parseMarkdown(content)
+  }
+}
+
 const generateBlogFromGithub = async function * () {
   const blogList = await getBlogListFromGithub()
   for (const blogName of blogList) {
     try {
-      const { data } = await githubAPI.get('/contents/blogs/' + blogName)
-      const content = base64.decode(data.content)
-      yield {
-        path: data.path,
-        ...parseMarkdown(content)
-      }
+      const blog = await getBlogFromGithubByPath('blogs/' + blogName)
+      yield blog
     } catch (err) {
       console.log(err)
     }
@@ -45,6 +53,7 @@ const debugIt = async () => {
 
 module.exports = {
   githubAPI,
+  getBlogFromGithubByPath,
   generateBlogFromGithub,
   debugIt
 }

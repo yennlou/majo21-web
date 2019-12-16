@@ -77,4 +77,14 @@ resources:
             ProvisionedThroughput:
               ReadCapacityUnits: 10
               WriteCapacityUnits: 2
+          - IndexName: post_path-index
+              KeySchema:
+                - AttributeName: path
+                  KeyType: HASH
+            Projection:
+              ProjectionType: KEYS_ONLY
+            ProvisionedThroughput:
+              ReadCapacityUnits: 2
+              WriteCapacityUnits: 1
+
               
