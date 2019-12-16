@@ -1,24 +1,54 @@
 const AWS = require('aws-sdk')
 AWS.config.update({ region: 'ap-southeast-2' })
 const dynamodb = new AWS.DynamoDB.DocumentClient()
-const tableName = process.env.BLOG_TABLE
+const TableName = process.env.BLOG_TABLE
+
+const queryItems = async (IndexName, KeyName, KeyValue) => {
+  const AttributeNameKey = '#' + KeyName
+  const AttributeValueKey = ':' + KeyName
+  const KeyConditionExpression = `${AttributeNameKey} = ${AttributeValueKey}`
+  const ExpressionAttributeNames = { [AttributeNameKey]: KeyName }
+  const ExpressionAttributeValues = { [AttributeValueKey]: KeyValue }
+  const resp = await dynamodb.query({
+    TableName,
+    IndexName,
+    KeyConditionExpression,
+    ExpressionAttributeNames,
+    ExpressionAttributeValues
+  }).promise()
+  return resp
+}
+
+const putPost = async (post) => {
+  const resp = await dynamodb.put({
+    TableName,
+    Item: post
+  }).promise()
+  return resp
+}
+
+const deletePost = async (id) => {
+  const resp = await dynamodb.delete({
+    TableName,
+    Key: {
+      post_id: id
+    }
+  }).promise()
+  return resp
+}
 
 module.exports = {
-  put: async (item) => {
-    const resp = await dynamodb.put({
-      TableName: tableName,
-      Item: item
-    }).promise()
+  put: putPost,
+  delete: deletePost,
+  deletePostByPath: async (path) => {
+    const { Items } = await queryItems('post_path-index', 'path', path)
+    if (!(Items && Items.length)) return null
+    const resp = await deletePost(Items[0].post_id)
     return resp
   },
-  query: async (type) => {
-    const resp = await dynamodb.query({
-      TableName: tableName,
-      IndexName: 'post_type-index',
-      KeyConditionExpression: '#post_type = :postType',
-      ExpressionAttributeNames: { '#post_type': 'post_type' },
-      ExpressionAttributeValues: { ':postType': type }
-    }).promise()
+  queryItems,
+  queryPosts: async (type) => {
+    const resp = await queryItems('post_type-index', 'post_type', type)
     return resp
   }
 }
