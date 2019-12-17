@@ -4,7 +4,17 @@ package:
   excludeDevDependencies: true
 
 plugins:
+  - serverless-dynamodb-local
   - serverless-offline
+
+custom:
+  endpoints:
+    dynamodb-url: 'http://localhost:3000'
+  dynamodb:
+    start:
+      migrate: true
+    stages:
+      - dev
 
 provider:
   name: aws
@@ -14,7 +24,8 @@ provider:
   memorySize: 128
   timeout: 5
   environment:
-    BLOG_TABLE: ${self:service}-${self:provider.stage}
+    DYNAMODB_TABLE: ${self:service}-${self:provider.stage}
+    DYNAMODB_ENDPOINT_LOCAL: ${self:custom.endpoints.dynamodb-url}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -49,13 +60,15 @@ resources:
       Type: AWS::DynamoDB::Table
       DeletionPolicy: Retain
       Properties:
-        TableName: ${self:provider.environment.BLOG_TABLE}
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
         AttributeDefinitions:
           - AttributeName: post_id
             AttributeType: S
           - AttributeName: timestamp
             AttributeType: N
           - AttributeName: post_type
+            AttributeType: S
+          - AttributeName: path
             AttributeType: S
         KeySchema:
           - AttributeName: post_id
@@ -78,9 +91,9 @@ resources:
               ReadCapacityUnits: 10
               WriteCapacityUnits: 2
           - IndexName: post_path-index
-              KeySchema:
-                - AttributeName: path
-                  KeyType: HASH
+            KeySchema:
+              - AttributeName: path
+                KeyType: HASH
             Projection:
               ProjectionType: KEYS_ONLY
             ProvisionedThroughput:
