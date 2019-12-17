@@ -1,7 +1,19 @@
 const AWS = require('aws-sdk')
 AWS.config.update({ region: 'ap-southeast-2' })
-const dynamodb = new AWS.DynamoDB.DocumentClient()
-const TableName = process.env.BLOG_TABLE
+
+const DYNAMODB_ENDPOINT_LOCAL = process.env.DYNAMODB_ENDPOINT_LOCAL
+const IS_OFFLINE = process.env.IS_OFFLINE
+const TableName = process.env.DYNAMODB_TABLE
+
+let dynamodb
+if (IS_OFFLINE) {
+  dynamodb = new AWS.DynamoDB.DocumentClient({
+    region: 'localhost',
+    endpoint: DYNAMODB_ENDPOINT_LOCAL
+  })
+} else {
+  dynamodb = new AWS.DynamoDB.DocumentClient()
+}
 
 const queryItems = async (IndexName, KeyName, KeyValue) => {
   const AttributeNameKey = '#' + KeyName

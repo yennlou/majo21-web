@@ -16,12 +16,12 @@ exports.handler = async (event) => {
     const removeList = [...commit.removed, ...commit.modified].filter(PostFilter)
 
     for (const path of removeList) {
-      const post = await github.getBlogFromGithubByPath(path)
-      await db.put(post)
+      await db.deletePostByPath(path)
     }
 
     for (const path of addList) {
-      await db.deletePostByPath(path)
+      const post = await github.getBlogFromGithubByPath(path)
+      await db.put(post)
     }
 
     return makeResponse({
