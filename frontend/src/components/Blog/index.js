@@ -6,14 +6,14 @@ import BlogEntryInfo from '../BlogEntry/BlogEntryInfo'
 
 const BlogWrapper = styled.div`
   padding: 24px 0 40px;
-  color: ${({ theme }) => theme.data.BLOG_FONT};
+  color: ${({ theme }) => theme.data.MD_FONT};
 `
 
 const BlogTitle = styled.h3`
   font-size: 42px;
   text-align: center;
   margin-bottom: 40px;
-  background-color: ${({ theme }) => theme.data.BLOG_FONT};
+  background-color: ${({ theme }) => theme.data.MD_FONT};
   color: ${({ theme }) => theme.data.BG};
 `
 

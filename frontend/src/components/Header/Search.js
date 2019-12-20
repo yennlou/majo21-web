@@ -5,16 +5,12 @@ import { debounced } from '../../utils/function'
 import { setQuery } from '../../redux/config/actions'
 
 const SearchInput = styled.input`
-  color: ${({ theme }) => theme.data.NAV_FONT};
+  color: ${({ theme }) => theme.data.SEARCH_FONT};
   padding: 6px;
   width: 70%;
-  background: ${({ theme }) => theme.data.SEARCH_BG};
-  outline: none;
+  background: ${({ theme }) => theme.data.SEARCH_FONT}44;
   border:none;
-
-  &:focus {
-    outline: none;
-  }
+  outline: none;
 `
 
 class Search extends React.Component {
