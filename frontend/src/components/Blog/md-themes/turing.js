@@ -29,7 +29,7 @@ const theme = css`
   }
 
   hr {
-    border-color: ${({ theme }) => theme.data.BLOG_FONT};
+    border-color: ${({ theme }) => theme.data.MD_FONT};
   }
 
   blockquote, strong {
@@ -42,7 +42,7 @@ const theme = css`
   }
 
   a {
-    color: ${({ theme }) => theme.data.BLOG_FONT};
+    color: ${({ theme }) => theme.data.MD_FONT};
     &:hover {
       background-color: ${({ theme }) => theme.data.BLOG_LINK_BG};
       color: ${({ theme }) => theme.data.BLOG_LINK};
@@ -97,11 +97,13 @@ const theme = css`
   }
 
   pre {
-    padding: 1em 2em;
+    padding: 2em 3em;
     color: #b39a1d;
     background: ${({ theme }) => theme.data.BLOG_CODE_BG};
     font-family: menlo, monospace;
     font-weight: lighter;
+    margin: 2em 1em;
+    border-radius: .5em;
   }
 
   code {

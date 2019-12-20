@@ -1,7 +1,7 @@
 import { ConfigActionTypes } from './types'
 
 const INITIAL_STATE = {
-  theme: 'dark',
+  theme: 'light',
   query: ''
 }
 

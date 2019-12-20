@@ -13,7 +13,7 @@ const getBlogListFromGithub = async () => {
     const { data } = await githubAPI.get('/contents/blogs' + '?ref=dev')
     return data.map((blog) => {
       const { name } = blog
-      return encodeURI(name)
+      return name
     })
   } catch (err) {
     console.log(err)
