@@ -20,7 +20,6 @@ const Layout = styled.div`
 const Main = styled.div`
   padding: 0 80px;
   flex-grow: 1;
-  min-width: 800px;
   height: 100%;
   overflow: scroll;
 `
