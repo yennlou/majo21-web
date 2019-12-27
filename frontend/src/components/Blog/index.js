@@ -34,4 +34,4 @@ const Blog = ({ title, html, ...otherProps }) => {
   )
 }
 
-export default Blog
+export default styled(Blog)``

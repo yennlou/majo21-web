@@ -10,4 +10,4 @@ const Entry = ({ data: { imgUrl, description } }) => (
   </EntryWrapper>
 )
 
-export default Entry
+export default styled(Entry)``
