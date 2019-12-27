@@ -14,6 +14,9 @@ const IndexWrapper = styled.div`
   position: fixed;
   right: 20px;
   top: 116px;
+  @media(max-width: 1290px) {
+      right: 10px;
+    }
 `
 const IndexText = styled.div`
   display: table-cell;

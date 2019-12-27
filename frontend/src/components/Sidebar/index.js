@@ -16,6 +16,10 @@ const SidebarWrapper = styled.div(({ theme }) => {
     flex-direction: column;
     align-items: center;
     min-height: 740px;
+
+    @media(max-width: 980px) {
+      flex-basis: 360px;
+    }
   `
 })
 
@@ -54,4 +58,4 @@ const Sidebar = ({ theme }) => {
   )
 }
 
-export default Sidebar
+export default styled(Sidebar)``

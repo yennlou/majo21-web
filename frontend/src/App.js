@@ -13,15 +13,26 @@ import BlogListView from './views/BlogListView'
 import BlogView from './views/BlogView'
 import GalleryView from './views/GalleryView'
 
-const Layout = styled.div`
-  display: flex;
-  height: 100%;
-`
 const Main = styled.div`
   padding: 0 80px;
   flex-grow: 1;
   height: 100%;
   overflow: scroll;
+`
+
+const Layout = styled.div`
+  display: flex;
+  height: 100%;
+
+  ${Main} {
+    @media(max-width: 1290px) {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+    @media(max-width: 980px) {
+      padding-left: 20px;
+    }
+  }
 `
 
 const themeCollection = {

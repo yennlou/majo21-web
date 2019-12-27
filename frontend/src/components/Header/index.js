@@ -13,16 +13,18 @@ const HeaderLayout = styled.div`
 `
 
 const HeaderLeft = styled.div`
-  flex: 1 0 50%;
+  flex-grow: 1;
+  flex-basis: 300px;
 `
 
 const HeaderRight = styled.div`
-  flex: 1 0 50%;
+  flex-grow: 1;
   display: flex;
   align-items: center;
 
   ${ThemeSwitcher} {
     margin-left: 40px;
+    margin-right: 40px;
   }
 `
 
