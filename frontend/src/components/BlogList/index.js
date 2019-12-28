@@ -19,6 +19,9 @@ const BlogListWrapper = styled.div`
     & > div {
       width: auto;
       margin-bottom: 44px;
+      @media(max-width: 870px) {
+        margin-bottom: 34px;
+      }
     }
   }
 `

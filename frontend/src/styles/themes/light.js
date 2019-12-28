@@ -4,7 +4,7 @@ const COLORS = {
   WHITESMOKE: '#F5F5F5',
   WHITE: '#FFFFFF',
   BLACKRUSSIAN: '#181B2C',
-  LUCKY: '#ce9b24'
+  LUCKY: '#d8b83e'
 }
 
 const COLOR_THEME = {

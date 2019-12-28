@@ -7,6 +7,10 @@ const ResetCss = createGlobalStyle`
     font-family: menlo, monospace;
   }
 
+  body {
+    background-color: ${props => props.theme.data.BG};
+  }
+
   *,
   *:before,
   *:after {
@@ -32,7 +36,6 @@ const ResetCss = createGlobalStyle`
   #app {
     height: 100vh;
     overflow: hidden;
-    background-color: ${props => props.theme.data.BG};
   }
 `
 

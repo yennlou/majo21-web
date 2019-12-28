@@ -9,7 +9,7 @@ const IndexWrapper = styled.div`
   z-index: ${({ active }) => active ? 1 : 0};
   font-size: 14px;
   margin-bottom: 20px;
-  /* cursor: pointer; */
+  cursor: pointer;
 `
 const IndexText = styled.div`
   display: table-cell;
@@ -32,7 +32,7 @@ const PaginationWrapper = styled.div`
   @media(max-width: 1290px) {
     right: 12px;
   }
-  @media(max-width: 920px) {
+  @media(max-width: 940px) {
     position: relative;
     right: 0;
     top: 0;

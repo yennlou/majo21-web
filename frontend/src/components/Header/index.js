@@ -5,7 +5,7 @@ import Search from './Search'
 import ThemeSwitcher from './ThemeSwitcher'
 import NavMenu from './NavMenu'
 
-const HeaderLayout = styled.div`
+export const HeaderLayout = styled.div`
   display: flex;
   width: 100%;
   height: 100px;
@@ -28,7 +28,7 @@ const HeaderRight = styled.div`
   }
 `
 
-const Header = ({ setThemeLight, setThemeDark }) => {
+const Header = () => {
   return (
     <HeaderLayout>
       <HeaderLeft>

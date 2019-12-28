@@ -102,8 +102,9 @@ const theme = css`
     background: ${({ theme }) => theme.data.BLOG_CODE_BG};
     font-family: menlo, monospace;
     font-weight: lighter;
-    margin: 2em 1em;
+    margin: 2em 0em;
     border-radius: .5em;
+    overflow: scroll;
   }
 
   code {

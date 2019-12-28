@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import Demo from '../Demo'
 import Footer from './Footer'
 
-const SidebarWrapper = styled.div(({ theme }) => {
+export const SidebarWrapper = styled.div(({ theme }) => {
   const { SIDEBAR_BG: bgColor, SIDEBAR_FONT: fontColor } = theme.data
   return css`
     height: 100%;

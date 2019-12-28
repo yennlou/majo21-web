@@ -18,6 +18,9 @@ const NavMenuUl = styled.ul`
     @media(max-width: 1100px) {
       margin-right: 24px;
     }
+    @media(max-width: 870px) {
+      margin-right: 16px;
+    }
   }
   
   a {
