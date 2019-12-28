@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { setTheme } from '../../redux/config/actions'
 
-const ThemeSwitcherWrapper = styled.div`
+export const ThemeSwitcherWrapper = styled.div`
   width: 80px;
   display: flex;
   justify-content: space-between;
@@ -15,6 +15,7 @@ const ThemeOption = styled.div`
   width: 30px;
   border-radius: 50%;
   border: 3px solid ${({ theme }) => theme.data.NAV_FONT};
+  cursor: pointer;
 `
 
 const ThemeOptionLight = styled(ThemeOption)`

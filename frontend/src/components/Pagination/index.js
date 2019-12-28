@@ -9,7 +9,7 @@ const IndexWrapper = styled.div`
   z-index: ${({ active }) => active ? 1 : 0};
   font-size: 14px;
   margin-bottom: 20px;
-  /* cursor: pointer; */
+  cursor: pointer;
 `
 const IndexText = styled.div`
   display: table-cell;

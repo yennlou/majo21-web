@@ -6,10 +6,11 @@ import styled, { ThemeProvider } from 'styled-components'
 import GlobalStyle from './styles/GlobalStyle'
 import lightTheme from './styles/themes/light'
 import darkTheme from './styles/themes/dark'
-import Sidebar from './components/Sidebar'
-import Header from './components/Header'
-import ThemeSwitcher from './components/Header/ThemeSwitcher'
+import Sidebar, { SidebarWrapper } from './components/Sidebar'
+import Header, { HeaderLayout } from './components/Header'
+import ThemeSwitcher, { ThemeSwitcherWrapper } from './components/Header/ThemeSwitcher'
 
+import MobileHeader, { MobileHeaderWrapper } from './components/MobileHeader'
 import MobileFooter, { MobileFooterWrapper } from './components/MobileFooter'
 
 import BlogListView, { BlogListViewWrapper } from './views/BlogListView'
@@ -55,8 +56,25 @@ const Layout = styled.div`
     ${BlogListViewWrapper} {
       padding-bottom: 20px;
     }
+    ${SidebarWrapper} {
+      display: none;
+    }
     ${MobileFooterWrapper} {
       display: block;
+    }
+    ${MobileHeaderWrapper} {
+      display: flex;
+      margin-top: 15px;
+    }
+    ${HeaderLayout} {
+      height: 60px;
+    }
+    ${ThemeSwitcher} {
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+    ${ThemeSwitcherWrapper} {
+      width: 75px;
     }
   }
 `
@@ -75,6 +93,7 @@ const App = ({ theme }) => {
         <Main>
           <Switch>
             <Route exact path='/'>
+              <MobileHeader />
               <Header />
               <BlogListView />
             </Route>
@@ -84,6 +103,7 @@ const App = ({ theme }) => {
               component={BlogView}
             />
             <Route exact path='/gallery'>
+              <MobileHeader />
               <Header />
               <GalleryView />
             </Route>
