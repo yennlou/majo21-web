@@ -8,20 +8,49 @@ import lightTheme from './styles/themes/light'
 import darkTheme from './styles/themes/dark'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
+import Footer from './components/Sidebar/Footer'
 
 import BlogListView from './views/BlogListView'
 import BlogView from './views/BlogView'
 import GalleryView from './views/GalleryView'
 
-const Layout = styled.div`
-  display: flex;
-  height: 100%;
-`
 const Main = styled.div`
   padding: 0 80px;
   flex-grow: 1;
   height: 100%;
   overflow: scroll;
+`
+
+const Layout = styled.div`
+  display: flex;
+  height: 100%;
+
+  @media(max-width: 1290px) {
+    ${Main} {
+      padding: 0 60px;
+    }
+  }
+
+  @media(max-width: 1020px) {
+    ${Main} {
+      padding: 0 60px 0 20px;
+    }
+  }
+
+  @media(max-width: 920px) {
+    ${Main} {
+      padding: 0 20px 10px 20px;
+    }
+  }
+
+  @media(max-width: 880px) {
+    flex-direction: column;
+    overflow: scroll;
+    ${Main} {
+      overflow: initial;
+    } 
+  }
+
 `
 
 const themeCollection = {

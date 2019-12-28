@@ -18,13 +18,14 @@ const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
     if (isFetched) return
     fetchCollectionStartAsync()
   }, [])
-  const pageStart = (currentPage - 1) * 8
-  const pageEnd = Math.min(pageStart + 8, collection.length)
+  const PageSize = 6
+  const pageStart = (currentPage - 1) * PageSize
+  const pageEnd = Math.min(pageStart + PageSize, collection.length)
   const blogList = collection.slice(pageStart, pageEnd)
   return (
     <BlogListViewWrapper>
       <BlogList data={blogList} />
-      <Pagination size={Math.ceil(collection.length / 8)} value={currentPage} onChange={setCurrentPage} />
+      <Pagination size={Math.ceil(collection.length / PageSize)} value={currentPage} onChange={setCurrentPage} />
     </BlogListViewWrapper>
   )
 }

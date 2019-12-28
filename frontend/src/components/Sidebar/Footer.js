@@ -7,6 +7,7 @@ const FooterWrapper = styled.div`
   position: relative;
   margin-top: auto;
   width: 100%;
+  /* z-index: 10; */
 `
 
 const FooterBG = styled(SVGCloud)`

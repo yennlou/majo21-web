@@ -7,7 +7,8 @@ import { setQuery } from '../../redux/config/actions'
 const SearchInput = styled.input`
   color: ${({ theme }) => theme.data.SEARCH_FONT};
   padding: 6px;
-  width: 70%;
+  width: 100%;
+  max-width: 300px;
   background: ${({ theme }) => theme.data.SEARCH_FONT}44;
   border:none;
   outline: none;

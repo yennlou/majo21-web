@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const EntryWrapper = styled.div``
+const EntryWrapper = styled.div`
+  color: ${({ theme }) => theme.data.BLOG_FONT}
+`
 
 const Entry = ({ data: { imgUrl, description } }) => (
   <EntryWrapper>

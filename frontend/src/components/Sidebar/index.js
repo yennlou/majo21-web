@@ -16,6 +16,10 @@ const SidebarWrapper = styled.div(({ theme }) => {
     flex-direction: column;
     align-items: center;
     min-height: 740px;
+
+    @media(max-width: 1020px) {
+      flex-basis: 360px;
+    }
   `
 })
 
@@ -31,6 +35,7 @@ const Contact = styled.div`
   padding: 42px;
   font-size: 16px;
   line-height: 1.4;
+  white-space: nowrap;
 `
 
 const Sidebar = ({ theme }) => {
@@ -54,4 +59,4 @@ const Sidebar = ({ theme }) => {
   )
 }
 
-export default Sidebar
+export default styled(Sidebar)``

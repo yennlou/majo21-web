@@ -15,6 +15,9 @@ const NavMenuUl = styled.ul`
 
   li:not(:last-child) {
     margin-right: 42px;
+    @media(max-width: 1100px) {
+      margin-right: 24px;
+    }
   }
   
   a {

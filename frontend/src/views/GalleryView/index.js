@@ -7,12 +7,12 @@ import Gallery from '../../components/Gallery'
 import Pagination from '../../components/Pagination'
 
 const GalleryViewWrapper = styled.div`
-  padding: 10px 0 40px;
+  padding: 10px 0 20px;
 `
 
 const GalleryView = ({ collection }) => {
   const [currentPage, setCurrentPage] = useState(1)
-  const pageSize = 8
+  const pageSize = 6
   const pageStart = (currentPage - 1) * pageSize
   const pageEnd = Math.min(pageStart + pageSize, collection.length)
   const galleryData = collection.slice(pageStart, pageEnd)
