@@ -8,6 +8,7 @@ import lightTheme from './styles/themes/light'
 import darkTheme from './styles/themes/dark'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
+import Footer from './components/Sidebar/Footer'
 
 import BlogListView from './views/BlogListView'
 import BlogView from './views/BlogView'
@@ -24,15 +25,32 @@ const Layout = styled.div`
   display: flex;
   height: 100%;
 
-  ${Main} {
-    @media(max-width: 1290px) {
-      padding-left: 60px;
-      padding-right: 60px;
-    }
-    @media(max-width: 980px) {
-      padding-left: 20px;
+  @media(max-width: 1290px) {
+    ${Main} {
+      padding: 0 60px;
     }
   }
+
+  @media(max-width: 1020px) {
+    ${Main} {
+      padding: 0 60px 0 20px;
+    }
+  }
+
+  @media(max-width: 920px) {
+    ${Main} {
+      padding: 0 20px 10px 20px;
+    }
+  }
+
+  @media(max-width: 880px) {
+    flex-direction: column;
+    overflow: scroll;
+    ${Main} {
+      overflow: initial;
+    } 
+  }
+
 `
 
 const themeCollection = {

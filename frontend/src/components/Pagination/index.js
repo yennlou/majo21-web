@@ -8,15 +8,8 @@ const IndexWrapper = styled.div`
   background: ${({ theme, active }) => active ? theme.data.PAGINATION : theme.data.BG};
   z-index: ${({ active }) => active ? 1 : 0};
   font-size: 14px;
-  position: relative;
   margin-bottom: 20px;
-  cursor: pointer;
-  position: fixed;
-  right: 20px;
-  top: 116px;
-  @media(max-width: 1290px) {
-      right: 10px;
-    }
+  /* cursor: pointer; */
 `
 const IndexText = styled.div`
   display: table-cell;
@@ -30,7 +23,26 @@ const IndexItem = ({ children, ...otherProps }) => (
   </IndexWrapper>
 )
 
-const PaginationWrapper = styled.div``
+const PaginationWrapper = styled.div`
+  display: flex;
+  position: fixed;
+  right: 20px;
+  top: 116px;
+  flex-direction: column;
+  @media(max-width: 1290px) {
+    right: 12px;
+  }
+  @media(max-width: 920px) {
+    position: relative;
+    right: 0;
+    top: 0;
+    flex-direction: row;
+    ${IndexWrapper} {
+      margin-bottom: 0px;
+      margin-right: 20px;
+    }
+  }
+`
 
 const Pagination = ({ className, size = 1, value = 1, onChange }) => {
   return (
