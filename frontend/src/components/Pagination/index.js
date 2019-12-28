@@ -32,7 +32,7 @@ const PaginationWrapper = styled.div`
   @media(max-width: 1290px) {
     right: 12px;
   }
-  @media(max-width: 920px) {
+  @media(max-width: 940px) {
     position: relative;
     right: 0;
     top: 0;

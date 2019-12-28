@@ -7,7 +7,7 @@ import { fetchCollectionStartAsync } from '../../redux/blog/actions'
 import BlogList from '../../components/BlogList'
 import Pagination from '../../components/Pagination'
 
-const BlogListViewWrapper = styled.div`
+export const BlogListViewWrapper = styled.div`
   padding: 10px 0 40px;
   position: relative;
 `
