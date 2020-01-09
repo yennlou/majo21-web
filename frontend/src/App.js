@@ -130,6 +130,7 @@ const App = ({ theme }) => {
             />
             <Route exact path='/gallery'>
               <MobileHeader />
+              <MobileSubHeader />
               <Header />
               <GalleryView />
             </Route>

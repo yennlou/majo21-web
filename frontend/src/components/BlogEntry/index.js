@@ -1,8 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link, withRouter } from 'react-router-dom'
 
-import BlogEntryInfo from './BlogEntryInfo'
+import BlogEntryInfo, { BlogEntryInfoWrapper } from './BlogEntryInfo'
 
 const Delimiter = styled(({ className }) => (
   <svg
@@ -26,6 +26,10 @@ const EntryWrapper = styled.div`
   width: 300px;
   border: 2px solid ${({ theme }) => theme.data.BLOG_BORDER};
   color: ${({ theme }) => theme.data.BLOG_FONT};
+
+  ${props => props.isLoading && css`
+    opacity: 0.3;
+  `}
 
   &::after {
     content: "";
@@ -83,29 +87,68 @@ const EntryBody = styled.div`
   }
 `
 
-const BlogEntry = ({ title, id, description, toc, history, ...otherProps }) => (
-  <EntryWrapper {...otherProps}>
-    <EntryHeader onClick={() => { history.push(`/articles/${id}`) }}>
-      <EntryTitle>{title}</EntryTitle>
-      <BlogEntryInfo {...otherProps} />
+const EntryLoadingWrapper = styled(EntryWrapper)`
+  opacity: .4;
+  ${EntryHeader}, a {
+    pointer-events: none;
+  }
+
+  ${EntryTitle}, ${BlogEntryInfoWrapper}, li {
+    opacity: .8;
+  }
+`
+
+const BlogEntryLoading = ({ isLoading, ...otherProps }) => (
+  <EntryLoadingWrapper {...otherProps}>
+    <EntryHeader>
+      <EntryTitle>██████████████</EntryTitle>
+      <BlogEntryInfo createdAt='█████████' readingTime='███████' />
     </EntryHeader>
     <Delimiter />
     <EntryBody>
       <ul>
-        {
-          toc.map(header => {
-            if (!Array.isArray(header)) {
-              return (
-                <li key={header.id}>
-                  <Link to={`/articles/${id}#${header.id}`}>{header.content}</Link>
-                </li>
-              )
-            }
-          })
-        }
+        <li>
+          <a>███████████</a>
+        </li>
+        <li>
+          <a>████████████████████████</a>
+        </li>
+        <li>
+          <a>██████████████████</a>
+        </li>
       </ul>
     </EntryBody>
-  </EntryWrapper>
+  </EntryLoadingWrapper>
 )
+
+const BlogEntry = ({ title, id, description, toc, history, isLoading, ...otherProps }) => {
+  if (isLoading) {
+    return (<BlogEntryLoading />)
+  }
+  return (
+    <EntryWrapper {...otherProps}>
+      <EntryHeader onClick={() => { history.push(`/articles/${id}`) }}>
+        <EntryTitle>{title}</EntryTitle>
+        <BlogEntryInfo {...otherProps} />
+      </EntryHeader>
+      <Delimiter />
+      <EntryBody>
+        <ul>
+          {
+            toc.map(header => {
+              if (!Array.isArray(header)) {
+                return (
+                  <li key={header.id}>
+                    <Link to={`/articles/${id}#${header.id}`}>{header.content}</Link>
+                  </li>
+                )
+              }
+            })
+          }
+        </ul>
+      </EntryBody>
+    </EntryWrapper>
+  )
+}
 
 export default withRouter(BlogEntry)

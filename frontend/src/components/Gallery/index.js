@@ -7,6 +7,14 @@ export const GalleryWrapper = styled.div`
   column-count: 3;
   column-gap: 24px;
 
+  @media (max-width: 1290px) {
+    column-count: 2;
+  }
+
+  @media (max-width: 870px) {
+    column-count: 1;
+  }
+
   > * {
     width: 100%;
     margin-bottom: 40px;

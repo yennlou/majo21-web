@@ -15,7 +15,7 @@ export const SidebarWrapper = styled.div(({ theme }) => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 740px;
+    min-height: 700px;
 
     @media(max-width: 1020px) {
       flex-basis: 360px;

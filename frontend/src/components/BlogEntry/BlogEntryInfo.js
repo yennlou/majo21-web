@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Icon from '../Icon'
 
-const EntryInfo = styled.div`
+export const BlogEntryInfoWrapper = styled.div`
   font-size: 14px;
   display: flex;
   > span {
@@ -15,7 +15,7 @@ const EntryInfo = styled.div`
 `
 
 const BlogEntryInfo = ({ createdAt, readingTime }) => (
-  <EntryInfo>
+  <BlogEntryInfoWrapper>
     <span>
       <Icon name='calendar' />
       {createdAt && createdAt.split(' ')[0]}
@@ -24,7 +24,7 @@ const BlogEntryInfo = ({ createdAt, readingTime }) => (
       <Icon name='stopwatch' />
       {readingTime}
     </span>
-  </EntryInfo>
+  </BlogEntryInfoWrapper>
 )
 
 export default styled(BlogEntryInfo)``

@@ -21,7 +21,10 @@ const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
   const PageSize = 6
   const pageStart = (currentPage - 1) * PageSize
   const pageEnd = Math.min(pageStart + PageSize, collection.length)
-  const blogList = collection.slice(pageStart, pageEnd)
+  let blogList = collection.slice(pageStart, pageEnd)
+  if (!isFetched) {
+    blogList = [...Array(4).keys()].map((idx) => ({ id: idx, isLoading: true }))
+  }
   return (
     <BlogListViewWrapper>
       <BlogList data={blogList} />
