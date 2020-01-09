@@ -95,6 +95,7 @@ const EntryLoadingWrapper = styled(EntryWrapper)`
 
   ${EntryTitle}, ${BlogEntryInfoWrapper}, li {
     opacity: .8;
+    overflow: hidden;
   }
 `
 
