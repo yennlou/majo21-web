@@ -1,10 +1,13 @@
 import { createGlobalStyle } from 'styled-components'
 
 const ResetCss = createGlobalStyle`
+
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Ubuntu+Mono|Source+Code+Pro');
+
   html {
     box-sizing: border-box;
     font-size: 16px;
-    font-family: menlo, monospace;
+    font-family: 'menlo', 'Roboto Mono', monospace;
   }
 
   body {

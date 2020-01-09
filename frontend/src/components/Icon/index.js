@@ -13,8 +13,8 @@ const Svg = styled.svg`
   bottom: -1px;
 `
 
-const Icon = ({ name }) => (
-  <Svg className={`icon icon-${name}`}>
+const Icon = ({ name, ...otherProps }) => (
+  <Svg className={`icon icon-${name}`} {...otherProps}>
     <use xlinkHref={`#sprite_icon-${name}`} />
   </Svg>
 )

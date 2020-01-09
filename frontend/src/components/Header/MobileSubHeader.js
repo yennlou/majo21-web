@@ -1,25 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Search from './Search'
+import Search from './MobileSearch'
 import ThemeSwitcher from './ThemeSwitcher'
 import NavMenu from './NavMenu'
 
-export const HeaderLayout = styled.div`
-  display: flex;
+export const MobileSubHeaderLayout = styled.div`
+  display: none;
   width: 100%;
-  height: 100px;
+  height: 60px;
   position: relative;
-  align-items: center;
+  padding: 14px 0;
 `
 
 const HeaderLeft = styled.div`
-  flex-grow: 1;
-  flex-basis: 300px;
+  float: left;
 `
 
 const HeaderRight = styled.div`
-  flex-grow: 1;
+  float: right;
   display: flex;
   align-items: center;
 
@@ -31,7 +30,7 @@ const HeaderRight = styled.div`
 
 const Header = () => {
   return (
-    <HeaderLayout>
+    <MobileSubHeaderLayout>
       <HeaderLeft>
         <Search />
       </HeaderLeft>
@@ -39,7 +38,7 @@ const Header = () => {
         <ThemeSwitcher />
         <NavMenu />
       </HeaderRight>
-    </HeaderLayout>
+    </MobileSubHeaderLayout>
   )
 }
 

@@ -8,14 +8,17 @@ import lightTheme from './styles/themes/light'
 import darkTheme from './styles/themes/dark'
 import Sidebar, { SidebarWrapper } from './components/Sidebar'
 import Header, { HeaderLayout } from './components/Header'
+import MobileSubHeader, { MobileSubHeaderLayout } from './components/Header/MobileSubHeader'
 import ThemeSwitcher, { ThemeSwitcherWrapper } from './components/Header/ThemeSwitcher'
+import { GalleryWrapper } from './components/Gallery'
+import { BlogTitle } from './components/Blog'
 
 import MobileHeader, { MobileHeaderWrapper } from './components/MobileHeader'
 import MobileFooter, { MobileFooterWrapper } from './components/MobileFooter'
 
 import BlogListView, { BlogListViewWrapper } from './views/BlogListView'
-import BlogView from './views/BlogView'
-import GalleryView from './views/GalleryView'
+import BlogView, { BlogViewWrapper } from './views/BlogView'
+import GalleryView, { GalleryViewWrapper } from './views/GalleryView'
 
 const Main = styled.div`
   padding: 0 80px;
@@ -52,8 +55,10 @@ const Layout = styled.div`
     overflow: scroll;
     ${Main} {
       overflow: initial;
+      padding: 0 14px 10px;
     } 
     ${BlogListViewWrapper} {
+      padding-top: 0px;
       padding-bottom: 20px;
     }
     ${SidebarWrapper} {
@@ -64,17 +69,37 @@ const Layout = styled.div`
     }
     ${MobileHeaderWrapper} {
       display: flex;
-      margin-top: 15px;
+      margin-top: 12px;
     }
     ${HeaderLayout} {
       height: 60px;
     }
     ${ThemeSwitcher} {
-      margin-right: 20px;
-      margin-left: 20px;
+      margin-left: 28px;
     }
     ${ThemeSwitcherWrapper} {
       width: 75px;
+    }
+    ${GalleryWrapper} {
+      column-count: 1;
+    }
+    ${GalleryViewWrapper} {
+      
+    }
+
+    ${BlogTitle} {
+      margin-bottom: 16px;
+    }
+    ${BlogViewWrapper} {
+      padding-top: 30px;
+    }
+  }
+  @media(max-width: 520px) {
+    ${HeaderLayout} {
+      display: none;
+    }
+    ${MobileSubHeaderLayout} {
+      display: block;
     }
   }
 `
@@ -94,6 +119,7 @@ const App = ({ theme }) => {
           <Switch>
             <Route exact path='/'>
               <MobileHeader />
+              <MobileSubHeader />
               <Header />
               <BlogListView />
             </Route>

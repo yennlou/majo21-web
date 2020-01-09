@@ -7,7 +7,7 @@
     "start": "env-cmd -f ./personal/config/dev.env nodemon ./bin/www",
     "blog": "env-cmd -f ./personal/config/dev.env node ./bin/blog_helper.js",
     "prod:start": "npm ./bin/www",
-    "fe:dev": "cd frontend && webpack-dev-server --mode development --hot --inline",
+    "fe:dev": "cd frontend && webpack-dev-server --mode development --hot --inline --host 0.0.0.0",
     "fe:build": "cd frontend && webpack --mode production"
   },
   "keywords": [],
@@ -32,6 +32,7 @@
     "react-masonry-css": "^1.0.14",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
+    "react-transition-group": "^4.3.0",
     "read-time-estimate": "0.0.2",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",

@@ -5,7 +5,7 @@ import Blog from '../../components/Blog'
 import { selectBlog } from '../../redux/blog/selectors'
 
 import { fetchCollectionStartAsync } from '../../redux/blog/actions'
-const BlogViewWrapper = styled.div`
+export const BlogViewWrapper = styled.div`
   padding: 40px 0 0 0;
 `
 

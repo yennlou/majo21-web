@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Entry from './Entry'
 
-const GalleryWrapper = styled.div`
+export const GalleryWrapper = styled.div`
   width: calc(100% - 10px);
   column-count: 3;
   column-gap: 24px;

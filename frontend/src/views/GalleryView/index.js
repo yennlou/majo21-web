@@ -6,7 +6,7 @@ import { selectCollection } from '../../redux/gallery/selectors'
 import Gallery from '../../components/Gallery'
 import Pagination from '../../components/Pagination'
 
-const GalleryViewWrapper = styled.div`
+export const GalleryViewWrapper = styled.div`
   padding: 10px 0 20px;
 `
 

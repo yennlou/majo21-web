@@ -38,7 +38,7 @@ const theme = css`
 
   blockquote {
     margin-left: 2em;
-    margin-right: 2em
+    margin-right: 2em;
   }
 
   a {
@@ -94,6 +94,7 @@ const theme = css`
 
   ul, ol {
     margin-left: 2em;
+    margin-right: 2em;
   }
 
   pre {
@@ -110,6 +111,17 @@ const theme = css`
   code {
     background: ${({ theme }) => theme.data.BLOG_CODE_BG};
     color: ${({ theme }) => theme.data.BLOG_CODE};
+  }
+
+  @media(max-width: 870px) {
+    pre {
+      padding: 1.6em;
+    } 
+    
+    blockquote {
+      margin-left: 1em;
+      margin-right: 1em;
+    }
   }
 
 `
