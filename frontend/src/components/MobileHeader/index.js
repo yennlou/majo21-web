@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import Icon from '../Icon'
 
@@ -23,18 +24,21 @@ const Contact = styled.div`
   width: 84px;
   align-items: center;
   position: relative;
-  top: -3px;
+  top: 1px;
 `
 
-const MobileHeader = () => (
-  <MobileHeaderWrapper>
-    <TextLogo>MAJO21</TextLogo>
-    <Contact>
-      <Icon name='twitter' />
-      <Icon name='github' />
-    </Contact>
+const MobileHeader = () => {
+  const history = useHistory()
+  return (
+    <MobileHeaderWrapper>
+      <TextLogo onClick={() => (history.push('/'))}>MAJO21</TextLogo>
+      <Contact>
+        <a target='_blank' href='https://twitter.com/maaaajo21'><Icon name='twitter' /></a>
+        <a target='_blank' href='https://github.com/yennlou'><Icon name='github' /></a>
+      </Contact>
 
-  </MobileHeaderWrapper>
-)
+    </MobileHeaderWrapper>
+  )
+}
 
 export default MobileHeader
