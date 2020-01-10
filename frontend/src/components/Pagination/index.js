@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const IndexWrapper = styled.div`
+export const IndexWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   height: 30px;
   color: ${({ theme, active }) => active ? theme.data.BG : theme.data.PAGINATION};
@@ -11,15 +14,10 @@ const IndexWrapper = styled.div`
   margin-bottom: 20px;
   cursor: pointer;
 `
-const IndexText = styled.div`
-  display: table-cell;
-  vertical-align: middle;
-  padding: 6px;
-`
 
 const IndexItem = ({ children, ...otherProps }) => (
   <IndexWrapper {...otherProps}>
-    <IndexText>{children}</IndexText>
+    {children}
   </IndexWrapper>
 )
 

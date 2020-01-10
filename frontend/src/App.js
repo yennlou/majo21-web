@@ -10,8 +10,10 @@ import Sidebar, { SidebarWrapper } from './components/Sidebar'
 import Header, { HeaderLayout } from './components/Header'
 import MobileSubHeader, { MobileSubHeaderLayout } from './components/Header/MobileSubHeader'
 import ThemeSwitcher, { ThemeSwitcherWrapper } from './components/Header/ThemeSwitcher'
+import { BlogEntryWrapper } from './components/BlogEntry'
 import { GalleryWrapper } from './components/Gallery'
 import { BlogTitle } from './components/Blog'
+import { IndexWrapper } from './components/Pagination'
 
 import MobileHeader, { MobileHeaderWrapper } from './components/MobileHeader'
 import MobileFooter, { MobileFooterWrapper } from './components/MobileFooter'
@@ -76,6 +78,7 @@ const Layout = styled.div`
     }
     ${ThemeSwitcher} {
       margin-left: 28px;
+      margin-right: 20px;
     }
     ${ThemeSwitcherWrapper} {
       width: 75px;
@@ -84,14 +87,25 @@ const Layout = styled.div`
       column-count: 1;
     }
     ${GalleryViewWrapper} {
-      
+      padding-top: 0px;
+      padding-bottom: 20px; 
     }
-
     ${BlogTitle} {
       margin-bottom: 16px;
     }
     ${BlogViewWrapper} {
       padding-top: 30px;
+    }
+    ${BlogEntryWrapper} {
+      &::after {
+        right: -13px;
+        bottom: -13px;
+      }
+    }
+    ${IndexWrapper} {
+      width: 38px;
+      height: 38px;
+      font-size: 14px;
     }
   }
   @media(max-width: 520px) {

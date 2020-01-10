@@ -12,6 +12,17 @@ const SearchWrapper = styled.div`
   ${Icon} {
     font-size: 28px;
   }
+
+  .search-close {
+    color: ${({ theme }) => theme.data.BG};
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    opacity: .8;
+  }
+
   .search-input-enter {
     width: 5%;
   }
@@ -26,13 +37,15 @@ const SearchWrapper = styled.div`
 
 const SearchInput = styled.input`
   color: ${({ theme }) => theme.data.SEARCH_FONT};
-  padding: 6px;
+  padding: 10px;
   position: absolute;
+  top: 9px;
   width: 100%;
   background: ${({ theme }) => theme.data.SEARCH_BG};
   border:none;
   outline: none;
-
+  font-size: 19px;
+  letter-spacing: 1px;
 `
 
 class Search extends React.Component {
@@ -40,7 +53,8 @@ class Search extends React.Component {
     super(props)
     this.state = {
       input: '',
-      searchOn: false
+      searchOn: false,
+      showClose: false
     }
     this.inputRef = null
   }
@@ -84,7 +98,7 @@ class Search extends React.Component {
   }
 
   render () {
-    const { input, searchOn } = this.state
+    const { input, searchOn, showClose } = this.state
 
     return (
       <SearchWrapper>
@@ -92,11 +106,13 @@ class Search extends React.Component {
         <CSSTransition
           in={searchOn}
           timeout={{
-            enter: 1000,
+            enter: 300,
             exit: 0
           }}
           unmountOnExit
           classNames='search-input'
+          onEntered={() => this.setState({ showClose: true })}
+          onExited={() => this.setState({ showClose: false })}
         >
           <SearchInput
             type='text'
@@ -105,6 +121,7 @@ class Search extends React.Component {
             onChange={this.handleInputChange}
           />
         </CSSTransition>
+        {showClose && (<Icon name='cross' className='search-close' />)}
       </SearchWrapper>
     )
   }

@@ -19,7 +19,7 @@ const Delimiter = styled(({ className }) => (
   </svg>
 ))``
 
-const EntryWrapper = styled.div`
+export const BlogEntryWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -87,7 +87,7 @@ const EntryBody = styled.div`
   }
 `
 
-const EntryLoadingWrapper = styled(EntryWrapper)`
+const EntryLoadingWrapper = styled(BlogEntryWrapper)`
   opacity: .4;
   ${EntryHeader}, a {
     pointer-events: none;
@@ -127,7 +127,7 @@ const BlogEntry = ({ title, id, description, toc, history, isLoading, ...otherPr
     return (<BlogEntryLoading />)
   }
   return (
-    <EntryWrapper {...otherProps}>
+    <BlogEntryWrapper {...otherProps}>
       <EntryHeader onClick={() => { history.push(`/articles/${id}`) }}>
         <EntryTitle>{title}</EntryTitle>
         <BlogEntryInfo {...otherProps} />
@@ -148,7 +148,7 @@ const BlogEntry = ({ title, id, description, toc, history, isLoading, ...otherPr
           }
         </ul>
       </EntryBody>
-    </EntryWrapper>
+    </BlogEntryWrapper>
   )
 }
 

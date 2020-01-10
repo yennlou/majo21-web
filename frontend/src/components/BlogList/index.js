@@ -44,7 +44,6 @@ const BlogList = ({ data, history }) => (
           <BlogEntry
             key={props.id}
             {...props}
-            isLoading
           />))
       }
     </Masonry>
