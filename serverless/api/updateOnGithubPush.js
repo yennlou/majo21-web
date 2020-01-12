@@ -4,13 +4,8 @@ const github = require('./utils/github')
 
 exports.handler = async (event) => {
   try {
-    const { commits, ref } = JSON.parse(event.body)
+    const { commits } = JSON.parse(event.body)
     const commit = commits[0]
-    if (!ref.endsWith('dev')) {
-      return makeResponse({
-        message: 'non-dev branch push event'
-      })
-    }
     const PostFilter = x => x.startsWith('blogs/')
     const addList = [...commit.added, ...commit.modified].filter(PostFilter)
     const removeList = [...commit.removed, ...commit.modified].filter(PostFilter)
