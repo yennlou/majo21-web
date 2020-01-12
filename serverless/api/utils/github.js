@@ -10,7 +10,7 @@ githubAPI.defaults.headers.common.Authorization = 'Token ' + process.env.GITHUB_
 
 const getBlogListFromGithub = async () => {
   try {
-    const { data } = await githubAPI.get('/contents/blogs' + '?ref=dev')
+    const { data } = await githubAPI.get('/contents/blogs')
     return data.map((blog) => {
       const { name } = blog
       return name
@@ -22,7 +22,7 @@ const getBlogListFromGithub = async () => {
 }
 
 const getBlogFromGithubByPath = async (path) => {
-  const { data } = await githubAPI.get('/contents/' + encodeURI(path) + '?ref=dev')
+  const { data } = await githubAPI.get('/contents/' + encodeURI(path))
   const content = base64.decode(data.content)
   return {
     post_id: uuidv4(),
