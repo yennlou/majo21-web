@@ -5,20 +5,20 @@ createdAt: 2020-01-12
 
 ## 前言
 
-个站代码暂时不想开源，因为是一人项目，所以很多地方写的很随便，不好意思公开阿_(:з」∠)_。So这里会用一个新的例子来说明个站用到的技术。这个系列简而言之就是基于React和Serverless的基础web开发教程。
+个站代码暂时不想开源，因为是一人项目，所以很多地方写的很随便，不好意思公开阿\_(:з」∠)_。So这里会用一个新的例子来说明个站用到的技术。这个系列简而言之就是基于React和Serverless的基础web开发教程。
 
-具体会涉及的内容：webpack，babel，eslint，react全家桶，styled-components，自适应布局，自适应图片，图标/字体管理，jest，storybook，serverless，dynamodb，dns，cdn，cicd，加其它一些乌七八糟web开发需要的东西。。。欸，个站现在也没做测试也没做自适应图片，本来就没开发完嘛🤷‍♀️。这个系列主要是想涵盖一个一般web开发可能涉及到的所有点，完了做一张cheatsheet给自己用。
+具体会涉及的内容：webpack，babel，eslint，react全家桶，styled-components，自适应布局，自适应图片，图标/字体管理，jest，storybook，serverless，dynamodb，dns，cdn，cicd，加其它一些乌七八糟web开发需要的东西。。。欸，个站现在也没做测试也没做自适应图片，本来就没开发完嘛¯\\\_(ツ)_/¯。这个系列主要是想涵盖一个一般web开发可能涉及到的所有点，完了做一张cheatsheet给自己用。
 
 {这里是一张架构图，先空着}
 
-要做的这个例子是一个猫头鹰图片站Owwwwls，就是展示很多猫头鹰的图片和描述帮你认猫头鹰，之后会多加一个认猫头鹰的小游戏和截猫头鹰头像的功能（不包含在教程里），快来撸猫头鹰🦉。
+要做的这个例子是一个猫头鹰图片站Owwwwls，就是展示很多猫头鹰的图片和描述帮你认猫头鹰，之后会多加一个认猫头鹰的小游戏和截猫头鹰头像的功能（不包含在教程里），快来撸猫头鹰ヽ(´▽｀)ノ
 
 {最终效果图，还没做完，先空着}
 
 ## 创建项目
 
 创建一个项目文件夹owwwwls并初始化项目
-```
+```sh
 npm init -y
 ```
 
@@ -33,8 +33,8 @@ owwwwls
 └── .babelrc            #babel配置文件
 ```
 
-安装React库
-```
+安装React依赖库
+```sh
 npm i react react-dom
 ```
 PS.新版npm早就不需要``--save``了
@@ -60,7 +60,7 @@ ReactDOM.render(
 为什么需要Babel？不同版本浏览器对js的语法的支持度不同，babel可以将es6以上的语法编译为es5以兼容更多的浏览器，也可以依靠预设或者插件来完成任何想要的语法转换（比如jsx）。
 
 安装Babel依赖库
-```
+```sh
 npm i -D @babel/core @babel/plugin-proposal-class-properties @babel/preset-env @babel/preset-react
 ```
 
@@ -96,7 +96,7 @@ npm i -D @babel/core @babel/plugin-proposal-class-properties @babel/preset-env @
 webpack呢，主要工作负责把不同模块资源打包好让浏览器运行，而且还能干很多别的事情，具体参考[官方指南](https://webpack.js.org/guides/)左边这排索引。
 
 安装Webpack依赖库
-```
+```sh
 npm i -D webpack webpack-cli
 npm i -D babel-loader html-webpack-plugin
 ```
@@ -196,13 +196,13 @@ module.exports = {
 ```
 
 开始打包
-```
+```sh
 npm start build
 ```
 
 这里用http-searver来serve打包后的文件
 
-```
+```sh
 npm i http-server -g
 http-server ./dist
 ```
@@ -210,7 +210,7 @@ http-server ./dist
 打开浏览器就可以看到结果了。
 
 最后为了防止多次build导致dist里文件越来越多，可以装一个``clean-webpack-plugin``插件。
-```
+```sh
 npm i -D clean-webpack-plugin
 ```
 
@@ -229,4 +229,4 @@ plugins: [
 
 ## 总结
 
-就，不用create-react-app写react应用也是很简单的，下一期讲eslint
+就，不用create-react-app写react应用也是很简单的，下一期讲eslint。
