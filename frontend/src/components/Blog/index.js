@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Disqus from 'disqus-react'
-import hljs from 'highlight.js'
+import hljs from 'highlight.js/lib/highlight'
+import javascript from 'highlight.js/lib/languages/javascript'
+import json from 'highlight.js/lib/languages/json'
+import html from 'highlight.js/lib/languages/xml'
 
 import mdTheme from './md-themes/turing'
 import BlogEntryInfo from '../BlogEntry/BlogEntryInfo'
+
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('json', json)
+hljs.registerLanguage('html', html)
+hljs.registerLanguage('sh', html)
 
 export const BlogWrapper = styled.div`
   padding: 24px 0 40px;
