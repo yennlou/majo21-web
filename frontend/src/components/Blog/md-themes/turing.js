@@ -113,6 +113,74 @@ const theme = css`
     color: ${({ theme }) => theme.data.BLOG_CODE};
   }
 
+  /* Paraíso Comment */
+  .hljs-comment,
+  .hljs-quote {
+    color: #8d8687;
+  }
+
+  /* Paraíso Red */
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag,
+  .hljs-name,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-regexp,
+  .hljs-link,
+  .hljs-meta {
+    color: #c74a6a;
+    color: #B39A1D;
+  }
+
+  /* Paraíso Orange */
+  .hljs-number,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-literal,
+  .hljs-type,
+  .hljs-params,
+  .hljs-deletion {
+    color: #48c598;
+    color: #c74a6a;
+  }
+
+  /* Paraíso Yellow */
+  .hljs-title,
+  .hljs-section,
+  .hljs-attribute {
+    color: #fec418;
+  }
+
+  /* Paraíso Green */
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-addition {
+    color: #458ec1;
+  }
+
+  /* Paraíso Purple */
+  .hljs-keyword,
+  .hljs-selector-tag {
+    color: #d8b83e;
+  }
+
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    color: #a39e9b;
+    color: #bdbab8;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
   @media(max-width: 870px) {
     pre {
       padding: 1.6em;

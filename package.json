@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -f ./personal/config/dev.env nodemon ./bin/www",
-    "blog": "env-cmd -f ./personal/config/dev.env node ./bin/blog_helper.js",
     "prod:start": "npm ./bin/www",
-    "fe:dev": "cd frontend && webpack-dev-server --mode development --hot --inline --host 0.0.0.0",
+    "fe:dev": "cd frontend && webpack-dev-server --mode development --hot --inline",
     "fe:build": "cd frontend && webpack --mode production"
   },
   "keywords": [],
@@ -27,6 +25,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "env-cmd": "^10.0.1",
+    "highlight.js": "^9.17.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-masonry-css": "^1.0.14",
