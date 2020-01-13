@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Disqus from 'disqus-react'
 import hljs from 'highlight.js'
 
 import mdTheme from './md-themes/turing'
@@ -21,6 +22,7 @@ export const BlogTitle = styled.h3`
 const BlogBody = styled.div`
   ${mdTheme}
   font-size: 16px;
+  margin-bottom: 30px;
 `
 
 class Blog extends Component {
@@ -40,6 +42,12 @@ class Blog extends Component {
 
   render () {
     const { title, html, ...otherProps } = this.props
+    const disqusShortname = 'majo21'
+    const disqusConfig = {
+      url: window.location.href,
+      identifier: this.props.id,
+      title
+    }
     return (
       <BlogWrapper>
         <BlogTitle>
@@ -47,6 +55,10 @@ class Blog extends Component {
         </BlogTitle>
         <BlogEntryInfo {...otherProps} />
         <BlogBody dangerouslySetInnerHTML={{ __html: html }} />
+        <Disqus.DiscussionEmbed
+          shortname={disqusShortname}
+          config={disqusConfig}
+        />
       </BlogWrapper>
     )
   }
