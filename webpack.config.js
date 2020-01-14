@@ -42,7 +42,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new Dotenv({
-      path: '../personal/config/dev.env'
+      path: './personal/config/dev.env'
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',

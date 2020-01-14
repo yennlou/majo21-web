@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cd frontend && webpack-dev-server --mode development --hot --inline",
-    "build": "cd frontend && webpack --mode production"
+    "dev": "webpack-dev-server --mode development --hot --inline",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "babelConfig": {},
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
@@ -24,7 +23,6 @@
   "dependencies": {
     "axios": "^0.19.0",
     "disqus-react": "^1.0.7",
-    "env-cmd": "^10.0.1",
     "highlight.js": "^9.17.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -58,7 +56,6 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-standard": "^4.0.1",
     "html-webpack-plugin": "^3.2.0",
-    "nodemon": "^1.19.3",
     "react-hot-loader": "^4.12.18",
     "svg-sprite-loader": "^4.1.6",
     "webpack": "^4.41.1",
