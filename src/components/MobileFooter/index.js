@@ -9,7 +9,7 @@ const Delimiter = styled(({ className }) => (
   >
     <defs>
       <pattern id='sawPattern' width='24' height='12' patternUnits='userSpaceOnUse'>
-        <path d='M 0 12 L 12 0 L 24 12 Z' />
+        <path d='M 0 0 L 12 12 L 24 0 Z' />
       </pattern>
     </defs>
     <rect width='100%' height='12' fill='url(#sawPattern)' />
@@ -29,11 +29,12 @@ export const MobileFooterWrapper = styled.div`
     fill: ${({ theme }) => theme.data.BLOG_FONT};
     height: 12px;
     position:relative;
-    top: 4px;
+    top: 5px;
+    transform: scaleY(-1);
   }
   span {
     position: relative;
-    left: 2px;
+    left: 1px;
     color: ${({ theme }) => theme.pallete.CABARET}
   }
 `
