@@ -31,7 +31,7 @@ const BlogList = ({ data, history }) => (
     <Masonry
       breakpointCols={{
         default: 2,
-        1200: 1,
+        1240: 1,
         1800: 2,
         2200: 3,
         2600: 4

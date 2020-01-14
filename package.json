@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prod:start": "npm ./bin/www",
-    "fe:dev": "cd frontend && webpack-dev-server --mode development --hot --inline",
-    "fe:build": "cd frontend && webpack --mode production"
+    "dev": "cd frontend && webpack-dev-server --mode development --hot --inline",
+    "build": "cd frontend && webpack --mode production"
   },
   "keywords": [],
   "author": "",
