@@ -12,7 +12,7 @@ import MobileSubHeader, { MobileSubHeaderLayout } from './components/Header/Mobi
 import ThemeSwitcher, { ThemeSwitcherWrapper } from './components/Header/ThemeSwitcher'
 import { BlogEntryWrapper } from './components/BlogEntry'
 import { GalleryWrapper } from './components/Gallery'
-import { BlogTitle } from './components/Blog'
+import { BlogTitle, BlogWrapper } from './components/Blog'
 import { IndexWrapper } from './components/Pagination'
 
 import MobileHeader, { MobileHeaderWrapper } from './components/MobileHeader'
@@ -92,6 +92,9 @@ const Layout = styled.div`
     }
     ${BlogTitle} {
       margin-bottom: 16px;
+    }
+    ${BlogWrapper} {
+      padding-bottom: 10px;
     }
     ${BlogViewWrapper} {
       padding-top: 30px;

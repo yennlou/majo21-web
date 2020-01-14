@@ -29,7 +29,7 @@ const theme = css`
   }
 
   hr {
-    border-color: ${({ theme }) => theme.data.MD_FONT};
+    border-color: ${({ theme }) => theme.data.BLOG_FONT};
   }
 
   blockquote, strong {
@@ -42,7 +42,7 @@ const theme = css`
   }
 
   a {
-    color: ${({ theme }) => theme.data.MD_FONT};
+    color: ${({ theme }) => theme.data.BLOG_FONT};
     &:hover {
       background-color: ${({ theme }) => theme.data.BLOG_LINK_BG};
       color: ${({ theme }) => theme.data.BLOG_LINK};
