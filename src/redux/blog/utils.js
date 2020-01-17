@@ -40,7 +40,7 @@ export const parseDataToBlog = (data) => {
 
   return {
     id: postId,
-    html: '<h2 id="toc">Table of content</h2>' + toc.toc + html,
+    html: '<h2 id="toc">Table of Content</h2>' + toc.toc + html,
     toc: toc.data,
     readingTime: readTimeEstimate(markdown).humanizedDuration,
     ...otherAttrs

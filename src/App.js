@@ -56,8 +56,8 @@ const Layout = styled.div`
     flex-direction: column;
     overflow: scroll;
     ${Main} {
-      overflow: initial;
-      padding: 0 14px 10px;
+      overflow: auto;
+      padding: 0 14px 0px;
     } 
     ${BlogListViewWrapper} {
       padding-top: 0px;

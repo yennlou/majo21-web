@@ -5,6 +5,7 @@ package:
 
 plugins:
   - serverless-dynamodb-local
+  - serverless-dotenv-plugin
   - serverless-offline
 
 custom:
@@ -15,6 +16,8 @@ custom:
       migrate: true
     stages:
       - dev
+  dotenv:
+    path: ../personal/config/dev.env
 
 provider:
   name: aws

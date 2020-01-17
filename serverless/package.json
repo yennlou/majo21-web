@@ -16,7 +16,9 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "serverless-dotenv-plugin": "^2.1.1",
     "serverless-dynamodb-local": "^0.2.38",
-    "serverless-offline": "^5.12.1"
+    "serverless-offline": "^5.12.1",
+    "serverless-offline-dotenv": "0.0.16"
   }
 }

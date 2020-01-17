@@ -12,3 +12,4 @@ package-lock.json
 ### Serverless ###
 .serverless
 .dynamodb
+.env

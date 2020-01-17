@@ -106,11 +106,26 @@ const theme = css`
     margin: 2em 0em;
     border-radius: .5em;
     overflow: scroll;
+    @media(max-width: 870px) {
+      margin-left: -14px;
+      width: 100vw;
+      border-radius: 0px;
+      padding: 1.6em 2.4em;
+    }
+
+    code {
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+    }
   }
 
   code {
     background: ${({ theme }) => theme.data.BLOG_CODE_BG};
     color: ${({ theme }) => theme.data.BLOG_CODE};
+    padding: 0 4px;
+    margin: 0 2px;
+    border-radius: 4px;
   }
 
   /* Paraíso Comment */
