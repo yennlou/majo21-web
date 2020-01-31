@@ -1,9 +1,10 @@
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
+const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-module.exports = {
+const CommonConfig = {
   entry: {
     app: './src/index.js'
   },
@@ -41,12 +42,32 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new Dotenv({
-      path: './personal/config/dev.env'
-    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html'
     })
   ]
+}
+
+const ConfigMapping = {
+  dev: {
+    output: {
+      path: path.resolve(__dirname, 'dist-dev')
+    },
+    plugins: [
+      new Dotenv({ path: './personal/config/dev.env' })
+    ]
+  },
+  prod: {
+    output: {
+      path: path.resolve(__dirname, 'dist-prod')
+    },
+    plugins: [
+      new Dotenv({ path: './personal/config/prod.env' })
+    ]
+  }
+}
+
+module.exports = env => {
+  return merge(CommonConfig, ConfigMapping[env.NODE_ENV])
 }

@@ -162,7 +162,7 @@ Resources:
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBucketName} --recursive
-                - aws s3 cp --recursive --acl public-read ./dist s3://${SiteBucketName}/
+                - aws s3 cp --recursive --acl public-read ./dist-dev s3://${SiteBucketName}/
                 - echo Deployment completed on `date`
       TimeoutInMinutes: 10
   Pipeline:
