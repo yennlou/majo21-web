@@ -21,10 +21,6 @@ Parameters:
     Description: Go to https://github.com/settings/tokens
     NoEcho: true
     Type: String
-  BackendBaseURL:
-    Description: Backend URL
-    Type: String
-    Default: https://14wb08mljg.execute-api.ap-southeast-2.amazonaws.com/dev
   BuildType:
     Description: The build container type to use for building the app
     Type: String
@@ -155,9 +151,6 @@ Resources:
         Type: !Ref BuildType
         ComputeType: !Ref BuildComputeType
         Image: !Sub '${BuildImage}'
-        EnvironmentVariables:
-          - Name: SERVER_BASE_URL
-            Value: !Sub '${BackendBaseURL}'
       Source:
         Type: CODEPIPELINE
         BuildSpec: !Sub |
