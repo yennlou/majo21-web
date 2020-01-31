@@ -5,18 +5,12 @@ phases:
     runtime-versions:
       nodejs: 12
     commands:
-      - echo Installing Serverless...
-      - npm install -g serverless@1.59
-  pre_build:
-    commands:
       - echo Install source NPM dependencies
-      - cd serverless
       - npm install
   build:
     commands:
-      - echo Deployment started on `date`
-      - echo Deploying with the Serverless Framework
-      - npx sls deploy -v -s $ENV_NAME
+      - npm run build
   post_build:
     commands:
+      - aws s3 cp --recursive --acl public-read ./dist s3://${SiteBucketName}/
       - echo Deployment completed on `date`

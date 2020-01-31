@@ -1,0 +1,204 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Resources for the frontend part of MAJO21  
+Parameters: 
+  SiteBucketName:
+    Description: Name of bucket to create to host the website
+    Type: String
+    Default: majo21-fe-dev
+  GithubUser:
+    Description: Github User
+    Type: String
+    Default: yennlou
+  GithubRepo:
+    Description: Github Repo to pull from.
+    Type: String
+    Default: majo21-web
+  GithubBranch:
+    Description: Github Branch
+    Type: String
+    Default: dev
+  GithubToken:
+    Description: Go to https://github.com/settings/tokens
+    NoEcho: true
+    Type: String
+  BuildType:
+    Description: The build container type to use for building the app
+    Type: String
+    Default: LINUX_CONTAINER
+  BuildComputeType:
+    Description: The build compute type to user for building the app
+    Type: String
+    Default: BUILD_GENERAL1_SMALL
+  BuildImage:
+    Description: The build image to use for building the app
+    Type: String
+    Default: 'aws/codebuild/ubuntu-base:14.04'
+Metadata:
+  'AWS::CloudFormation::Interface':
+    ParameterGroups:
+      - Label:
+          default: Site Configuration
+        Parameters:
+          - SiteBucketName
+      - Label:
+          default: Github Configuration
+        Parameters:
+          - GithubToken
+          - GithubUser
+          - GithubRepo
+          - GithubBranch
+      - Label:
+          default: Build Configuration
+        Parameters:
+          - BuildType
+          - BuildComputeType
+          - BuildImage
+    ParameterLabels:
+      SiteBucketName:
+        default: Name of S3 Bucket to create for website hosting
+      GithubToken:
+        default: Github OAuth2 Token
+      GithubUser:
+        default: Github User/Org Name
+      GithubRepo:
+        default: Github Repository Name
+      GithubBranch:
+        default: Github Branch Name
+      BuildType:
+        default: CodeBuild type
+      BuildComputeType:
+        default: CodeBuild instance type
+      BuildImage:
+        default: CodeBuild image
+
+Resources:
+  CodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument: 
+        Statement:
+          - Effect: Allow
+            Action:
+              - 'sts:AssumeRole'
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+      Policies:
+        - PolicyName: "codebuild-service"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: "*"
+                Resource: "*"
+  CodePipelineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument: 
+        Statement:
+          - Effect: Allow
+            Action:
+              - 'sts:AssumeRole'
+            Principal:
+              Service:
+                - codepipeline.amazonaws.com
+      Policies:
+        - PolicyName: "codepipeline-service"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: "codebuild:*"
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - 's3:GetObject'
+                  - 's3:GetObjectVersion'
+                  - 's3:GetBucketVersioning'
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - 's3:PutObject'
+                Resource:
+                  - 'arn:aws:s3:::codepipeline*'
+              - Effect: Allow
+                Action:
+                  - 's3:*'
+                  - 'cloudformation:*'
+                  - 'iam:PassRole'
+                Resource: '*'
+  SiteBucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Delete
+    Properties:
+      AccessControl: PublicRead
+      BucketName: !Ref SiteBucketName
+      WebsiteConfiguration:
+        IndexDocument: index.html
+  PipelineBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+  CodeBuildDeploySite:
+    Type: 'AWS::CodeBuild::Project'
+    DependsOn: CodeBuildRole
+    Properties:
+      Name: !Sub '${AWS::StackName}-DeploySite'
+      Description: Deploy site to S3
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: !Ref BuildType
+        ComputeType: !Ref BuildComputeType
+        Image: !Sub '${BuildImage}'
+      Source:
+        Type: CODEPIPELINE
+      TimeoutInMinutes: 10
+  Pipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      Name: majo21-fe-pipeline
+      RoleArn: !GetAtt CodePipelineRole.Arn
+      Stages: 
+        - Name: Source
+          Actions:
+            - InputArtifacts: []
+              Name: Source
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: '1'
+                Provider: GitHub
+              OutputArtifacts:
+                - Name: SourceArtifacts
+              Configuration:
+                Owner: !Ref GithubUser
+                Repo: !Ref GithubRepo
+                Branch: !Ref GithubBranch
+                OAuthToken: !Ref GithubToken
+              RunOrder: 1
+        - Name: Deploy
+          Actions:
+            - Name: Artifact
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: '1'
+                Provider: CodeBuild
+              InputArtifacts:
+                - Name: SourceArtifacts
+              OutputArtifacts:
+                - Name: DeploymentArtifacts
+              Configuration:
+                ProjectName: !Ref CodeBuildDeploySite
+              RunOrder: 1
+      ArtifactStore:
+        Type: S3
+        Location: !Ref PipelineBucket
+Outputs: 
+  PipelineUrl:
+    Description: CodePipeline URL
+    Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
+  SiteUrl:
+    Description: S3 Website URL
+    Value: !GetAtt SiteBucket.WebsiteURL
