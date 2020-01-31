@@ -32,7 +32,7 @@ Parameters:
   BuildImage:
     Description: The build image to use for building the app
     Type: String
-    Default: 'aws/codebuild/ubuntu-base:14.04'
+    Default: 'aws/codebuild/amazonlinux2-x86_64-standard:2.0'
 Metadata:
   'AWS::CloudFormation::Interface':
     ParameterGroups:
@@ -153,6 +153,22 @@ Resources:
         Image: !Sub '${BuildImage}'
       Source:
         Type: CODEPIPELINE
+        BuildSpec: !Sub |
+          version: 0.2
+          phases:
+            install:
+              runtime-versions:
+                nodejs: 12
+              commands:
+                - echo Install source NPM dependencies
+                - npm install
+            build:
+              commands:
+                - npm run build
+            post_build:
+              commands:
+                - aws s3 cp --recursive --acl public-read ./dist s3://${SiteBucketName}/
+                - echo Deployment completed on `date`
       TimeoutInMinutes: 10
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
