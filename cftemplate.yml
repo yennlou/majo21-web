@@ -2,19 +2,18 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Resources for the frontend part of MAJO21  
 Parameters: 
   SiteBucketName:
-    Description: Name of bucket to create to host the website
     Type: String
-    Default: majo21-fe-dev
+    Default: majo21-fe
+  SiteBetaBucketName:
+    Type: String
+    Default: majo21-fe-beta
   GithubUser:
-    Description: Github User
     Type: String
     Default: yennlou
   GithubRepo:
-    Description: Github Repo to pull from.
     Type: String
     Default: majo21-web
   GithubBranch:
-    Description: Github Branch
     Type: String
     Default: dev
   GithubToken:
@@ -22,55 +21,14 @@ Parameters:
     NoEcho: true
     Type: String
   BuildType:
-    Description: The build container type to use for building the app
     Type: String
     Default: LINUX_CONTAINER
   BuildComputeType:
-    Description: The build compute type to user for building the app
     Type: String
     Default: BUILD_GENERAL1_SMALL
   BuildImage:
-    Description: The build image to use for building the app
     Type: String
     Default: 'aws/codebuild/amazonlinux2-x86_64-standard:2.0'
-Metadata:
-  'AWS::CloudFormation::Interface':
-    ParameterGroups:
-      - Label:
-          default: Site Configuration
-        Parameters:
-          - SiteBucketName
-      - Label:
-          default: Github Configuration
-        Parameters:
-          - GithubToken
-          - GithubUser
-          - GithubRepo
-          - GithubBranch
-      - Label:
-          default: Build Configuration
-        Parameters:
-          - BuildType
-          - BuildComputeType
-          - BuildImage
-    ParameterLabels:
-      SiteBucketName:
-        default: Name of S3 Bucket to create for website hosting
-      GithubToken:
-        default: Github OAuth2 Token
-      GithubUser:
-        default: Github User/Org Name
-      GithubRepo:
-        default: Github Repository Name
-      GithubBranch:
-        default: Github Branch Name
-      BuildType:
-        default: CodeBuild type
-      BuildComputeType:
-        default: CodeBuild instance type
-      BuildImage:
-        default: CodeBuild image
-
 Resources:
   CodeBuildRole:
     Type: AWS::IAM::Role
@@ -127,6 +85,14 @@ Resources:
                   - 'cloudformation:*'
                   - 'iam:PassRole'
                 Resource: '*'
+  SiteBetaBucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Delete
+    Properties:
+      AccessControl: PublicRead
+      BucketName: !Ref SiteBetaBucketName
+      WebsiteConfiguration:
+        IndexDocument: index.html
   SiteBucket:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Delete
@@ -138,11 +104,38 @@ Resources:
   PipelineBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
+  CodeBuildDeploySiteBeta:
+    Type: 'AWS::CodeBuild::Project'
+    DependsOn: CodeBuildRole
+    Properties:
+      Name: !Sub '${AWS::StackName}-deploy-beta'
+      Description: Deploy site beta to S3
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: !Ref BuildType
+        ComputeType: !Ref BuildComputeType
+        Image: !Sub '${BuildImage}'
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: !Sub |
+          version: 0.2
+          phases:
+            install:
+              runtime-versions:
+                nodejs: 12
+            post_build:
+              commands:
+                - aws s3 rm s3://${SiteBetaBucketName} --recursive
+                - aws s3 cp --recursive --acl public-read ./dist-dev s3://${SiteBetaBucketName}/
+                - echo Deployment completed on `date`
+      TimeoutInMinutes: 10
   CodeBuildDeploySite:
     Type: 'AWS::CodeBuild::Project'
     DependsOn: CodeBuildRole
     Properties:
-      Name: !Sub '${AWS::StackName}-DeploySite'
+      Name: !Sub '${AWS::StackName}-deploy'
       Description: Deploy site to S3
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Artifacts:
@@ -162,7 +155,7 @@ Resources:
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBucketName} --recursive
-                - aws s3 cp --recursive --acl public-read ./dist-dev s3://${SiteBucketName}/
+                - aws s3 cp --recursive --acl public-read ./dist-prod s3://${SiteBucketName}/
                 - echo Deployment completed on `date`
       TimeoutInMinutes: 10
   Pipeline:
@@ -188,7 +181,31 @@ Resources:
                 Branch: !Ref GithubBranch
                 OAuthToken: !Ref GithubToken
               RunOrder: 1
-        - Name: Deploy
+        - Name: DeployBeta
+          Actions:
+            - Name: Artifact
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: '1'
+                Provider: CodeBuild
+              InputArtifacts:
+                - Name: SourceArtifacts
+              OutputArtifacts:
+                - Name: DeploymentBetaArtifacts
+              Configuration:
+                ProjectName: !Ref CodeBuildDeploySiteBeta
+              RunOrder: 1
+        - Name: ManualApproval
+          Actions:
+            - Name: Approval
+              ActionTypeId:
+                Category: Approval
+                Owner: AWS
+                Version: '1'
+                Provider: Manual
+              RunOrder: 1
+        - Name: DeployProd
           Actions:
             - Name: Artifact
               ActionTypeId:
@@ -203,6 +220,7 @@ Resources:
               Configuration:
                 ProjectName: !Ref CodeBuildDeploySite
               RunOrder: 1
+
       ArtifactStore:
         Type: S3
         Location: !Ref PipelineBucket
@@ -210,6 +228,9 @@ Outputs:
   PipelineUrl:
     Description: CodePipeline URL
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
+  SiteBetaUrl:
+    Description: MAJO21 BETA URL
+    Value: !GetAtt SiteBetaBucket.WebsiteURL
   SiteUrl:
-    Description: S3 Website URL
+    Description: MAJO21 URL
     Value: !GetAtt SiteBucket.WebsiteURL
