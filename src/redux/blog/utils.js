@@ -1,4 +1,5 @@
 import readTimeEstimate from 'read-time-estimate'
+import showdown from 'showdown'
 
 const makeToc = (html) => {
   // eslint-disable-next-line no-undef
@@ -34,15 +35,16 @@ const makeToc = (html) => {
 }
 
 export const parseDataToBlog = (data) => {
-  const { post_id: postId, markdown, html, ...otherAttrs } = data
-
+  const { id, content, ...otherAttrs } = data
+  const converter = new showdown.Converter({ metadata: true })
+  const html = converter.makeHtml(content)
   const toc = makeToc(html)
 
   return {
-    id: postId,
+    id: /\/(\w+)\./.exec(id)[1],
     html: '<h2 id="toc">Table of Content</h2>' + toc.toc + html,
     toc: toc.data,
-    readingTime: readTimeEstimate(markdown).humanizedDuration,
+    readingTime: readTimeEstimate(content).humanizedDuration,
     ...otherAttrs
   }
 }

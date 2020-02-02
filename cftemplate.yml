@@ -15,7 +15,7 @@ Parameters:
     Default: majo21-web
   GithubBranch:
     Type: String
-    Default: dev
+    Default: master
   GithubToken:
     Description: Go to https://github.com/settings/tokens
     NoEcho: true

@@ -1,5 +1,6 @@
 ---
 title: MAJO21个站拆解02|代码规范/ESLint
+type: blog
 createdAt: 2020-01-15
 ---
 
