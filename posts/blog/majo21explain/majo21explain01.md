@@ -1,6 +1,5 @@
 ---
 title: MAJO21个站拆解01|环境搭建
-type: blog
 createdAt: 2020-01-12
 ---
 
