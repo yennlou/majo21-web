@@ -11,7 +11,7 @@ export const fetchCollectionSuccess = collection => ({
 })
 
 export const fetchCollectionFailure = errMsg => ({
-  type: GalleryActionTypes.fetchCollectionFailure,
+  type: GalleryActionTypes.FETCH_COLLECTION_FAILURE,
   payload: errMsg
 })
 
@@ -19,7 +19,7 @@ export const fetchCollectionStartAsync = () => {
   return dispatch => {
     dispatch(fetchCollectionStart)
     service
-      .get('/api/creations')
+      .get('/posts/t/gallery')
       .then(({ data }) => {
         dispatch(fetchCollectionSuccess(data))
       })

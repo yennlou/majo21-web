@@ -1,16 +1,7 @@
+import GalleryActionTypes from './types'
+
 const INITIAL_STATE = {
-  collection: [
-    {
-      id: 1,
-      imgUrl: 'https://majo21-uploads.s3-ap-southeast-2.amazonaws.com/mount-cook.png',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'
-    },
-    {
-      id: 2,
-      imgUrl: 'https://majo21-uploads.s3-ap-southeast-2.amazonaws.com/marisa-cristmas.jpg',
-      description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    }
-  ],
+  collection: [],
   isFetched: false,
   isFetching: false,
   errMsg: undefined
@@ -18,6 +9,24 @@ const INITIAL_STATE = {
 
 const galleryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case GalleryActionTypes.FETCH_COLLECTION_START:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case GalleryActionTypes.FETCH_COLLECTION_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        isFetched: true,
+        collection: action.payload
+      }
+    case GalleryActionTypes.FETCH_COLLECTION_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errMsg: action.payload
+      }
     default:
       return state
   }
