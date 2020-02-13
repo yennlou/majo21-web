@@ -30,7 +30,7 @@ const GalleryView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
 }
 
 const mapStateToProps = (state) => ({
-  isFetched: state.blog.isFetched,
+  isFetched: state.gallery.isFetched,
   collection: selectCollection(state)
 })
 

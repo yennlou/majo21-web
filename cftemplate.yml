@@ -101,6 +101,7 @@ Resources:
       BucketName: !Ref SiteBucketName
       WebsiteConfiguration:
         IndexDocument: index.html
+        ErrorDocument: index.html
   PipelineBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
