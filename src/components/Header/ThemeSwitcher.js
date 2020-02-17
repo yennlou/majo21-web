@@ -37,4 +37,4 @@ const mapDispatchToProps = dispatch => ({
   setThemeDark: () => dispatch(setTheme('dark'))
 })
 
-export default styled(connect(null, mapDispatchToProps)(ThemeSwitcher))``
+export default connect(null, mapDispatchToProps)(ThemeSwitcher)

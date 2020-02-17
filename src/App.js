@@ -43,7 +43,7 @@ const Layout = styled.div`
     ${Main} {
       padding: 0 60px 0 20px;
     }
-    ${ThemeSwitcher} {
+    ${ThemeSwitcherWrapper} {
       margin-right: 30px;
     }
   }
@@ -76,12 +76,10 @@ const Layout = styled.div`
     ${HeaderLayout} {
       height: 60px;
     }
-    ${ThemeSwitcher} {
-      margin-left: 28px;
-      margin-right: 20px;
-    }
     ${ThemeSwitcherWrapper} {
       width: 75px;
+      margin-left: 28px;
+      margin-right: 20px;
     }
     ${GalleryWrapper} {
       column-count: 1;

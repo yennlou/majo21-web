@@ -60,4 +60,4 @@ const Pagination = ({ className, size = 1, value = 1, onChange }) => {
   )
 }
 
-export default styled(Pagination)``
+export default Pagination
