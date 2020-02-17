@@ -44,7 +44,8 @@ const CommonConfig = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: './index.html'
+      filename: './index.html',
+      favicon: 'src/assets/favicon/favicon-32x32.png'
     })
   ]
 }
