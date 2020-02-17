@@ -59,4 +59,4 @@ const Sidebar = ({ theme }) => {
   )
 }
 
-export default styled(Sidebar)``
+export default Sidebar

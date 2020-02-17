@@ -72,4 +72,4 @@ class Blog extends Component {
   }
 }
 
-export default styled(Blog)``
+export default Blog

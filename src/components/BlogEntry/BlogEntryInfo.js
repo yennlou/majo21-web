@@ -27,4 +27,4 @@ const BlogEntryInfo = ({ createdAt, readingTime }) => (
   </BlogEntryInfoWrapper>
 )
 
-export default styled(BlogEntryInfo)``
+export default BlogEntryInfo

@@ -53,4 +53,4 @@ const MobileFooter = () => (
   </MobileFooterWrapper>
 )
 
-export default styled(MobileFooter)``
+export default MobileFooter

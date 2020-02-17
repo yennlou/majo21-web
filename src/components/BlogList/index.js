@@ -51,4 +51,4 @@ const BlogList = ({ data, history }) => (
   </BlogListWrapper>
 )
 
-export default styled(withRouter(BlogList))``
+export default withRouter(BlogList)

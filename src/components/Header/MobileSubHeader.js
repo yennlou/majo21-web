@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Search from './MobileSearch'
-import ThemeSwitcher from './ThemeSwitcher'
+import ThemeSwitcher, { ThemeSwitcherWrapper } from './ThemeSwitcher'
 import NavMenu from './NavMenu'
 
 export const MobileSubHeaderLayout = styled.div`
@@ -22,7 +22,7 @@ const HeaderRight = styled.div`
   display: flex;
   align-items: center;
 
-  ${ThemeSwitcher} {
+  ${ThemeSwitcherWrapper} {
     margin-left: 40px;
     margin-right: 40px;
   }
