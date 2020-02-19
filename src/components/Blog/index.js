@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import ReactHtmlParser from 'react-html-parser'
 import Disqus from 'disqus-react'
 import hljs from 'highlight.js/lib/highlight'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -62,7 +63,7 @@ class Blog extends Component {
           {title}
         </BlogTitle>
         <BlogEntryInfo {...otherProps} />
-        <BlogBody dangerouslySetInnerHTML={{ __html: html }} />
+        <BlogBody>{ReactHtmlParser(html)}</BlogBody>
         <Disqus.DiscussionEmbed
           shortname={disqusShortname}
           config={disqusConfig}

@@ -35,7 +35,7 @@ const makeToc = (html) => {
 }
 
 export const parseDataToBlog = (data) => {
-  const { id, content, ...otherAttrs } = data
+  const { id, content, createdAt, ...otherAttrs } = data
   const converter = new showdown.Converter({ metadata: true })
   const html = converter.makeHtml(content)
   const toc = makeToc(html)
@@ -45,6 +45,7 @@ export const parseDataToBlog = (data) => {
     html: '<h2 id="toc">Table of Content</h2>' + toc.toc + html,
     toc: toc.data,
     readingTime: readTimeEstimate(content).humanizedDuration,
+    createdAt: createdAt.replace('createdAt:', ''),
     ...otherAttrs
   }
 }
