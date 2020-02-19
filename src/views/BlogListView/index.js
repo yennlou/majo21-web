@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
+import usePagination from '../../hooks/usePagination'
 import { selectBlogCollectionByQuery } from '../../redux/blog/selectors'
 import { fetchCollectionStartAsync } from '../../redux/blog/actions'
 import BlogList from '../../components/BlogList'
@@ -13,22 +14,17 @@ export const BlogListViewWrapper = styled.div`
 `
 
 const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
-  const [currentPage, setCurrentPage] = useState(1)
   useEffect(() => {
     if (isFetched) return
     fetchCollectionStartAsync()
   }, [])
-  const PageSize = 6
-  const pageStart = (currentPage - 1) * PageSize
-  const pageEnd = Math.min(pageStart + PageSize, collection.length)
-  let blogList = collection.slice(pageStart, pageEnd)
-  if (!isFetched) {
-    blogList = [...Array(4).keys()].map((idx) => ({ id: idx, isLoading: true }))
-  }
+  const [currentPage, setCurrentPage, pageCount, currentItems] = usePagination(collection)
+  const loadingItems = [...Array(4).keys()].map((idx) => ({ id: idx, isLoading: true }))
+  const BlogListComponent = isFetched ? (<BlogList data={currentItems} />) : (<BlogList data={loadingItems} />)
   return (
     <BlogListViewWrapper>
-      <BlogList data={blogList} />
-      <Pagination size={Math.ceil(collection.length / PageSize)} value={currentPage} onChange={setCurrentPage} />
+      {BlogListComponent}
+      <Pagination size={pageCount} value={currentPage} onChange={setCurrentPage} />
     </BlogListViewWrapper>
   )
 }
