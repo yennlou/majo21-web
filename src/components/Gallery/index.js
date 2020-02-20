@@ -14,6 +14,7 @@ export const GalleryWrapper = styled.div`
 
   @media (max-width: 520px) {
     column-count: 1;
+    margin-bottom: 12px;
   }
 
   > * {
