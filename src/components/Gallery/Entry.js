@@ -34,13 +34,20 @@ const EntryImage = styled.img`
   }
 `
 
-const Entry = ({ data: { imageUrl, description } }) => {
+const Entry = ({ data: { imageUrl, thumbnailUrl, description } }) => {
   const [showPlaceholder, setShowPlaceholder] = useState(true)
   return (
     <EntryWrapper>
       {showPlaceholder &&
         (<Placeholder><Icon name='image' /></Placeholder>)}
-      <EntryImage showPlaceholder={showPlaceholder} src={imageUrl} alt='' onLoad={() => setShowPlaceholder(false)} />
+      <EntryImage
+        showPlaceholder={showPlaceholder}
+        src={thumbnailUrl}
+        srcSet={`${imageUrl} 1024w, ${thumbnailUrl} 320w`}
+        sizes='(min-width: 620px) 1024px, 320px'
+        alt=''
+        onLoad={() => setShowPlaceholder(false)}
+      />
       <div>{description}</div>
     </EntryWrapper>
   )

@@ -34,7 +34,7 @@ const Layout = styled.div`
   display: flex;
   height: 100%;
 
-  @media(max-width: 1290px) {
+  @media(max-width: 1270px) {
     ${Main} {
       padding: 0 60px;
     }
@@ -80,9 +80,6 @@ const Layout = styled.div`
       width: 75px;
       margin-left: 28px;
       margin-right: 20px;
-    }
-    ${GalleryWrapper} {
-      column-count: 1;
     }
     ${GalleryViewWrapper} {
       padding-top: 0px;
