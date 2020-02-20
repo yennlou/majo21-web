@@ -42,7 +42,7 @@ const EntryDescription = styled.div`
   background: rgb(24, 27, 44);
   background: linear-gradient(120deg, rgba(199, 74, 106, 1), rgba(24, 27, 44, .9));
   width: 100%;
-  margin-top: -3px;
+  margin-top: -4px;
 `
 
 const Entry = ({ data: { imageUrl, thumbnailUrl, description } }) => {
