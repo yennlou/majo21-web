@@ -9,7 +9,7 @@ import BlogList from '../../components/BlogList'
 import Pagination from '../../components/Pagination'
 
 export const BlogListViewWrapper = styled.div`
-  padding: 10px 0 40px;
+  padding: 8px 0 40px;
   position: relative;
 `
 

@@ -9,7 +9,7 @@ import Gallery from '../../components/Gallery'
 import Pagination from '../../components/Pagination'
 
 export const GalleryViewWrapper = styled.div`
-  padding: 10px 0 20px;
+  padding: 8px 0 20px;
 `
 
 const GalleryView = ({ collection, isFetched, fetchCollectionStartAsync }) => {

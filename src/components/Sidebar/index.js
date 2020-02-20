@@ -26,15 +26,14 @@ export const SidebarWrapper = styled.div(({ theme }) => {
 const TextLogo = styled.span`
   font-size: 36px;
   letter-spacing: 4px;
-  padding: 34px;
-  margin-bottom: 4px;
+  padding: 34px 0 33px;
   cursor: pointer;
 `
 
 const Contact = styled.div`
   padding: 42px;
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.44;
   white-space: nowrap;
 `
 

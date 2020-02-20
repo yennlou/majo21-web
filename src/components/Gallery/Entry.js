@@ -3,15 +3,15 @@ import styled, { css } from 'styled-components'
 
 import Icon from '../Icon'
 
+const EntryItem = styled.div`
+  padding: 10px 0px;
+`
+
 const EntryWrapper = styled.div`
   color: ${({ theme }) => theme.data.BLOG_FONT};
   position: relative;
-  background: white;
-  padding: 10px 10px 12px;
-
-  img {
-    margin-bottom: 4px;
-  }
+  font-size: 14px;
+  box-shadow: -1px 1px 6px rgba(199, 74, 106, .5);
 `
 const Placeholder = styled.div`
   width: 100%;
@@ -34,22 +34,35 @@ const EntryImage = styled.img`
   }
 `
 
+const EntryDescription = styled.div`
+  padding: 10px 14px 14px;
+  color: white;
+  font-weight: 300;
+  font-family: "Helvetica Neue", Helvetica, Tahoma, "Arial";
+  background: rgb(24, 27, 44);
+  background: linear-gradient(120deg, rgba(199, 74, 106, 1), rgba(24, 27, 44, .9));
+  width: 100%;
+  margin-top: -3px;
+`
+
 const Entry = ({ data: { imageUrl, thumbnailUrl, description } }) => {
   const [showPlaceholder, setShowPlaceholder] = useState(true)
   return (
-    <EntryWrapper>
-      {showPlaceholder &&
+    <EntryItem>
+      <EntryWrapper>
+        {showPlaceholder &&
         (<Placeholder><Icon name='image' /></Placeholder>)}
-      <EntryImage
-        showPlaceholder={showPlaceholder}
-        src={thumbnailUrl}
-        srcSet={`${imageUrl} 1024w, ${thumbnailUrl} 320w`}
-        sizes='(min-width: 620px) 1024px, 320px'
-        alt=''
-        onLoad={() => setShowPlaceholder(false)}
-      />
-      <div>{description}</div>
-    </EntryWrapper>
+        <EntryImage
+          showPlaceholder={showPlaceholder}
+          src={thumbnailUrl}
+          srcSet={`${imageUrl} 1024w, ${thumbnailUrl} 320w`}
+          sizes='(min-width: 620px) 1024px, 320px'
+          alt=''
+          onLoad={() => setShowPlaceholder(false)}
+        />
+        <EntryDescription>{description}</EntryDescription>
+      </EntryWrapper>
+    </EntryItem>
   )
 }
 

@@ -7,7 +7,7 @@ const ResetCss = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 16px;
-    font-family: 'menlo', 'Roboto Mono', monospace;
+    font-family: 'menlo', 'Roboto Mono', "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", monospace, sans-serif;
   }
 
   body {
