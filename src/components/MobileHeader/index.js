@@ -33,8 +33,8 @@ const MobileHeader = () => {
     <MobileHeaderWrapper>
       <TextLogo onClick={() => (history.push('/'))}>MAJO21</TextLogo>
       <Contact>
-        <a target='_blank' href='https://twitter.com/maaaajo21'><Icon name='twitter' /></a>
-        <a target='_blank' href='https://github.com/yennlou'><Icon name='github' /></a>
+        <a target='_blank' rel='noopener noreferrer' href='https://twitter.com/maaaajo21'><Icon name='twitter' /></a>
+        <a target='_blank' rel='noopener noreferrer' href='https://github.com/yennlou'><Icon name='github' /></a>
       </Contact>
 
     </MobileHeaderWrapper>

@@ -9,9 +9,9 @@ import darkTheme from './styles/themes/dark'
 import Sidebar, { SidebarWrapper } from './components/Sidebar'
 import Header, { HeaderLayout } from './components/Header'
 import MobileSubHeader, { MobileSubHeaderLayout } from './components/Header/MobileSubHeader'
-import ThemeSwitcher, { ThemeSwitcherWrapper } from './components/Header/ThemeSwitcher'
+import { ThemeSwitcherWrapper } from './components/Header/ThemeSwitcher'
 import { BlogEntryWrapper } from './components/BlogEntry'
-import { GalleryWrapper } from './components/Gallery'
+
 import { BlogTitle, BlogWrapper } from './components/Blog'
 import { IndexWrapper } from './components/Pagination'
 

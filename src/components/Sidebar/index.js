@@ -1,7 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import styled, { css } from 'styled-components'
+import styled, { css, withTheme } from 'styled-components'
 
+import BaseLink from '../BaseLink'
 import Demo from '../Demo'
 import Footer from './Footer'
 
@@ -23,6 +24,20 @@ export const SidebarWrapper = styled.div(({ theme }) => {
   `
 })
 
+const ContactLink = withTheme(({ children, theme, ...otherProps }) => {
+  const Link = styled(BaseLink)`
+    padding: 1px 4px;
+    &:hover {
+      text-decoration: none;
+    }
+  `
+  return (
+    <Link {...otherProps} color={theme.data.SIDEBAR_FONT}>
+      {children}
+    </Link>
+  )
+})
+
 const TextLogo = styled.span`
   font-size: 36px;
   letter-spacing: 4px;
@@ -33,7 +48,7 @@ const TextLogo = styled.span`
 const Contact = styled.div`
   padding: 42px;
   font-size: 16px;
-  line-height: 1.44;
+  line-height: 1.5;
   white-space: nowrap;
 `
 
@@ -48,9 +63,33 @@ const Sidebar = ({ theme }) => {
 
       <Contact>
         <ul>
-          <li>* github : github.com/yennlou</li>
-          <li>* twitter: maaaajo21</li>
-          <li>* douban : 二十一世纪魔女</li>
+          <li>* GITHUB&nbsp; =&nbsp;
+            <ContactLink
+              target='_blank'
+              rel='noopener noreferrer'
+              href='https://github.com/yennlou'
+            >
+              github.com/yennlou
+            </ContactLink>
+          </li>
+          <li>* TWITTER =&nbsp;
+            <ContactLink
+              target='_blank'
+              rel='noopener noreferrer'
+              href='https://twitter.com/maaaajo21'
+            >
+              maaaajo21
+            </ContactLink>
+          </li>
+          <li>* DOUBAN&nbsp; =&nbsp;
+            <ContactLink
+              target='_blank'
+              rel='noopener noreferrer'
+              href='https://www.douban.com/people/maaaajo21/'
+            >
+              二十一世纪魔女
+            </ContactLink>
+          </li>
         </ul>
       </Contact>
       <Footer />
@@ -58,4 +97,4 @@ const Sidebar = ({ theme }) => {
   )
 }
 
-export default Sidebar
+export default withTheme(Sidebar)
