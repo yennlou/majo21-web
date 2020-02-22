@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import ReactHtmlParser from 'react-html-parser'
-import Disqus from 'disqus-react'
 import hljs from 'highlight.js/lib/highlight'
 import javascript from 'highlight.js/lib/languages/javascript'
 import json from 'highlight.js/lib/languages/json'
@@ -16,7 +15,7 @@ hljs.registerLanguage('html', html)
 hljs.registerLanguage('sh', html)
 
 export const BlogWrapper = styled.div`
-  padding: 24px 0 40px;
+  padding: 24px 0 24px;
   color: ${({ theme }) => theme.data.BLOG_FONT};
 `
 
@@ -51,12 +50,7 @@ class Blog extends Component {
 
   render () {
     const { title, html, ...otherProps } = this.props
-    const disqusShortname = 'majo21'
-    const disqusConfig = {
-      url: window.location.href,
-      identifier: this.props.id,
-      title
-    }
+
     return (
       <BlogWrapper>
         <BlogTitle>
@@ -64,10 +58,7 @@ class Blog extends Component {
         </BlogTitle>
         <BlogEntryInfo {...otherProps} />
         <BlogBody>{ReactHtmlParser(html)}</BlogBody>
-        <Disqus.DiscussionEmbed
-          shortname={disqusShortname}
-          config={disqusConfig}
-        />
+
       </BlogWrapper>
     )
   }

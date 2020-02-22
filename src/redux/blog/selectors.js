@@ -13,6 +13,26 @@ export const selectBlog = blogId =>
     collection => collection.find(blog => blog.id === blogId)
   )
 
+export const selectNextBlog = blogId =>
+  createSelector(
+    [selectCollection],
+    collection => {
+      const itemIdx = collection.findIndex(blog => blog.id === blogId)
+      return itemIdx > 0 ? collection[itemIdx - 1] : null
+    }
+  )
+
+export const selectPrevBlog = blogId =>
+  createSelector(
+    [selectCollection],
+    collection => {
+      const itemIdx = collection.findIndex(blog => blog.id === blogId)
+      return itemIdx < collection.length - 1
+        ? collection[itemIdx + 1]
+        : null
+    }
+  )
+
 export const selectBlogCollectionByQuery = query =>
   createSelector(
     [selectCollection],
