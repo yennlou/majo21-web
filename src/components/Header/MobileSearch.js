@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import useSearch from '../../hooks/useSearch'
-import { debounced } from '../../utils/function'
 import { setQuery } from '../../redux/config/actions'
 import Icon from '../Icon'
 
