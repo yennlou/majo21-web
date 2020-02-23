@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
+import useSearch from '../../hooks/useSearch'
 import { debounced } from '../../utils/function'
 import { setQuery } from '../../redux/config/actions'
 import Icon from '../Icon'
@@ -11,6 +12,7 @@ const SearchWrapper = styled.div`
   color: ${({ theme }) => theme.pallete.CABARET};
   ${Icon} {
     font-size: 28px;
+    cursor: pointer;
   }
 
   .search-close {
@@ -47,84 +49,49 @@ const SearchInput = styled.input`
   font-size: 19px;
   letter-spacing: 1px;
 `
-
-class Search extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      input: '',
-      searchOn: false,
-      showClose: false
-    }
-    this.inputRef = null
-  }
-
-  componentDidMount () {
-    this.setState({
-      input: this.props.query
-    })
-    document.addEventListener('mousedown', this.handleClickOutside)
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('mousedown', this.handleClickOutside)
-  }
-
-  handleClickOutside = (e) => {
-    if (this.inputRef && !this.inputRef.contains(e.target)) {
-      this.setState({
-        searchOn: false
-      })
+const Search = ({ query, setQuery }) => {
+  const [input, handleInputChange] = useSearch(query, setQuery)
+  const [searchOn, setSearchOn] = useState(false)
+  const [showClose, setShowClose] = useState(false)
+  const searchInputEl = useRef(null)
+  const handleClickOutside = (e) => {
+    if (!searchInputEl?.current?.contains(e.target)) {
+      setSearchOn(false)
     }
   }
-
-  onDebounce = debounced(() => {
-    this.props.setQuery(this.state.input)
-  })
-
-  handleInputChange = (e) => {
-    this.setState({
-      input: e.target.value
-    })
-    this.onDebounce()
+  const handleSearchToggle = (e) => {
+    setSearchOn(true)
   }
-
-  handleSearchToggle = (e) => {
-    this.setState(({ searchOn }) => {
-      return {
-        searchOn: true
-      }
-    })
-  }
-
-  render () {
-    const { input, searchOn, showClose } = this.state
-
-    return (
-      <SearchWrapper>
-        {!searchOn && (<Icon name='search' onClick={this.handleSearchToggle} />)}
-        <CSSTransition
-          in={searchOn}
-          timeout={{
-            enter: 300,
-            exit: 0
-          }}
-          unmountOnExit
-          classNames='search-input'
-          onEntered={() => this.setState({ showClose: true })}
-          onExited={() => this.setState({ showClose: false })}
-        >
-          <SearchInput
-            type='text'
-            ref={(node) => { this.inputRef = node }}
-            value={input}
-            onChange={this.handleInputChange}
-          />
-        </CSSTransition>
-        {showClose && (<Icon name='cross' className='search-close' />)}
-      </SearchWrapper>
-    )
-  }
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+  return (
+    <SearchWrapper>
+      {!searchOn && (<Icon name='search' onClick={handleSearchToggle} />)}
+      <CSSTransition
+        in={searchOn}
+        timeout={{
+          enter: 300,
+          exit: 0
+        }}
+        unmountOnExit
+        classNames='search-input'
+        onEntered={() => setShowClose(true)}
+        onExited={() => setShowClose(false)}
+      >
+        <SearchInput
+          type='text'
+          ref={searchInputEl}
+          value={input}
+          onChange={handleInputChange}
+        />
+      </CSSTransition>
+      {showClose && (<Icon name='cross' className='search-close' />)}
+    </SearchWrapper>
+  )
 }
 
 const mapStateToProps = ({ config: { query } }) => ({

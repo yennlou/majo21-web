@@ -2,3 +2,9 @@ export const ConfigActionTypes = {
   SET_THEME: 'SET_THEME',
   SET_QUERY: 'SET_QUERY'
 }
+
+export const QueryTypes = {
+  QUERY_TYPE_TAGS: 'QUERY_TYPE_TAGS',
+  QUERY_TYPE_SERIES: 'QUERY_TYPE_SERIES',
+  QUERY_TYPE_TITLE: 'QUERY_TYPE_TITLE'
+}

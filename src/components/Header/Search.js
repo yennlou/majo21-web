@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { debounced } from '../../utils/function'
+import useSearch from '../../hooks/useSearch'
 import { setQuery } from '../../redux/config/actions'
 
 const SearchInput = styled.input`
@@ -14,38 +14,15 @@ const SearchInput = styled.input`
   outline: none;
 `
 
-class Search extends React.Component {
-  state = {
-    input: ''
-  }
-
-  onDebounce = debounced(() => {
-    this.props.setQuery(this.state.input)
-  })
-
-  handleInputChange = (e) => {
-    this.setState({
-      input: e.target.value
-    })
-    this.onDebounce()
-  }
-
-  componentDidMount () {
-    this.setState({
-      input: this.props.query
-    })
-  }
-
-  render () {
-    const { input } = this.state
-    return (
-      <SearchInput
-        type='text'
-        value={input}
-        onChange={this.handleInputChange}
-      />
-    )
-  }
+const Search = ({ query, setQuery }) => {
+  const [input, handleInputChange] = useSearch(query, setQuery)
+  return (
+    <SearchInput
+      type='text'
+      value={input}
+      onChange={handleInputChange}
+    />
+  )
 }
 
 const mapStateToProps = ({ config: { query } }) => ({
