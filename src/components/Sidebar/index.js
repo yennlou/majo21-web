@@ -56,7 +56,7 @@ const Sidebar = ({ theme }) => {
   const history = useHistory()
   return (
     <SidebarWrapper>
-      <TextLogo id='logo-majo21' onClick={() => (history.push('/'))}>
+      <TextLogo className='logo-majo21' onClick={() => (history.push('/'))}>
         MAJO21
       </TextLogo>
       <Demo />

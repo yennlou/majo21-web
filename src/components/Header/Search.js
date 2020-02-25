@@ -43,6 +43,7 @@ const TextLogoCenter = styled(TextLogo)`
   position: fixed;
   z-index: 100;
   transition: all .5s;
+  color: ${({ theme }) => theme.data.SIDEBAR_FONT};
 `
 
 const SearchInputWrapper = styled.div`
@@ -71,6 +72,7 @@ const Search = ({ query, setQuery }) => {
   const [searchHide, setSearchHide] = useState(false)
   const searchInputEl = useRef(null)
   const searchInputCenterEl = useRef(null)
+  const logoCenterEl = useRef(null)
   const className = classNames({
     'search-on': searchOn,
     'search-hide': searchHide,
@@ -79,14 +81,30 @@ const Search = ({ query, setQuery }) => {
 
   const applyStyleOnElements = () => {
     if (!searchInputEl || !searchInputCenterEl) return
-    const { top, left } = searchInputEl.current.getBoundingClientRect()
-    const { offsetWidth: width, offsetHeight: height } = searchInputEl.current
+    const { top: stop, left: sleft } = searchInputEl.current.getBoundingClientRect()
+    const { offsetWidth: swidth, offsetHeight: sheight } = searchInputEl.current
     searchInputCenterEl.current.setAttribute(
       'style', `
-        top: ${top}px;
-        left: ${left}px;
-        width: ${width}px;
-        height: ${height}px;
+        top: ${stop}px;
+        left: ${sleft}px;
+        width: ${swidth}px;
+        height: ${sheight}px;
+      `
+    )
+    const logoEl = getLogoEl()
+    if (!logoEl || !logoCenterEl) return
+    const { top: ltop, left: lleft } = logoEl.getBoundingClientRect()
+    const { offsetWidth: lwidth, offsetHeight: lheight } = logoEl
+    logoEl.setAttribute('style', `
+        opacity: 0;
+      `
+    )
+    logoCenterEl.current.setAttribute(
+      'style', `
+        top: ${ltop}px;
+        left: ${lleft}px;
+        width: ${lwidth}px;
+        height: ${lheight}px;
       `
     )
   }
@@ -100,6 +118,25 @@ const Search = ({ query, setQuery }) => {
         padding: 10px 6px;
       `
     )
+    if (!logoCenterEl) return
+    logoCenterEl.current.setAttribute(
+      'style', `
+        left: calc(50% - 110px);
+        top: calc(40% - 110px);
+        font-size: 52px;
+      `
+    )
+  }
+
+  function getLogoEl () {
+    const els = document.querySelectorAll('.logo-majo21')
+    // for (const el of els) {
+    //   console.log(el)
+    //   if (el.offsetWidth > 0 || el.offsetHeight > 0) {
+    //     return el
+    //   }
+    // }
+    return els[0]
   }
 
   const onEnter = () => {
@@ -115,6 +152,11 @@ const Search = ({ query, setQuery }) => {
 
   const onExited = () => {
     setSearchHide(false)
+    const logoEl = getLogoEl()
+    logoEl && logoEl.setAttribute('style', `
+        opacity: 1;
+      `
+    )
   }
 
   return (
@@ -137,6 +179,7 @@ const Search = ({ query, setQuery }) => {
           <Mask>
             <Category />
           </Mask>
+          <TextLogoCenter ref={logoCenterEl}>MAJO21</TextLogoCenter>
           <SearchInputCenter
             type='text'
             value={input}
