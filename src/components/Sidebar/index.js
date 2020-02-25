@@ -38,7 +38,7 @@ const ContactLink = withTheme(({ children, theme, ...otherProps }) => {
   )
 })
 
-const TextLogo = styled.span`
+export const TextLogo = styled.span`
   font-size: 36px;
   letter-spacing: 4px;
   padding: 34px 0 33px;
@@ -56,7 +56,7 @@ const Sidebar = ({ theme }) => {
   const history = useHistory()
   return (
     <SidebarWrapper>
-      <TextLogo onClick={() => (history.push('/'))}>
+      <TextLogo id='logo-majo21' onClick={() => (history.push('/'))}>
         MAJO21
       </TextLogo>
       <Demo />
