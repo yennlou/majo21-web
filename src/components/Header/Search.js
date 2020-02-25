@@ -9,7 +9,6 @@ import useSearch from '../../hooks/useSearch'
 import { setQuery } from '../../redux/config/actions'
 
 const SearchInput = styled.input`
-  color: ${({ theme }) => theme.data.SEARCH_FONT};
   padding: 6px;
   width: 100%;
   max-width: 300px;
@@ -44,9 +43,11 @@ const TextLogoCenter = styled(TextLogo)`
   z-index: 100;
   transition: all .5s;
   color: ${({ theme }) => theme.data.SIDEBAR_FONT};
+  cursor: default;
 `
 
 const SearchInputWrapper = styled.div`
+  color: ${({ theme }) => theme.data.SEARCH_FONT};
   &.mask-on ${Mask}{ 
     opacity: 1;
   }
@@ -56,17 +57,24 @@ const SearchInputWrapper = styled.div`
     pointer-events: none;
   }
 `
+
+const InputHint = styled.div`
+  font-size: 14px;
+  color: ${({ theme }) => theme.data.SEARCH_FONT}44;
+  margin-bottom: 20px;
+`
+
 const CategoryContainer = styled.div`
     position: fixed;
     z-index: 99;
     left: ${({ mobile }) => mobile ? '15%' : '25%'};
-    top: calc(40% + 60px);
+    top: calc(40% + 46px);
     width: ${({ mobile }) => mobile ? '70%' : '50%'};
 `
 
 const Search = ({ query, setQuery, theme }) => {
-  const [input, handleInputChange] = useSearch(query, setQuery)
   const [searchOn, setSearchOn] = useState(false)
+  const [input, handleInputChange, handleEnterKey] = useSearch(query, setQuery, () => setSearchOn(false))
   const [maskOn, setMaskOn] = useState(false)
   const [mobileOn, setMobileOn] = useState(false)
   const [searchHide, setSearchHide] = useState(false)
@@ -162,6 +170,7 @@ const Search = ({ query, setQuery, theme }) => {
     setSearchHide(true)
     setMaskOn(true)
     applyStyleOnElements()
+    searchInputCenterEl.current.focus()
   }
 
   const onExit = () => {
@@ -183,6 +192,8 @@ const Search = ({ query, setQuery, theme }) => {
       <SearchInputTop
         className={className}
         ref={searchInputEl}
+        value={input}
+        onChange={() => {}}
         onFocus={() => setSearchOn(true)}
       />
       <CSSTransition
@@ -197,6 +208,7 @@ const Search = ({ query, setQuery, theme }) => {
         <>
           <Mask>
             <CategoryContainer mobile={mobileOn}>
+              <InputHint>* Confirm with `Enter` key.</InputHint>
               <Category />
             </CategoryContainer>
           </Mask>
@@ -205,7 +217,7 @@ const Search = ({ query, setQuery, theme }) => {
             type='text'
             value={input}
             onChange={handleInputChange}
-            onFocus={() => setSearchOn(false)}
+            onKeyPress={handleEnterKey}
             ref={searchInputCenterEl}
           />
         </>

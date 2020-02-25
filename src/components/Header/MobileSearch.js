@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
-import useSearch from '../../hooks/useSearch'
+import useSearchMobile from '../../hooks/useSearchMobile'
 import { setQuery } from '../../redux/config/actions'
 import Icon from '../Icon'
 
@@ -49,7 +49,7 @@ const SearchInput = styled.input`
   letter-spacing: 1px;
 `
 const Search = ({ query, setQuery }) => {
-  const [input, handleInputChange] = useSearch(query, setQuery)
+  const [input, handleInputChange] = useSearchMobile(query, setQuery)
   const [searchOn, setSearchOn] = useState(false)
   const [showClose, setShowClose] = useState(false)
   const searchInputEl = useRef(null)
