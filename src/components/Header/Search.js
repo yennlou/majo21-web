@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
+import styled, { withTheme } from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
-import Category, { CategoryWrapper } from './Category'
+import Category from './Category'
 import { TextLogo } from '../Sidebar'
 import useSearch from '../../hooks/useSearch'
 import { setQuery } from '../../redux/config/actions'
@@ -55,20 +55,20 @@ const SearchInputWrapper = styled.div`
     opacity: 0;
     pointer-events: none;
   }
-
-  ${CategoryWrapper} {
+`
+const CategoryContainer = styled.div`
     position: fixed;
     z-index: 99;
-    left: 25%;
+    left: ${({ mobile }) => mobile ? '15%' : '25%'};
     top: calc(40% + 60px);
-    width: 50%;
-  }
+    width: ${({ mobile }) => mobile ? '70%' : '50%'};
 `
 
-const Search = ({ query, setQuery }) => {
+const Search = ({ query, setQuery, theme }) => {
   const [input, handleInputChange] = useSearch(query, setQuery)
   const [searchOn, setSearchOn] = useState(false)
   const [maskOn, setMaskOn] = useState(false)
+  const [mobileOn, setMobileOn] = useState(false)
   const [searchHide, setSearchHide] = useState(false)
   const searchInputEl = useRef(null)
   const searchInputCenterEl = useRef(null)
@@ -95,26 +95,41 @@ const Search = ({ query, setQuery }) => {
     if (!logoEl || !logoCenterEl) return
     const { top: ltop, left: lleft } = logoEl.getBoundingClientRect()
     const { offsetWidth: lwidth, offsetHeight: lheight } = logoEl
-    logoEl.setAttribute('style', `
-        opacity: 0;
-      `
-    )
-    logoCenterEl.current.setAttribute(
-      'style', `
-        top: ${ltop}px;
-        left: ${lleft}px;
-        width: ${lwidth}px;
-        height: ${lheight}px;
-      `
-    )
+    logoEl.setAttribute('style', 'opacity: 0;')
+    if (isMobile()) {
+      setMobileOn(true)
+      logoCenterEl.current.setAttribute(
+        'style', `
+          top: ${ltop}px;
+          left: ${lleft}px;
+          width: ${lwidth}px;
+          height: ${lheight}px;
+          color: ${theme.data.BG};
+          font-size: 42px;
+          letter-spacing: 4px;
+          padding: 0;
+        `
+      )
+    } else {
+      setMobileOn(false)
+      logoCenterEl.current.setAttribute(
+        'style', `
+          top: ${ltop}px;
+          left: ${lleft}px;
+          width: ${lwidth}px;
+          height: ${lheight}px;
+        `
+      )
+    }
   }
-
   const unApplyStyleOnElements = () => {
     if (!searchInputCenterEl) return
+
+    const width = mobileOn ? '70%' : '50%'
     searchInputCenterEl.current.setAttribute('style', `
-        left: 25%;
+        left: calc(50% - ${width} / 2);
         top: 40%;
-        width: 50%;
+        width: ${width};
         padding: 10px 6px;
       `
     )
@@ -130,13 +145,17 @@ const Search = ({ query, setQuery }) => {
 
   function getLogoEl () {
     const els = document.querySelectorAll('.logo-majo21')
-    // for (const el of els) {
-    //   console.log(el)
-    //   if (el.offsetWidth > 0 || el.offsetHeight > 0) {
-    //     return el
-    //   }
-    // }
+    for (const el of els) {
+      if (el.offsetWidth > 0) {
+        return el
+      }
+    }
     return els[0]
+  }
+
+  function isMobile () {
+    const el = getLogoEl()
+    return el.className.includes('mobile')
   }
 
   const onEnter = () => {
@@ -177,7 +196,9 @@ const Search = ({ query, setQuery }) => {
       >
         <>
           <Mask>
-            <Category />
+            <CategoryContainer mobile={mobileOn}>
+              <Category />
+            </CategoryContainer>
           </Mask>
           <TextLogoCenter ref={logoCenterEl}>MAJO21</TextLogoCenter>
           <SearchInputCenter
@@ -201,4 +222,4 @@ const mapDispatchToProps = dispatch => ({
   setQuery: (query) => dispatch(setQuery(query))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Search))

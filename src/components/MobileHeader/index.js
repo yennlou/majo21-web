@@ -31,7 +31,7 @@ const MobileHeader = () => {
   const history = useHistory()
   return (
     <MobileHeaderWrapper>
-      <TextLogo className='logo-majo21' onClick={() => (history.push('/'))}>MAJO21</TextLogo>
+      <TextLogo className='logo-majo21 logo-majo21--mobile' onClick={() => (history.push('/'))}>MAJO21</TextLogo>
       <Contact>
         <a target='_blank' rel='noopener noreferrer' href='https://twitter.com/maaaajo21'><Icon name='twitter' /></a>
         <a target='_blank' rel='noopener noreferrer' href='https://github.com/yennlou'><Icon name='github' /></a>
