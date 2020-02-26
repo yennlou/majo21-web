@@ -36,5 +36,13 @@ export const selectPrevBlog = blogId =>
 export const selectBlogCollectionByQuery = query =>
   createSelector(
     [selectCollection],
-    collection => collection.filter(blog => blog.title.toUpperCase().includes(query.toUpperCase()))
+    collection => {
+      if (query.startsWith('tags:')) {
+        return collection
+      } else if (query.startsWith('series:')) {
+        const series = query.replace('series:', '').trim()
+        return collection.filter(blog => blog.series === series)
+      }
+      return collection.filter(blog => blog.title.toUpperCase().includes(query.toUpperCase()))
+    }
   )

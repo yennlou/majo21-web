@@ -196,6 +196,7 @@ const Search = ({ query, setQuery, theme }) => {
     } else {
       setInput('')
     }
+    searchInputCenterEl.current.focus()
   }
 
   return (
