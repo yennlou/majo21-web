@@ -2,7 +2,7 @@ import CategoryActionTypes from './types'
 
 const INITIAL_STATE = {
   series: ['MAJO21个站拆解'],
-  tags: [],
+  tags: ['JAVASCRIPT', 'CSS', 'REACTJS', 'SERVERLESS', 'AWS'],
   isFetched: false,
   isFetching: false,
   errMsg: undefined

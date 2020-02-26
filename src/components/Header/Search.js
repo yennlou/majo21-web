@@ -68,7 +68,7 @@ const CategoryContainer = styled.div`
     position: fixed;
     z-index: 99;
     left: ${({ mobile }) => mobile ? '15%' : '25%'};
-    top: calc(40% + 46px);
+    top: calc(35% + 46px);
     width: ${({ mobile }) => mobile ? '70%' : '50%'};
 `
 
@@ -136,7 +136,7 @@ const Search = ({ query, setQuery, theme }) => {
     const width = mobileOn ? '70%' : '50%'
     searchInputCenterEl.current.setAttribute('style', `
         left: calc(50% - ${width} / 2);
-        top: 40%;
+        top: 35%;
         width: ${width};
         padding: 10px 6px;
       `
@@ -145,7 +145,7 @@ const Search = ({ query, setQuery, theme }) => {
     logoCenterEl.current.setAttribute(
       'style', `
         left: calc(50% - 110px);
-        top: calc(40% - 110px);
+        top: calc(35% - 110px);
         font-size: 52px;
       `
     )
