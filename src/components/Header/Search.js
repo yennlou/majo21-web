@@ -40,6 +40,7 @@ const SearchInputCenter = styled(SearchInput)`
 `
 const TextLogoCenter = styled(TextLogo)`
   position: fixed;
+  user-select: none;
   z-index: 100;
   transition: all .5s;
   color: ${({ theme }) => theme.data.SIDEBAR_FONT};
@@ -65,16 +66,16 @@ const InputHint = styled.div`
 `
 
 const CategoryContainer = styled.div`
-    position: fixed;
-    z-index: 99;
-    left: ${({ mobile }) => mobile ? '15%' : '25%'};
-    top: calc(35% + 46px);
-    width: ${({ mobile }) => mobile ? '70%' : '50%'};
+  position: fixed;
+  z-index: 99;
+  left: ${({ mobile }) => mobile ? '15%' : '25%'};
+  top: calc(35% + 46px);
+  width: ${({ mobile }) => mobile ? '70%' : '50%'};
 `
 
 const Search = ({ query, setQuery, theme }) => {
   const [searchOn, setSearchOn] = useState(false)
-  const [input, handleInputChange, handleEnterKey] = useSearch(query, setQuery, () => setSearchOn(false))
+  const [input, setInput, handleInputChange, handleEnterKey] = useSearch(query, setQuery, () => setSearchOn(false))
   const [maskOn, setMaskOn] = useState(false)
   const [mobileOn, setMobileOn] = useState(false)
   const [searchHide, setSearchHide] = useState(false)
@@ -187,6 +188,16 @@ const Search = ({ query, setQuery, theme }) => {
     )
   }
 
+  const handleCategoryChange = (category) => {
+    if (category.series) {
+      setInput(`series:${category.series}`)
+    } else if (Object.keys(category.tags).length) {
+      setInput(`tags:${Object.keys(category.tags).join(',')}`)
+    } else {
+      setInput('')
+    }
+  }
+
   return (
     <SearchInputWrapper className={className}>
       <SearchInputTop
@@ -209,7 +220,9 @@ const Search = ({ query, setQuery, theme }) => {
           <Mask>
             <CategoryContainer mobile={mobileOn}>
               <InputHint>* Confirm with `Enter` key.</InputHint>
-              <Category />
+              <Category
+                onCategoryChange={handleCategoryChange}
+              />
             </CategoryContainer>
           </Mask>
           <TextLogoCenter ref={logoCenterEl}>MAJO21</TextLogoCenter>

@@ -18,7 +18,7 @@ function useSearch (query, setQuery, cb) {
     }
   }
 
-  return [input, handleInputChange, handleEnterKey]
+  return [input, setInput, handleInputChange, handleEnterKey]
 }
 
 export default useSearch
