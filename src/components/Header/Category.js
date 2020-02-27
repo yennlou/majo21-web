@@ -18,6 +18,10 @@ const CategoryTitle = styled.h3`
   margin-bottom: 12px;
 `
 
+export const CategoryTagGroup = styled.div`
+  margin-left: -8px;
+`
+
 const BaseTag = styled.span`
   display: inline-block;
   padding: 4px 6px;
@@ -27,9 +31,7 @@ const BaseTag = styled.span`
   font-size: 14px;
   cursor: pointer;
   user-select: none;
-  &:first-of-type {
-    margin-left: 0;
-  }
+  margin-bottom: 10px;
 
   &:hover, &.selected{
     background-color: ${({ theme }) => theme.data.SEARCH_FONT};
@@ -87,31 +89,35 @@ const Category = ({ series, tags, onCategoryChange }) => {
     <CategoryWrapper>
       <CategorySection>
         <CategoryTitle>Series</CategoryTitle>
-        {series.map(s => (
-          <Series
-            key={s}
-            className={classNames({ selected: s === chosenCategory.series })}
-            onClick={() => {
-              categoryDispatch({ type: 'toggleSeries', payload: s })
-            }}
-          >
-            {s}
-          </Series>
-        ))}
+        <CategoryTagGroup>
+          {series.map(s => (
+            <Series
+              key={s}
+              className={classNames({ selected: s === chosenCategory.series })}
+              onClick={() => {
+                categoryDispatch({ type: 'toggleSeries', payload: s })
+              }}
+            >
+              {s}
+            </Series>
+          ))}
+        </CategoryTagGroup>
       </CategorySection>
       <CategorySection>
         <CategoryTitle>Tags</CategoryTitle>
-        {tags.map(t => (
-          <Tag
-            key={t}
-            className={classNames({ selected: chosenCategory.tags[t] })}
-            onClick={() => {
-              categoryDispatch({ type: 'toggleTags', payload: t })
-            }}
-          >
-            {t}
-          </Tag>
-        ))}
+        <CategoryTagGroup>
+          {tags.map(t => (
+            <Tag
+              key={t}
+              className={classNames({ selected: chosenCategory.tags[t] })}
+              onClick={() => {
+                categoryDispatch({ type: 'toggleTags', payload: t })
+              }}
+            >
+              {t}
+            </Tag>
+          ))}
+        </CategoryTagGroup>
       </CategorySection>
     </CategoryWrapper>)
 }

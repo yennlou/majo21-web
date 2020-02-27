@@ -9,6 +9,7 @@ import useSearch from '../../hooks/useSearch'
 import { setQuery } from '../../redux/config/actions'
 
 const SearchInput = styled.input`
+  color: ${({ theme }) => theme.data.SEARCH_FONT};
   padding: 6px;
   width: 100%;
   max-width: 300px;
