@@ -7,7 +7,7 @@ import { selectSeries, selectTags } from '../../redux/category/selectors'
 export const CategoryWrapper = styled.div`
 `
 
-const CategorySection = styled.div`
+export const CategorySection = styled.div`
   margin-bottom: 20px;
 `
 

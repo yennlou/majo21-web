@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
+import SearchContext from '../../contexts/search-context'
 import useSearchMobile from '../../hooks/useSearchMobile'
 import { setQuery } from '../../redux/config/actions'
 import Icon from '../Icon'
@@ -50,26 +51,13 @@ const SearchInput = styled.input`
 `
 const Search = ({ query, setQuery }) => {
   const [input, handleInputChange] = useSearchMobile(query, setQuery)
-  const [searchOn, setSearchOn] = useState(false)
   const [showClose, setShowClose] = useState(false)
+  const [searchOn, setSearchOn] = useContext(SearchContext)
   const searchInputEl = useRef(null)
-  const handleClickOutside = (e) => {
-    if (!searchInputEl?.current?.contains(e.target)) {
-      setSearchOn(false)
-    }
-  }
-  const handleSearchToggle = (e) => {
-    setSearchOn(true)
-  }
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+
   return (
     <SearchWrapper>
-      {!searchOn && (<Icon name='search' onClick={handleSearchToggle} />)}
+      {!searchOn && (<Icon name='search' onClick={() => setSearchOn(true)} />)}
       <CSSTransition
         in={searchOn}
         timeout={{
@@ -88,7 +76,7 @@ const Search = ({ query, setQuery }) => {
           onChange={handleInputChange}
         />
       </CSSTransition>
-      {showClose && (<Icon name='cross' className='search-close' />)}
+      {showClose && (<Icon name='cross' className='search-close' onClick={() => setSearchOn(false)} />)}
     </SearchWrapper>
   )
 }

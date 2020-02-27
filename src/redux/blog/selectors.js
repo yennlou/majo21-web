@@ -41,7 +41,7 @@ export const selectBlogCollectionByQuery = query =>
         return collection
       } else if (query.startsWith('series:')) {
         const series = query.replace('series:', '').trim()
-        return collection.filter(blog => blog.series === series)
+        return collection.filter(blog => blog.series === series).reverse()
       }
       return collection.filter(blog => blog.title.toUpperCase().includes(query.toUpperCase()))
     }
