@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled, { ThemeProvider } from 'styled-components'
@@ -6,6 +6,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import GlobalStyle from './styles/GlobalStyle'
 import lightTheme from './styles/themes/light'
 import darkTheme from './styles/themes/dark'
+import InputContext from './contexts/input-context'
 import Sidebar, { SidebarWrapper } from './components/Sidebar'
 import Header, { HeaderLayout } from './components/Header'
 import MobileSubHeader, { MobileSubHeaderLayout } from './components/Header/MobileSubHeader'
@@ -18,7 +19,7 @@ import { IndexWrapper } from './components/Pagination'
 import MobileHeader, { MobileHeaderWrapper } from './components/MobileHeader'
 import MobileFooter, { MobileFooterWrapper } from './components/MobileFooter'
 
-import BlogListView, { BlogListViewWrapper } from './views/BlogListView'
+import BlogListView, { BlogListViewWrapper, EmptyResult } from './views/BlogListView'
 import BlogView, { BlogViewWrapper } from './views/BlogView'
 import GalleryView, { GalleryViewWrapper } from './views/GalleryView'
 
@@ -65,6 +66,9 @@ const Layout = styled.div`
       padding-top: 0px;
       padding-bottom: 20px;
     }
+    ${EmptyResult} {
+      height: calc(100vh - 480px);
+    }  
     ${SidebarWrapper} {
       display: none;
     }
@@ -125,34 +129,37 @@ const themeCollection = {
 }
 
 const App = ({ theme }) => {
+  const [input, setInput] = useState('')
   return (
     <ThemeProvider theme={themeCollection[theme]}>
-      <GlobalStyle />
-      <Layout>
-        <Sidebar />
-        <Main>
-          <Switch>
-            <Route exact path='/'>
-              <MobileHeader />
-              <MobileSubHeader />
-              <Header />
-              <BlogListView />
-            </Route>
-            <Route
-              exact
-              path='/articles/:blogId'
-              component={BlogView}
-            />
-            <Route exact path='/gallery'>
-              <MobileHeader />
-              <MobileSubHeader />
-              <Header />
-              <GalleryView />
-            </Route>
-          </Switch>
-          <MobileFooter />
-        </Main>
-      </Layout>
+      <InputContext.Provider value={[input, setInput]}>
+        <GlobalStyle />
+        <Layout>
+          <Sidebar />
+          <Main>
+            <Switch>
+              <Route exact path='/'>
+                <MobileHeader />
+                <MobileSubHeader />
+                <Header />
+                <BlogListView />
+              </Route>
+              <Route
+                exact
+                path='/articles/:blogId'
+                component={BlogView}
+              />
+              <Route exact path='/gallery'>
+                <MobileHeader />
+                <MobileSubHeader />
+                <Header />
+                <GalleryView />
+              </Route>
+            </Switch>
+            <MobileFooter />
+          </Main>
+        </Layout>
+      </InputContext.Provider>
     </ThemeProvider>
   )
 }

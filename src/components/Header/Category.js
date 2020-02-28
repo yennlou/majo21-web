@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 import classNames from 'classnames'
 import { selectSeries, selectTags } from '../../redux/category/selectors'
 
-export const CategoryWrapper = styled.div`
-`
-
 export const CategorySection = styled.div`
   margin-bottom: 20px;
 `
@@ -41,6 +38,22 @@ const BaseTag = styled.span`
 
 const Tag = styled(BaseTag)``
 const Series = styled(BaseTag)``
+
+export const CategoryWrapper = styled.div`
+@media(max-width: 520px) {
+  ${CategoryTitle} {
+    padding-bottom: 2px;
+    margin-bottom: 8px;
+  }
+  ${CategorySection} {
+    margin-bottom: 8px;
+  }
+
+  ${BaseTag} {
+    padding: 3px 4px;
+  }
+}
+`
 
 const categoryReducer = (state = { series: '', tags: {} }, action) => {
   switch (action.type) {

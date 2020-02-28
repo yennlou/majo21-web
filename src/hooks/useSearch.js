@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useContext } from 'react'
+import InputContext from '../contexts/input-context'
 
 function useSearch (query, setQuery, cb) {
-  const [input, setInput] = useState('')
+  const [input, setInput] = useContext(InputContext)
   useEffect(() => {
     setInput(query)
   }, [])

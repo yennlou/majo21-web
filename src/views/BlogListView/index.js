@@ -13,12 +13,13 @@ export const BlogListViewWrapper = styled.div`
   position: relative;
 `
 
-const EmptyResult = styled.div`
+export const EmptyResult = styled.div`
   color: ${({ theme }) => theme.data.BLOG_FONT};
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50vh;
+  padding: 40px 0;
+  height: calc(100vh - 520px);
 `
 
 const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {

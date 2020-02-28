@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 
@@ -7,7 +7,7 @@ import InputContext from '../../contexts/input-context'
 import ThemeSwitcher, { ThemeSwitcherWrapper } from './ThemeSwitcher'
 import Search from './MobileSearch'
 import NavMenu from './NavMenu'
-import Category, { CategorySection } from './Category'
+import Category from './Category'
 
 export const MobileSubHeaderLayout = styled.div`
   display: none;
@@ -18,9 +18,6 @@ export const MobileSubHeaderLayout = styled.div`
 `
 
 const SubHeaderWrapper = styled.div`
-  ${CategorySection} {
-    margin-bottom: 18px;
-  }
 
   .mobile-category-enter {
     overflow-y: scroll;
@@ -53,7 +50,8 @@ const HeaderRight = styled.div`
 
 const Header = () => {
   const [searchOn, setSearchOn] = useState(false)
-  const [input, setInput] = useState('')
+  // eslint-disable-next-line no-unused-vars
+  const [input, setInput] = useContext(InputContext)
   const handleCategoryChange = (category) => {
     if (category.series) {
       setInput(`series:${category.series}`)
@@ -65,27 +63,25 @@ const Header = () => {
   }
   return (
     <SearchContext.Provider value={[searchOn, setSearchOn]}>
-      <InputContext.Provider value={[input, setInput]}>
-        <SubHeaderWrapper>
-          <MobileSubHeaderLayout>
-            <HeaderLeft>
-              <Search />
-            </HeaderLeft>
-            <HeaderRight>
-              <ThemeSwitcher />
-              <NavMenu />
-            </HeaderRight>
-          </MobileSubHeaderLayout>
-          <CSSTransition
-            in={searchOn}
-            timeout={300}
-            unmountOnExit
-            classNames='mobile-category'
-          >
-            <Category onCategoryChange={handleCategoryChange} />
-          </CSSTransition>
-        </SubHeaderWrapper>
-      </InputContext.Provider>
+      <SubHeaderWrapper>
+        <MobileSubHeaderLayout>
+          <HeaderLeft>
+            <Search />
+          </HeaderLeft>
+          <HeaderRight>
+            <ThemeSwitcher />
+            <NavMenu />
+          </HeaderRight>
+        </MobileSubHeaderLayout>
+        <CSSTransition
+          in={searchOn}
+          timeout={300}
+          unmountOnExit
+          classNames='mobile-category'
+        >
+          <Category onCategoryChange={handleCategoryChange} />
+        </CSSTransition>
+      </SubHeaderWrapper>
     </SearchContext.Provider>
   )
 }
