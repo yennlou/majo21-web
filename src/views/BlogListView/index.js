@@ -13,6 +13,14 @@ export const BlogListViewWrapper = styled.div`
   position: relative;
 `
 
+const EmptyResult = styled.div`
+  color: ${({ theme }) => theme.data.BLOG_FONT};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+`
+
 const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
   useEffect(() => {
     if (isFetched) return
@@ -20,7 +28,11 @@ const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
   }, [])
   const [currentPage, setCurrentPage, pageCount, currentItems] = usePagination(collection)
   const loadingItems = [...Array(4).keys()].map((idx) => ({ id: idx, isLoading: true }))
-  const BlogListComponent = isFetched ? (<BlogList data={currentItems} />) : (<BlogList data={loadingItems} />)
+  const BlogListComponent = !isFetched
+    ? (<BlogList data={loadingItems} />)
+    : collection.length
+      ? (<BlogList data={currentItems} />)
+      : (<EmptyResult>Ooops! No results found.</EmptyResult>)
   return (
     <BlogListViewWrapper>
       {BlogListComponent}

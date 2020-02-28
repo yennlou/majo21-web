@@ -58,6 +58,8 @@ const Layout = styled.div`
     ${Main} {
       overflow: auto;
       padding: 0 14px 0px;
+      display: flex;
+      flex-direction: column;
     } 
     ${BlogListViewWrapper} {
       padding-top: 0px;
@@ -75,6 +77,7 @@ const Layout = styled.div`
     }
     ${HeaderLayout} {
       height: 60px;
+      padding: 14px 0;
     }
     ${ThemeSwitcherWrapper} {
       width: 75px;

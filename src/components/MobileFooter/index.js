@@ -22,6 +22,7 @@ export const MobileFooterWrapper = styled.div`
   display: none;
   width: 100vw;
   margin-left: -14px;
+  margin-top: auto;
   font-weight: 300;
   text-transform: uppercase;
   color: ${({ theme }) => theme.data.BG};
