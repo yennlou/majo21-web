@@ -189,13 +189,36 @@ const Search = ({ query, setQuery, theme }) => {
     )
   }
 
+  const parseInputToCategoryValue = (input) => {
+    const value = {
+      series: '',
+      tags: {}
+    }
+    if (input.startsWith('series:')) {
+      value.series = input.replace('series:', '').trim()
+    }
+    if (input.startsWith('tags:')) {
+      const tags = input.replace('tags:', '').trim().split(',')
+      for (const tag of tags) {
+        value.tags[tag] = true
+      }
+    }
+    return value
+  }
+
   const handleCategoryChange = (category) => {
     if (category.series) {
-      setInput(`series:${category.series}`)
+      const newInput = `series:${category.series}`
+      if (input !== newInput) {
+        setInput(newInput)
+      }
     } else if (Object.keys(category.tags).length) {
-      setInput(`tags:${Object.keys(category.tags).join(',')}`)
+      const newInput = `tags:${Object.keys(category.tags).join(',')}`
+      if (input !== newInput) {
+        setInput(newInput)
+      }
     } else {
-      setInput('')
+      if (input !== '') setInput('')
     }
     searchInputCenterEl.current.focus()
   }
@@ -223,6 +246,7 @@ const Search = ({ query, setQuery, theme }) => {
             <CategoryContainer mobile={mobileOn}>
               <InputHint>* Confirm with `Enter` key.</InputHint>
               <Category
+                value={parseInputToCategoryValue(input)}
                 onCategoryChange={handleCategoryChange}
               />
             </CategoryContainer>

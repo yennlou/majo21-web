@@ -91,8 +91,8 @@ const categoryReducer = (state = { series: '', tags: {} }, action) => {
   }
 }
 
-const Category = ({ series, tags, onCategoryChange }) => {
-  const [chosenCategory, categoryDispatch] = useReducer(categoryReducer, { series: '', tags: {} })
+const Category = ({ value = { series: '', tags: {} }, series, tags, onCategoryChange }) => {
+  const [chosenCategory, categoryDispatch] = useReducer(categoryReducer, value)
 
   useEffect(() => {
     onCategoryChange && onCategoryChange(chosenCategory)
