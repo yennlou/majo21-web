@@ -106,7 +106,7 @@ const Category = ({ value = { series: '', tags: {} }, series, tags, onCategoryCh
           {series.map(s => (
             <Series
               key={s}
-              className={classNames({ selected: s === chosenCategory.series })}
+              className={classNames({ selected: s === value.series })}
               onClick={() => {
                 categoryDispatch({ type: 'toggleSeries', payload: s })
               }}
@@ -122,7 +122,7 @@ const Category = ({ value = { series: '', tags: {} }, series, tags, onCategoryCh
           {tags.map(t => (
             <Tag
               key={t}
-              className={classNames({ selected: chosenCategory.tags[t] })}
+              className={classNames({ selected: value.tags[t] })}
               onClick={() => {
                 categoryDispatch({ type: 'toggleTags', payload: t })
               }}
