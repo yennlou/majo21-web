@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import Category from './Category'
 import { TextLogo } from '../Sidebar'
 import useSearch from '../../hooks/useSearch'
+import useCategoryInput from '../../hooks/useCategoryInput'
 import { setQuery } from '../../redux/config/actions'
 
 const SearchInput = styled.input`
@@ -83,6 +84,12 @@ const Search = ({ query, setQuery, theme }) => {
   const searchInputEl = useRef(null)
   const searchInputCenterEl = useRef(null)
   const logoCenterEl = useRef(null)
+
+  const [parseInputToCategoryValue, handleCategoryChange] = useCategoryInput((newInput) => {
+    if (newInput !== input) setInput(newInput)
+    searchInputCenterEl.current.focus()
+  })
+
   const className = classNames({
     'search-on': searchOn,
     'search-hide': searchHide,
@@ -187,40 +194,6 @@ const Search = ({ query, setQuery, theme }) => {
         opacity: 1;
       `
     )
-  }
-
-  const parseInputToCategoryValue = (input) => {
-    const value = {
-      series: '',
-      tags: {}
-    }
-    if (input.startsWith('series:')) {
-      value.series = input.replace('series:', '').trim()
-    }
-    if (input.startsWith('tags:')) {
-      const tags = input.replace('tags:', '').trim().split(',')
-      for (const tag of tags) {
-        value.tags[tag] = true
-      }
-    }
-    return value
-  }
-
-  const handleCategoryChange = (category) => {
-    if (category.series) {
-      const newInput = `series:${category.series}`
-      if (input !== newInput) {
-        setInput(newInput)
-      }
-    } else if (Object.keys(category.tags).length) {
-      const newInput = `tags:${Object.keys(category.tags).join(',')}`
-      if (input !== newInput) {
-        setInput(newInput)
-      }
-    } else {
-      if (input !== '') setInput('')
-    }
-    searchInputCenterEl.current.focus()
   }
 
   return (

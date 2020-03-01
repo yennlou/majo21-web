@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 
 import SearchContext from '../../contexts/search-context'
 import InputContext from '../../contexts/input-context'
+import useCategoryInput from '../../hooks/useCategoryInput'
 import ThemeSwitcher, { ThemeSwitcherWrapper } from './ThemeSwitcher'
 import Search from './MobileSearch'
 import NavMenu from './NavMenu'
@@ -52,37 +53,9 @@ const Header = () => {
   const [searchOn, setSearchOn] = useState(false)
   // eslint-disable-next-line no-unused-vars
   const [input, setInput] = useContext(InputContext)
-  const parseInputToCategoryValue = (input) => {
-    const value = {
-      series: '',
-      tags: {}
-    }
-    if (input.startsWith('series:')) {
-      value.series = input.replace('series:', '').trim()
-    }
-    if (input.startsWith('tags:')) {
-      const tags = input.replace('tags:', '').trim().split(',')
-      for (const tag of tags) {
-        value.tags[tag] = true
-      }
-    }
-    return value
-  }
-  const handleCategoryChange = (category) => {
-    if (category.series) {
-      const newInput = `series:${category.series}`
-      if (input !== newInput) {
-        setInput(newInput)
-      }
-    } else if (Object.keys(category.tags).length) {
-      const newInput = `tags:${Object.keys(category.tags).join(',')}`
-      if (input !== newInput) {
-        setInput(newInput)
-      }
-    } else {
-      if (input !== '') setInput('')
-    }
-  }
+  const [parseInputToCategoryValue, handleCategoryChange] = useCategoryInput((newInput) => {
+    if (newInput !== input) setInput(newInput)
+  })
   return (
     <SearchContext.Provider value={[searchOn, setSearchOn]}>
       <SubHeaderWrapper>
