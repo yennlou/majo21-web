@@ -38,7 +38,8 @@ export const selectBlogCollectionByQuery = query =>
     [selectCollection],
     collection => {
       if (query.startsWith('tags:')) {
-        return collection
+        const tags = query.replace('tags:', '').trim().split(',')
+        return collection.filter(blog => blog.tags && blog.tags.some(t => tags.includes(t)))
       } else if (query.startsWith('series:')) {
         const series = query.replace('series:', '').trim()
         return collection.filter(blog => blog.series === series).reverse()

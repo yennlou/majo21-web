@@ -9,7 +9,7 @@ import { selectBlog, selectNextBlog, selectPrevBlog } from '../../redux/blog/sel
 
 import { fetchCollectionStartAsync } from '../../redux/blog/actions'
 export const BlogViewWrapper = styled.div`
-  padding: 40px 0 0 0;
+  padding: 40px 0 10px 0;
 `
 
 const BackLink = withTheme(({ children, theme, ...otherProps }) => (
@@ -69,15 +69,14 @@ const BlogView = ({ blog, prevBlog, nextBlog, isFetched, fetchCollectionStartAsy
   }
   return (
     <BlogViewWrapper>
-      <>
-        <BackLink onClick={() => history.push('/')}>&lt; Back</BackLink>
-        <Blog {...blog} />
-        <PrevNextSection prevBlog={prevBlog} nextBlog={nextBlog} />
-        <Disqus.DiscussionEmbed
-          shortname={disqusShortname}
-          config={disqusConfig}
-        />
-      </>
+
+      <BackLink onClick={() => history.push('/')}>&lt; Back</BackLink>
+      <Blog {...blog} />
+      <PrevNextSection prevBlog={prevBlog} nextBlog={nextBlog} />
+      <Disqus.DiscussionEmbed
+        shortname={disqusShortname}
+        config={disqusConfig}
+      />
 
     </BlogViewWrapper>
   )

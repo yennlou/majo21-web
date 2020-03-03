@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled, { ThemeProvider } from 'styled-components'
+
+import { fetchCategoryStartAsync } from './redux/category/actions'
 
 import GlobalStyle from './styles/GlobalStyle'
 import lightTheme from './styles/themes/light'
@@ -128,8 +130,12 @@ const themeCollection = {
   dark: darkTheme
 }
 
-const App = ({ theme }) => {
+const App = ({ theme, isCategoryFetched, fetchCategoryStartAsync }) => {
   const [input, setInput] = useState('')
+  useEffect(() => {
+    if (isCategoryFetched) return
+    fetchCategoryStartAsync()
+  }, [])
   return (
     <ThemeProvider theme={themeCollection[theme]}>
       <InputContext.Provider value={[input, setInput]}>
@@ -164,8 +170,13 @@ const App = ({ theme }) => {
   )
 }
 
-const mapStateToProps = ({ config: { theme } }) => ({
-  theme
+const mapStateToProps = ({ config: { theme }, category: { isFetched: isCategoryFetched } }) => ({
+  theme,
+  isCategoryFetched
 })
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = dispatch => ({
+  fetchCategoryStartAsync: () => dispatch(fetchCategoryStartAsync())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

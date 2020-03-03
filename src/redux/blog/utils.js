@@ -35,10 +35,11 @@ const makeToc = (html) => {
 }
 
 export const parseDataToBlog = (data) => {
-  const { id, content, createdAt, ...otherAttrs } = data
+  const { id, content, createdAt, tags, ...otherAttrs } = data
   const converter = new showdown.Converter({ metadata: true })
   const html = converter.makeHtml(content)
   const toc = makeToc(html)
+  const tagList = tags ? tags.trim().split(',') : []
 
   return {
     id: /\/(\w+)\./.exec(id)[1],
@@ -46,6 +47,7 @@ export const parseDataToBlog = (data) => {
     toc: toc.data,
     readingTime: readTimeEstimate(content).humanizedDuration,
     createdAt: createdAt.replace('createdAt:', ''),
+    tags: tagList,
     ...otherAttrs
   }
 }

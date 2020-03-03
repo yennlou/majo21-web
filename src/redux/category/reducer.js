@@ -1,8 +1,8 @@
 import CategoryActionTypes from './types'
 
 const INITIAL_STATE = {
-  series: ['MAJO21个站拆解'],
-  tags: ['JAVASCRIPT', 'CSS', 'REACTJS', 'SERVERLESS', 'AWS'],
+  series: [],
+  tags: ['REACT', 'WEBPACK', 'ESLINT', 'BABEL'],
   isFetched: false,
   isFetching: false,
   errMsg: undefined
@@ -20,8 +20,8 @@ const categoryReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         isFetched: true,
-        series: action.payload.series,
-        tags: action.payload.tags
+        series: action.payload.series || state.series,
+        tags: action.payload.tags || state.tags
       }
     case CategoryActionTypes.FETCH_CATEGORY_FAILURE:
       return {
