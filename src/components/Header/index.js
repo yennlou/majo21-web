@@ -5,6 +5,11 @@ import Search from './Search'
 import ThemeSwitcher, { ThemeSwitcherWrapper } from './ThemeSwitcher'
 import NavMenu from './NavMenu'
 
+export const HeaderWrapper = styled.div`
+  display: block;
+  
+`
+
 export const HeaderLayout = styled.div`
   display: flex;
   width: 100%;
@@ -31,15 +36,17 @@ const HeaderRight = styled.div`
 
 const Header = () => {
   return (
-    <HeaderLayout>
-      <HeaderLeft>
-        <Search />
-      </HeaderLeft>
-      <HeaderRight>
-        <ThemeSwitcher />
-        <NavMenu />
-      </HeaderRight>
-    </HeaderLayout>
+    <HeaderWrapper>
+      <HeaderLayout>
+        <HeaderLeft>
+          <Search />
+        </HeaderLeft>
+        <HeaderRight>
+          <ThemeSwitcher />
+          <NavMenu />
+        </HeaderRight>
+      </HeaderLayout>
+    </HeaderWrapper>
   )
 }
 

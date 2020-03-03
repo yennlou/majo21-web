@@ -21,6 +21,7 @@ const PrevNextSection = ({ prevBlog, nextBlog }) => {
     margin-bottom: 20px;
     font-weight: 600;
     line-height: 1.6;
+    color: ${({ theme }) => theme.data.BLOG_FONT}
   `
   const Link = styled(BaseLink)`
     text-decoration: underline;

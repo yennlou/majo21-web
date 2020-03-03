@@ -10,8 +10,8 @@ import lightTheme from './styles/themes/light'
 import darkTheme from './styles/themes/dark'
 import InputContext from './contexts/input-context'
 import Sidebar, { SidebarWrapper } from './components/Sidebar'
-import Header, { HeaderLayout } from './components/Header'
-import MobileSubHeader, { MobileSubHeaderLayout } from './components/Header/MobileSubHeader'
+import Header, { HeaderWrapper, HeaderLayout } from './components/Header'
+import MobileSubHeader, { MobileSubHeaderWrapper } from './components/Header/MobileSubHeader'
 import { ThemeSwitcherWrapper } from './components/Header/ThemeSwitcher'
 import { BlogEntryWrapper } from './components/BlogEntry'
 
@@ -78,12 +78,11 @@ const Layout = styled.div`
       display: block;
     }
     ${MobileHeaderWrapper} {
-      display: flex;
+      display: block;
       margin-top: 12px;
     }
     ${HeaderLayout} {
       height: 60px;
-      padding: 14px 0;
     }
     ${ThemeSwitcherWrapper} {
       width: 75px;
@@ -116,10 +115,10 @@ const Layout = styled.div`
     }
   }
   @media(max-width: 520px) {
-    ${HeaderLayout} {
+    ${HeaderWrapper} {
       display: none;
     }
-    ${MobileSubHeaderLayout} {
+    ${MobileSubHeaderWrapper} {
       display: block;
     }
   }
