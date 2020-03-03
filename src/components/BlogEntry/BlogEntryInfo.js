@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import { setQuery } from '../../redux/config/actions'
+import { setQuery } from '../../redux/global/actions'
 import BaseLink from '../BaseLink'
 import Icon from '../Icon'
 

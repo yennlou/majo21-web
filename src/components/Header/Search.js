@@ -7,7 +7,7 @@ import Category from './Category'
 import { TextLogo } from '../Sidebar'
 import useSearch from '../../hooks/useSearch'
 import useCategoryInput from '../../hooks/useCategoryInput'
-import { setQuery } from '../../redux/config/actions'
+import { setQuery } from '../../redux/global/actions'
 
 const SearchInput = styled.input`
   color: ${({ theme }) => theme.data.SEARCH_FONT};
@@ -238,7 +238,7 @@ const Search = ({ query, setQuery, theme }) => {
   )
 }
 
-const mapStateToProps = ({ config: { query } }) => ({
+const mapStateToProps = ({ global: { query } }) => ({
   query
 })
 

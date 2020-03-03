@@ -29,10 +29,15 @@ const BaseTag = styled.span`
   cursor: pointer;
   user-select: none;
   margin-bottom: 10px;
-
-  &:hover, &.selected{
+  &:active, &.selected {
     background-color: ${({ theme }) => theme.data.SEARCH_FONT};
     color: ${({ theme }) => theme.data.BG};
+  }
+  @media (hover: hover) { 
+      &:hover {
+      background-color: ${({ theme }) => theme.data.SEARCH_FONT};
+      color: ${({ theme }) => theme.data.BG};
+    }
   }
 `
 
@@ -41,12 +46,15 @@ const Series = styled(BaseTag)``
 
 export const CategoryWrapper = styled.div`
 @media(max-width: 520px) {
+  margin-top: 2px;
+  margin-bottom: 6px;
   ${CategoryTitle} {
     padding-bottom: 2px;
     margin-bottom: 8px;
+    font-size: 14px;
   }
   ${CategorySection} {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
 
   ${BaseTag} {

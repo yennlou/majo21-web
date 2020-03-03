@@ -20,7 +20,6 @@ export const MobileSubHeaderLayout = styled.div`
 export const MobileSubHeaderWrapper = styled.div`
   display: none;
   .mobile-category-enter {
-    overflow-y: scroll;
     height: 0;
   }
 
@@ -29,7 +28,7 @@ export const MobileSubHeaderWrapper = styled.div`
   }
   
   .mobile-category-exit-active {
-    height: 0;
+    display:none;
   }
 `
 

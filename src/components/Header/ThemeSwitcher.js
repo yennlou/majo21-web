@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import { setTheme } from '../../redux/config/actions'
+import { setTheme } from '../../redux/global/actions'
 
 export const ThemeSwitcherWrapper = styled.div`
   width: 80px;

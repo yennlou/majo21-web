@@ -5,12 +5,18 @@ const BaseLink = styled.a`
   background-color: ${props => props.bgColor || props.theme.data.BG};
   padding: 4px;
   cursor: pointer;
+  position: relative;
+  z-index: 100;
 
-  &:hover {
+  &:active {
     background-color: ${props => props.color || props.theme.data.BLOG_FONT};
     color: ${props => props.bgColor || props.theme.data.BG};
-    position: relative;
-    z-index: 100;
+  }
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${props => props.color || props.theme.data.BLOG_FONT};
+      color: ${props => props.bgColor || props.theme.data.BG};
+    } 
   }
 `
 

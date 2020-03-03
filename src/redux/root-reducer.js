@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 
-import configReducer from './config/reducer'
+import globalReducer from './global/reducer'
 import blogReducer from './blog/reducer'
 import galleryReducer from './gallery/reducer'
 import categoryReducer from './category/reducer'
 
 const rootReducer = combineReducers({
-  config: configReducer,
+  global: globalReducer,
   blog: blogReducer,
   gallery: galleryReducer,
   category: categoryReducer

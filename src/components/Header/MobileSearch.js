@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import SearchContext from '../../contexts/search-context'
 import useSearchMobile from '../../hooks/useSearchMobile'
-import { setQuery } from '../../redux/config/actions'
+import { setQuery, setLoading } from '../../redux/global/actions'
 import Icon from '../Icon'
 
 const SearchWrapper = styled.div`
@@ -49,8 +49,8 @@ const SearchInput = styled.input`
   font-size: 19px;
   letter-spacing: 1px;
 `
-const Search = ({ query, setQuery }) => {
-  const [input, handleInputChange] = useSearchMobile(query, setQuery)
+const Search = ({ query, setQuery, setLoading }) => {
+  const [input, handleInputChange] = useSearchMobile(query, setQuery, setLoading)
   const [showClose, setShowClose] = useState(false)
   const [searchOn, setSearchOn] = useContext(SearchContext)
   const searchInputEl = useRef(null)
@@ -81,12 +81,13 @@ const Search = ({ query, setQuery }) => {
   )
 }
 
-const mapStateToProps = ({ config: { query } }) => ({
+const mapStateToProps = ({ global: { query } }) => ({
   query
 })
 
 const mapDispatchToProps = dispatch => ({
-  setQuery: (query) => dispatch(setQuery(query))
+  setQuery: (query) => dispatch(setQuery(query)),
+  setLoading: (loading) => dispatch(setLoading(loading))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search)

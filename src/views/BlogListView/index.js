@@ -22,14 +22,14 @@ export const EmptyResult = styled.div`
   height: calc(100vh - 520px);
 `
 
-const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
+const BlogListView = ({ collection, isFetched, loading, fetchCollectionStartAsync }) => {
   useEffect(() => {
     if (isFetched) return
     fetchCollectionStartAsync()
   }, [])
   const [currentPage, setCurrentPage, pageCount, currentItems] = usePagination(collection)
   const loadingItems = [...Array(4).keys()].map((idx) => ({ id: idx, isLoading: true }))
-  const BlogListComponent = !isFetched
+  const BlogListComponent = !isFetched || loading
     ? (<BlogList data={loadingItems} />)
     : collection.length
       ? (<BlogList data={currentItems} />)
@@ -43,8 +43,9 @@ const BlogListView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
 }
 
 const mapStateToProps = (state) => ({
+  loading: state.global.loading,
   isFetched: state.blog.isFetched,
-  collection: selectBlogCollectionByQuery(state.config.query)(state)
+  collection: selectBlogCollectionByQuery(state.global.query)(state)
 })
 
 const mapDispatchToProps = dispatch => ({

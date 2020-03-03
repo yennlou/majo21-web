@@ -169,7 +169,7 @@ const App = ({ theme, isCategoryFetched, fetchCategoryStartAsync }) => {
   )
 }
 
-const mapStateToProps = ({ config: { theme }, category: { isFetched: isCategoryFetched } }) => ({
+const mapStateToProps = ({ global: { theme }, category: { isFetched: isCategoryFetched } }) => ({
   theme,
   isCategoryFetched
 })
