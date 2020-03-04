@@ -9,6 +9,7 @@ export const CategorySection = styled.div`
 `
 
 const CategoryTitle = styled.h3`
+  color: ${({ theme }) => theme.data.SEARCH_FONT};
   border-bottom: 1px solid ${({ theme }) => theme.data.SEARCH_FONT}44;
   padding-bottom: 6px;
   text-transform: uppercase;

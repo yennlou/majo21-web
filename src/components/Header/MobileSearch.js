@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
@@ -54,6 +54,10 @@ const Search = ({ query, setQuery, setLoading }) => {
   const [showClose, setShowClose] = useState(false)
   const [searchOn, setSearchOn] = useContext(SearchContext)
   const searchInputEl = useRef(null)
+
+  useEffect(() => {
+    if (searchOn) { searchInputEl.current.focus() }
+  }, [searchOn])
 
   return (
     <SearchWrapper>
