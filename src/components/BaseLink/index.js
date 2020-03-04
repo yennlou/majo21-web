@@ -6,7 +6,6 @@ const BaseLink = styled.a`
   padding: 4px;
   cursor: pointer;
   position: relative;
-  z-index: 100;
 
   &:active {
     background-color: ${props => props.color || props.theme.data.BLOG_FONT};
