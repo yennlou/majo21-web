@@ -7,6 +7,7 @@ import { selectCollection } from '../../redux/gallery/selectors'
 import { fetchCollectionStartAsync } from '../../redux/gallery/actions'
 import Gallery from '../../components/Gallery'
 import Pagination from '../../components/Pagination'
+import Loading from '../../components/Loading'
 
 export const GalleryViewWrapper = styled.div`
   padding: 8px 0 20px;
@@ -21,6 +22,7 @@ const GalleryView = ({ collection, isFetched, fetchCollectionStartAsync }) => {
 
   return (
     <GalleryViewWrapper>
+      {!isFetched && <Loading />}
       <Gallery data={currentItems} />
       <Pagination size={pageCount} value={currentPage} onChange={setCurrentPage} />
     </GalleryViewWrapper>

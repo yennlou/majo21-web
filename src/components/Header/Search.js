@@ -5,6 +5,7 @@ import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
 import Category from './Category'
 import { TextLogo } from '../Sidebar'
+
 import useSearch from '../../hooks/useSearch'
 import useCategoryInput from '../../hooks/useCategoryInput'
 import { setQuery } from '../../redux/global/actions'
@@ -21,7 +22,7 @@ const SearchInput = styled.input`
 
 const Mask = styled.div`
   position: fixed;
-  z-index: 90;
+  z-index: 100;
   width: 100%;
   height: 100%;
   left: 0;
@@ -31,11 +32,15 @@ const Mask = styled.div`
   background-color: ${({ theme }) => theme.data.BG};
 `
 
-const SearchInputTop = styled(SearchInput)``
+const SearchInputTop = styled(SearchInput)`
+  ::placeholder {
+    color: ${({ theme }) => theme.data.SEARCH_FONT}80;
+  }
+`
 
 const SearchInputCenter = styled(SearchInput)`
   position: fixed;
-  z-index: 100;
+  z-index: 101;
   width: unset;
   max-width: unset;
   transition: all .5s;
@@ -200,6 +205,7 @@ const Search = ({ query, setQuery, theme }) => {
     <SearchInputWrapper className={className}>
       <SearchInputTop
         className={className}
+        placeholder='Search...'
         ref={searchInputEl}
         value={input}
         onChange={() => {}}
