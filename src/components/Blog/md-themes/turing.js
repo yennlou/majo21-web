@@ -98,24 +98,21 @@ const theme = css`
   }
 
   pre {
-    padding: 2em 3em;
+    padding: 0;
+    overflow-x: scroll;
     color: #b39a1d;
     background: ${({ theme }) => theme.data.BLOG_CODE_BG};
     font-family: menlo, monospace;
     font-weight: lighter;
-    margin: 2em 0em;
+    margin: .4em 0em 1.6em;
     border-radius: .5em;
     overflow: scroll;
-    @media(max-width: 870px) {
-      margin-left: -14px;
-      width: 100vw;
-      border-radius: 0px;
-      padding: 1.6em 2.4em;
-    }
 
     code {
+      display:inline-block;
+      overflow: initial;
       padding: 0;
-      margin: 0;
+      margin: 1.6em 2em;
       border-radius: 0;
     }
   }
@@ -182,8 +179,6 @@ const theme = css`
   }
 
   .hljs {
-    display: block;
-    overflow-x: auto;
     color: #a39e9b;
     color: #bdbab8;
   }
@@ -198,7 +193,13 @@ const theme = css`
 
   @media(max-width: 870px) {
     pre {
-      padding: 1.6em;
+      padding: 0;
+      margin-left: -14px;
+      width: 100vw;
+      border-radius: 0px;
+      code {
+        margin: 1.6em;
+      }
     } 
     
     blockquote {

@@ -37,6 +37,13 @@ const CommonConfig = {
       {
         test: /sprite.svg$/,
         use: 'svg-sprite-loader'
+      },
+      {
+        test: /\.png$|\.ico/,
+        include: [
+          path.resolve(__dirname, 'src/assets')
+        ],
+        use: 'file-loader'
       }
     ]
   },
@@ -44,8 +51,7 @@ const CommonConfig = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: './index.html',
-      favicon: 'src/assets/favicon/favicon-32x32.png'
+      filename: './index.html'
     })
   ]
 }
