@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import styled, { withTheme } from 'styled-components'
 import Disqus from 'disqus-react'
 import BaseLink from '../../components/BaseLink'
+import Loading from '../../components/Loading'
 import Blog from '../../components/Blog'
 import { selectBlog, selectNextBlog, selectPrevBlog } from '../../redux/blog/selectors'
 
@@ -21,12 +22,12 @@ const PrevNextSection = ({ prevBlog, nextBlog }) => {
     margin-bottom: 20px;
     font-weight: 600;
     line-height: 1.6;
-    color: ${({ theme }) => theme.data.BLOG_FONT}
+    color: ${({ theme }) => theme.data.BLOG_FONT};
   `
   const Link = styled(BaseLink)`
     text-decoration: underline;
     padding: 2px;
-    &:hover{text-decoration: none}
+    &:hover{text-decoration: none;}
   `
   const history = useHistory()
   return (
@@ -55,7 +56,7 @@ const PrevNextSection = ({ prevBlog, nextBlog }) => {
   )
 }
 
-const BlogView = ({ blog, prevBlog, nextBlog, isFetched, fetchCollectionStartAsync, theme }) => {
+const BlogView = ({ blog, prevBlog, nextBlog, isFetched, fetchCollectionStartAsync }) => {
   const history = useHistory()
   useEffect(() => {
     if (isFetched) return
@@ -70,7 +71,7 @@ const BlogView = ({ blog, prevBlog, nextBlog, isFetched, fetchCollectionStartAsy
   }
   return (
     <BlogViewWrapper>
-
+      {!isFetched && <Loading />}
       <BackLink onClick={() => history.push('/')}>&lt; Back</BackLink>
       <Blog {...blog} />
       <PrevNextSection prevBlog={prevBlog} nextBlog={nextBlog} />

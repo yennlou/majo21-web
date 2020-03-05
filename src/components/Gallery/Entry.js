@@ -11,7 +11,9 @@ const EntryWrapper = styled.div`
   color: ${({ theme }) => theme.data.BLOG_FONT};
   position: relative;
   font-size: 14px;
-  box-shadow: -1px 1px 6px rgba(199, 74, 106, .5);
+  box-shadow: 1px 1px 6px rgba(199, 74, 106, .5);
+  border-radius: 4px;
+  overflow: hidden;
 `
 const Placeholder = styled.div`
   width: 100%;

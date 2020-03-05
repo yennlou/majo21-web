@@ -10,7 +10,6 @@ function useSearchMobile (query, setQuery, setLoading) {
   )
   useEffect(() => {
     setInput(query)
-    setLoading(true)
   }, [])
 
   useEffect(() => {

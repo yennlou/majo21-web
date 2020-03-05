@@ -56,7 +56,7 @@ const Search = ({ query, setQuery, setLoading }) => {
   const searchInputEl = useRef(null)
 
   useEffect(() => {
-    if (searchOn) { searchInputEl.current.focus() }
+    if (searchOn && searchInputEl) { searchInputEl.current.focus() }
   }, [searchOn])
 
   return (

@@ -60,14 +60,18 @@ const BlogEntryInfo = ({ createdAt, readingTime, series, tags, linkable, setQuer
 
   return (
     <BlogEntryInfoWrapper>
-      <span>
-        <Icon name='calendar' />
-        {createdAt && createdAt.split(' ')[0]}
-      </span>
-      <span>
-        <Icon name='stopwatch' />
-        {readingTime}
-      </span>
+      {createdAt && (
+        <span>
+          <Icon name='calendar' />
+          {createdAt && createdAt.split(' ')[0]}
+        </span>
+      )}
+      {readingTime && (
+        <span>
+          <Icon name='stopwatch' />
+          {readingTime}
+        </span>
+      )}
       {series && (
         <span className='label--series'>
           <Icon name='book' />
