@@ -43,7 +43,12 @@ const CommonConfig = {
         include: [
           path.resolve(__dirname, 'src/assets')
         ],
-        use: 'file-loader'
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash].[ext]'
+          }
+        }
       }
     ]
   },

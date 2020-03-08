@@ -58,7 +58,6 @@ class Blog extends Component {
         </BlogTitle>
         <BlogEntryInfo {...otherProps} linkable />
         <BlogBody>{ReactHtmlParser(html)}</BlogBody>
-
       </BlogWrapper>
     )
   }

@@ -1,5 +1,5 @@
 import readTimeEstimate from 'read-time-estimate'
-import showdown from 'showdown'
+import marked from 'marked'
 
 const makeToc = (html) => {
   // eslint-disable-next-line no-undef
@@ -36,8 +36,7 @@ const makeToc = (html) => {
 
 export const parseDataToBlog = (data) => {
   const { id, content, createdAt, tags, ...otherAttrs } = data
-  const converter = new showdown.Converter({ metadata: true })
-  const html = converter.makeHtml(content)
+  const html = marked(content.replace(/^-{3}(.+?)-{3}/s, ''))
   const toc = makeToc(html)
   const tagList = tags ? tags.trim().split(',') : []
 
