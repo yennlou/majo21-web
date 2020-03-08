@@ -9,7 +9,6 @@ node_modules
 personal
 package-lock.json
 
-### Serverless ###
-.serverless
-.dynamodb
-.env
+### Webpack ###
+stats.json
+webpack-bundle-analyzer
