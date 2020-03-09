@@ -7,7 +7,7 @@ import rootReducer from './root-reducer'
 const middlewares = [thunk]
 let composeEnhancers = compose
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.DEVTOOL_ON === '1') {
   middlewares.push(logger)
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 }

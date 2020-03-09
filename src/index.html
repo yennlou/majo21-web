@@ -11,7 +11,7 @@
 </head>
 <body>
   <div id="app"></div>
-  <% if (process.env.NODE_ENV==='production') { %>
+  <% if (process.env.DEVTOOL_ON === '0') { %>
   <script>
     if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
       for (const [key, value] of Object.entries(window.__REACT_DEVTOOLS_GLOBAL_HOOK__)) {
