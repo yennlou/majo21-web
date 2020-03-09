@@ -144,11 +144,11 @@ Resources:
               runtime-versions:
                 nodejs: 12
               commands:
-                - npm install yargs
+                - npm install yargs aws-sdk
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBetaBucketName} --recursive
-                - node bin/deploySite.js deploy --dirPath=dist-dev --bucketName=${SiteBucketName}
+                - node bin/deploySite.js deploy --dirPath=dist-dev --bucketName=${SiteBetaBucketName}
                 - echo Deployment completed on `date`
       TimeoutInMinutes: 10
   CodeBuildDeploySite:
@@ -173,7 +173,7 @@ Resources:
               runtime-versions:
                 nodejs: 12
               commands:
-                - npm install yargs
+                - npm install yargs aws-sdk
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBucketName} --recursive

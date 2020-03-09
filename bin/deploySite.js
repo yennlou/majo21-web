@@ -21,6 +21,7 @@ const deploySite = (dirPath, bucketName) => {
   walkSync(dirPath, (filePath) => {
     const bucketPath = filePath.substring(dirPath.length + 1)
     let params = {
+      ACL: 'public-read',
       Bucket: bucketName,
       Key: bucketPath,
       Body: fs.readFileSync(filePath)
