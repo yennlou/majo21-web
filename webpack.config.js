@@ -51,14 +51,7 @@ const CommonConfig = {
         }
       }
     ]
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html'
-    })
-  ]
+  }
 }
 
 const NodeEnvMapping = {
@@ -82,14 +75,24 @@ const NodeEnvMapping = {
 
 const ModeMapping = {
   development: {
-    plugins: []
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: './index.html'
+      })
+    ]
   },
   production: {
     plugins: [
+      new CleanWebpackPlugin(),
       new CompressionPlugin({
+        filename: '[path]',
         test: /\.js$/,
-        algorithm: 'gzip',
-        deleteOriginalAssets: true
+        algorithm: 'gzip'
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: './index.html'
       })
     ]
   }

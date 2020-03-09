@@ -28,10 +28,9 @@ const deploySite = (dirPath, bucketName) => {
       Body: fs.readFileSync(filePath),
       ContentType: mime.lookup(bucketPath)
     }
-    if (/.js.gz$/.test(bucketPath)) {
+    if (/\.js$/.test(bucketPath)) {
       params = {
         ...params,
-        ContentType: 'text/javascript',
         Metadata: {
           'Content-Encoding': 'gzip'
         }
