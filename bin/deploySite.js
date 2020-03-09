@@ -1,7 +1,8 @@
 const path = require('path')
+const fs = require('fs')
 const AWS = require('aws-sdk')
 const yargs = require('yargs')
-const fs = require('fs')
+const mime = require('mime-types')
 
 AWS.config.update({ region: 'ap-southeast-2' })
 
@@ -24,7 +25,10 @@ const deploySite = (dirPath, bucketName) => {
       ACL: 'public-read',
       Bucket: bucketName,
       Key: bucketPath,
-      Body: fs.readFileSync(filePath)
+      Body: fs.readFileSync(filePath),
+      Metadata: {
+        'Content-Type': mime.lookup(bucketPath)
+      }
     }
     if (/.js.gz$/.test(bucketPath)) {
       params = {

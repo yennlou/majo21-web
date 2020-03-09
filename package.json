@@ -67,6 +67,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "file-loader": "^5.1.0",
     "html-webpack-plugin": "^3.2.0",
+    "mime-types": "^2.1.26",
     "react-hot-loader": "^4.12.18",
     "svg-sprite-loader": "^4.1.6",
     "webpack": "^4.41.1",
