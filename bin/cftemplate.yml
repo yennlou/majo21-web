@@ -143,10 +143,12 @@ Resources:
             install:
               runtime-versions:
                 nodejs: 12
+              commands:
+                - npm install yargs
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBetaBucketName} --recursive
-                - aws s3 cp --recursive --acl public-read ./dist-dev s3://${SiteBetaBucketName}/
+                - node bin/deploySite.js deploy --dirPath=dist-dev --bucketName=${SiteBucketName}
                 - echo Deployment completed on `date`
       TimeoutInMinutes: 10
   CodeBuildDeploySite:
@@ -170,10 +172,12 @@ Resources:
             install:
               runtime-versions:
                 nodejs: 12
+              commands:
+                - npm install yargs
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBucketName} --recursive
-                - aws s3 cp --recursive --acl public-read ./dist-prod s3://${SiteBucketName}/
+                - node bin/deploySite.js deploy --dirPath=dist-prod --bucketName=${SiteBucketName}
                 - echo Deployment completed on `date`
       TimeoutInMinutes: 10
   Pipeline:
