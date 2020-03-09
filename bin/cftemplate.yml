@@ -143,12 +143,10 @@ Resources:
             install:
               runtime-versions:
                 nodejs: 12
-              commands:
-                - npm install yargs aws-sdk mime-types
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBetaBucketName} --recursive
-                - node bin/deploySite.js deploy --dirPath=dist-dev --bucketName=${SiteBetaBucketName}
+                - aws s3 cp --recursive --acl public-read ./dist-prod s3://${SiteBetaBucketName}/
                 - echo Deployment completed on `date`
       TimeoutInMinutes: 10
   CodeBuildDeploySite:
@@ -172,12 +170,10 @@ Resources:
             install:
               runtime-versions:
                 nodejs: 12
-              commands:
-                - npm install yargs aws-sdk mime-types
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBucketName} --recursive
-                - node bin/deploySite.js deploy --dirPath=dist-prod --bucketName=${SiteBucketName}
+                - aws s3 cp --recursive --acl public-read ./dist-prod s3://${SiteBucketName}/
                 - echo Deployment completed on `date`
       TimeoutInMinutes: 10
   Pipeline:

@@ -3,7 +3,6 @@ const Dotenv = require('dotenv-webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
 
 const CommonConfig = {
   entry: {
@@ -85,11 +84,6 @@ const ModeMapping = {
   production: {
     plugins: [
       new CleanWebpackPlugin(),
-      new CompressionPlugin({
-        filename: '[path]',
-        test: /\.js$/,
-        algorithm: 'gzip'
-      }),
       new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: './index.html'
