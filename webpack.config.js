@@ -3,6 +3,7 @@ const Dotenv = require('dotenv-webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 
 const CommonConfig = {
   entry: {
@@ -10,7 +11,6 @@ const CommonConfig = {
   },
   output: {
     filename: '[name].[hash].js',
-    path: path.resolve(__dirname, 'dist'),
     chunkFilename: '[name].[hash].js',
     publicPath: '/'
   },
@@ -61,7 +61,7 @@ const CommonConfig = {
   ]
 }
 
-const ConfigMapping = {
+const NodeEnvMapping = {
   dev: {
     output: {
       path: path.resolve(__dirname, 'dist-dev')
@@ -80,6 +80,21 @@ const ConfigMapping = {
   }
 }
 
-module.exports = env => {
-  return merge(CommonConfig, ConfigMapping[env.NODE_ENV])
+const ModeMapping = {
+  development: {
+    plugins: []
+  },
+  production: {
+    plugins: [
+      new CompressionPlugin({
+        test: /\.js$/,
+        algorithm: 'gzip',
+        deleteOriginalAssets: true
+      })
+    ]
+  }
+}
+
+module.exports = (env, argv) => {
+  return merge(NodeEnvMapping[env.NODE_ENV], CommonConfig, ModeMapping[argv.mode])
 }

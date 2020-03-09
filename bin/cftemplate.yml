@@ -87,21 +87,38 @@ Resources:
                 Resource: '*'
   SiteBetaBucket:
     Type: 'AWS::S3::Bucket'
-    DeletionPolicy: Delete
     Properties:
       AccessControl: PublicRead
       BucketName: !Ref SiteBetaBucketName
+      CorsConfiguration:
+        CorsRules:
+          -
+            AllowedOrigins:
+              - "*"
+            AllowedMethods:
+              - GET
+            AllowedHeaders:
+              - Authorization
+              - Content-Length
       WebsiteConfiguration:
         IndexDocument: index.html
   SiteBucket:
     Type: 'AWS::S3::Bucket'
-    DeletionPolicy: Delete
     Properties:
       AccessControl: PublicRead
       BucketName: !Ref SiteBucketName
+      CorsConfiguration:
+        CorsRules:
+          -
+            AllowedOrigins:
+              - "*"
+            AllowedMethods:
+              - GET
+            AllowedHeaders:
+              - Authorization
+              - Content-Length
       WebsiteConfiguration:
         IndexDocument: index.html
-        ErrorDocument: index.html
   PipelineBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
