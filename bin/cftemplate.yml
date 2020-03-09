@@ -144,7 +144,7 @@ Resources:
               runtime-versions:
                 nodejs: 12
               commands:
-                - npm install yargs aws-sdk
+                - npm install yargs aws-sdk mime-types
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBetaBucketName} --recursive
@@ -173,7 +173,7 @@ Resources:
               runtime-versions:
                 nodejs: 12
               commands:
-                - npm install yargs aws-sdk
+                - npm install yargs aws-sdk mime-types
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBucketName} --recursive
