@@ -58,10 +58,14 @@ const PrevNextSection = ({ prevBlog, nextBlog }) => {
 
 const BlogView = ({ blog, prevBlog, nextBlog, isFetched, fetchCollectionStartAsync }) => {
   const history = useHistory()
+
   useEffect(() => {
-    if (isFetched) return
-    fetchCollectionStartAsync()
-  }, [])
+    if (!isFetched) {
+      fetchCollectionStartAsync()
+    } else if (!blog) {
+      history.push('/')
+    }
+  }, [isFetched])
 
   const disqusShortname = 'majo21'
   const disqusConfig = {
