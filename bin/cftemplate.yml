@@ -146,7 +146,7 @@ Resources:
             post_build:
               commands:
                 - aws s3 rm s3://${SiteBetaBucketName} --recursive
-                - aws s3 cp --recursive --acl public-read ./dist-prod s3://${SiteBetaBucketName}/
+                - aws s3 cp --recursive --acl public-read ./dist-dev s3://${SiteBetaBucketName}/
                 - echo Deployment completed on `date`
       TimeoutInMinutes: 10
   CodeBuildDeploySite:
