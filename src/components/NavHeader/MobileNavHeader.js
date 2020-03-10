@@ -10,15 +10,14 @@ import Search from './MobileSearch'
 import NavMenu from './NavMenu'
 import Category from './Category'
 
-export const MobileSubHeaderLayout = styled.div`
+export const MobileNavHeaderLayout = styled.div`
   width: 100%;
   height: 60px;
   position: relative;
   padding: 14px 0;
 `
 
-export const MobileSubHeaderWrapper = styled.div`
-  display: none;
+export const MobileNavHeaderWrapper = styled.div`
   .mobile-category-enter {
     height: 0;
   }
@@ -56,8 +55,8 @@ const Header = () => {
   })
   return (
     <SearchContext.Provider value={[searchOn, setSearchOn]}>
-      <MobileSubHeaderWrapper>
-        <MobileSubHeaderLayout>
+      <MobileNavHeaderWrapper>
+        <MobileNavHeaderLayout>
           <HeaderLeft>
             <Search />
           </HeaderLeft>
@@ -65,7 +64,7 @@ const Header = () => {
             <ThemeSwitcher />
             <NavMenu />
           </HeaderRight>
-        </MobileSubHeaderLayout>
+        </MobileNavHeaderLayout>
         <CSSTransition
           in={searchOn}
           timeout={300}
@@ -77,7 +76,7 @@ const Header = () => {
             onCategoryChange={handleCategoryChange}
           />
         </CSSTransition>
-      </MobileSubHeaderWrapper>
+      </MobileNavHeaderWrapper>
     </SearchContext.Provider>
   )
 }

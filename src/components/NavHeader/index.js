@@ -5,12 +5,12 @@ import Search from './Search'
 import ThemeSwitcher, { ThemeSwitcherWrapper } from './ThemeSwitcher'
 import NavMenu from './NavMenu'
 
-export const HeaderWrapper = styled.div`
+export const NavHeaderWrapper = styled.div`
   display: block;
   
 `
 
-export const HeaderLayout = styled.div`
+export const NavHeaderLayout = styled.div`
   display: flex;
   width: 100%;
   height: 100px;
@@ -18,12 +18,12 @@ export const HeaderLayout = styled.div`
   align-items: center;
 `
 
-const HeaderLeft = styled.div`
+const NavHeaderLeft = styled.div`
   flex-grow: 1;
   flex-basis: 300px;
 `
 
-const HeaderRight = styled.div`
+const NavHeaderRight = styled.div`
   flex-grow: 1;
   display: flex;
   align-items: center;
@@ -36,17 +36,17 @@ const HeaderRight = styled.div`
 
 const Header = () => {
   return (
-    <HeaderWrapper>
-      <HeaderLayout>
-        <HeaderLeft>
+    <NavHeaderWrapper>
+      <NavHeaderLayout>
+        <NavHeaderLeft>
           <Search />
-        </HeaderLeft>
-        <HeaderRight>
+        </NavHeaderLeft>
+        <NavHeaderRight>
           <ThemeSwitcher />
           <NavMenu />
-        </HeaderRight>
-      </HeaderLayout>
-    </HeaderWrapper>
+        </NavHeaderRight>
+      </NavHeaderLayout>
+    </NavHeaderWrapper>
   )
 }
 

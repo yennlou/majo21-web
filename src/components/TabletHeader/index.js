@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import Icon from '../Icon'
 
-export const MobileHeaderLayout = styled.div`
+export const TabletHeaderLayout = styled.div`
   display: flex;
   color: ${({ theme }) => theme.data.BG};
   background: ${({ theme }) => theme.data.SIDEBAR_FONT};
@@ -11,8 +11,8 @@ export const MobileHeaderLayout = styled.div`
   padding: 0 10px 0 8px;
 `
 
-export const MobileHeaderWrapper = styled.div`
-  display: none;
+export const TabletHeaderWrapper = styled.div`
+  margin-top: 12px;
 `
 
 const TextLogo = styled.div`
@@ -31,19 +31,19 @@ const Contact = styled.div`
   top: 1px;
 `
 
-const MobileHeader = () => {
+const TabletHeader = () => {
   const history = useHistory()
   return (
-    <MobileHeaderWrapper>
-      <MobileHeaderLayout>
+    <TabletHeaderWrapper>
+      <TabletHeaderLayout>
         <TextLogo className='logo-majo21 logo-majo21--mobile' onClick={() => (history.push('/'))}>MAJO21</TextLogo>
         <Contact>
           <a target='_blank' rel='noopener noreferrer' href='https://twitter.com/maaaajo21'><Icon name='twitter' /></a>
           <a target='_blank' rel='noopener noreferrer' href='https://github.com/yennlou'><Icon name='github' /></a>
         </Contact>
-      </MobileHeaderLayout>
-    </MobileHeaderWrapper>
+      </TabletHeaderLayout>
+    </TabletHeaderWrapper>
   )
 }
 
-export default MobileHeader
+export default TabletHeader

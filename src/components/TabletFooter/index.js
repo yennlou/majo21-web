@@ -16,10 +16,9 @@ const Delimiter = styled(({ className }) => (
   </svg>
 ))``
 
-export const MobileFooterWrapper = styled.div`
+export const TabletFooterWrapper = styled.div`
   position:relative;
   text-align: center;
-  display: none;
   width: 100vw;
   margin-left: -14px;
   margin-top: auto;
@@ -40,18 +39,18 @@ export const MobileFooterWrapper = styled.div`
   }
 `
 
-export const MobileFooterBody = styled.div`
+export const TabletFooterBody = styled.div`
   padding: 32px 0;
   background-color: ${({ theme }) => theme.data.BLOG_FONT};
 `
 
-const MobileFooter = () => (
-  <MobileFooterWrapper>
+const TabletFooter = () => (
+  <TabletFooterWrapper>
     <Delimiter />
-    <MobileFooterBody>
+    <TabletFooterBody>
     Designed by <span>Majo21</span>
-    </MobileFooterBody>
-  </MobileFooterWrapper>
+    </TabletFooterBody>
+  </TabletFooterWrapper>
 )
 
-export default MobileFooter
+export default TabletFooter

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useMediaQuery } from 'react-responsive'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled, { ThemeProvider } from 'styled-components'
@@ -9,17 +10,17 @@ import GlobalStyle from './styles/GlobalStyle'
 import lightTheme from './styles/themes/light'
 import darkTheme from './styles/themes/dark'
 import InputContext from './contexts/input-context'
-import Sidebar, { SidebarWrapper } from './components/Sidebar'
-import Header, { HeaderWrapper, HeaderLayout } from './components/Header'
-import MobileSubHeader, { MobileSubHeaderWrapper } from './components/Header/MobileSubHeader'
-import { ThemeSwitcherWrapper } from './components/Header/ThemeSwitcher'
+import Sidebar from './components/Sidebar'
+import NavHeader, { NavHeaderLayout } from './components/NavHeader'
+import MobileNavHeader from './components/NavHeader/MobileNavHeader'
+import { ThemeSwitcherWrapper } from './components/NavHeader/ThemeSwitcher'
 import { BlogEntryWrapper } from './components/BlogEntry'
 
 import { BlogTitle, BlogWrapper } from './components/Blog'
 import { IndexWrapper } from './components/Pagination'
 
-import MobileHeader, { MobileHeaderWrapper } from './components/MobileHeader'
-import MobileFooter, { MobileFooterWrapper } from './components/MobileFooter'
+import TabletHeader from './components/TabletHeader'
+import TabletFooter from './components/TabletFooter'
 
 import BlogListView, { BlogListViewWrapper, EmptyResult } from './views/BlogListView'
 import BlogView, { BlogViewWrapper } from './views/BlogView'
@@ -70,18 +71,8 @@ const Layout = styled.div`
     }
     ${EmptyResult} {
       height: calc(100vh - 480px);
-    }  
-    ${SidebarWrapper} {
-      display: none;
     }
-    ${MobileFooterWrapper} {
-      display: block;
-    }
-    ${MobileHeaderWrapper} {
-      display: block;
-      margin-top: 12px;
-    }
-    ${HeaderLayout} {
+    ${NavHeaderLayout} {
       height: 60px;
     }
     ${ThemeSwitcherWrapper} {
@@ -114,14 +105,6 @@ const Layout = styled.div`
       font-size: 14px;
     }
   }
-  @media(max-width: 520px) {
-    ${HeaderWrapper} {
-      display: none;
-    }
-    ${MobileSubHeaderWrapper} {
-      display: block;
-    }
-  }
 `
 
 const themeCollection = {
@@ -131,6 +114,8 @@ const themeCollection = {
 
 const App = ({ theme, isCategoryFetched, fetchCategoryStartAsync }) => {
   const [input, setInput] = useState('')
+  const isMobile = useMediaQuery({ query: '(max-width: 520px)' })
+  const isTablet = useMediaQuery({ query: '(max-width: 870px)' })
   useEffect(() => {
     if (isCategoryFetched) return
     fetchCategoryStartAsync()
@@ -140,13 +125,13 @@ const App = ({ theme, isCategoryFetched, fetchCategoryStartAsync }) => {
       <InputContext.Provider value={[input, setInput]}>
         <GlobalStyle />
         <Layout>
-          <Sidebar />
+          {!isTablet && <Sidebar />}
           <Main>
             <Switch>
               <Route exact path='/'>
-                <MobileHeader />
-                <MobileSubHeader />
-                <Header />
+                {isTablet && <TabletHeader />}
+                {isMobile && <MobileNavHeader />}
+                {!isMobile && <NavHeader />}
                 <BlogListView />
               </Route>
               <Route
@@ -155,13 +140,13 @@ const App = ({ theme, isCategoryFetched, fetchCategoryStartAsync }) => {
                 component={BlogView}
               />
               <Route exact path='/gallery'>
-                <MobileHeader />
-                <MobileSubHeader />
-                <Header />
+                {isTablet && <TabletHeader />}
+                {isMobile && <MobileNavHeader />}
+                {!isMobile && <NavHeader />}
                 <GalleryView />
               </Route>
             </Switch>
-            <MobileFooter />
+            {isTablet && <TabletFooter />}
           </Main>
         </Layout>
       </InputContext.Provider>
