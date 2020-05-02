@@ -7,7 +7,7 @@ import json from 'highlight.js/lib/languages/json'
 import html from 'highlight.js/lib/languages/xml'
 
 import { BlogWrapper, BlogTitle, BlogBody } from './Blog.styles'
-import BlogEntryInfo from '../BlogEntry/BlogEntryInfo'
+import BlogInfo from '../BlogInfo'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('json', json)
@@ -25,7 +25,7 @@ const Blog = ({ title, html, ...otherProps }) => {
   return (
     <BlogWrapper>
       <BlogTitle>{title}</BlogTitle>
-      <BlogEntryInfo {...otherProps} linkable />
+      <BlogInfo {...otherProps} linkable />
       <BlogBody>{ReactHtmlParser(html)}</BlogBody>
     </BlogWrapper>
   )

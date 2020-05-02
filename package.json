@@ -13,16 +13,6 @@
   "keywords": [],
   "author": "Yenn Lou <yennlou21@gmail.com>",
   "license": "MIT",
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": [
-      "standard",
-      "standard-react"
-    ],
-    "rules": {
-      "react/prop-types": 0
-    }
-  },
   "dependencies": {
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
