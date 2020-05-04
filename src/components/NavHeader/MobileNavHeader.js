@@ -8,7 +8,7 @@ import useCategoryInput from '../../hooks/useCategoryInput'
 import ThemeSwitcher, { ThemeSwitcherWrapper } from './ThemeSwitcher'
 import Search from './MobileSearch'
 import NavMenu from './NavMenu'
-import Category from './Category'
+import Category from '../Category'
 
 export const MobileNavHeaderLayout = styled.div`
   width: 100%;
@@ -25,9 +25,9 @@ export const MobileNavHeaderWrapper = styled.div`
   .mobile-category-enter-active {
     height: auto;
   }
-  
+
   .mobile-category-exit-active {
-    display:none;
+    display: none;
   }
 `
 
@@ -50,9 +50,11 @@ const Header = () => {
   const [searchOn, setSearchOn] = useState(false)
   // eslint-disable-next-line no-unused-vars
   const [input, setInput] = useContext(InputContext)
-  const [parseInputToCategoryValue, handleCategoryChange] = useCategoryInput((newInput) => {
-    if (newInput !== input) setInput(newInput)
-  })
+  const [parseInputToCategoryValue, handleCategoryChange] = useCategoryInput(
+    (newInput) => {
+      if (newInput !== input) setInput(newInput)
+    }
+  )
   return (
     <SearchContext.Provider value={[searchOn, setSearchOn]}>
       <MobileNavHeaderWrapper>

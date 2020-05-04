@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import styled, { withTheme } from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
-import Category from './Category'
+import Category from '../Category'
 import { TextLogo } from '../Sidebar'
 
 import useSearch from '../../hooks/useSearch'
@@ -28,7 +28,7 @@ const Mask = styled.div`
   left: 0;
   top: 0;
   opacity: 0;
-  transition: opacity .5s ease-out;
+  transition: opacity 0.5s ease-out;
   background-color: ${({ theme }) => theme.data.BG};
 `
 
@@ -43,20 +43,20 @@ const SearchInputCenter = styled(SearchInput)`
   z-index: 101;
   width: unset;
   max-width: unset;
-  transition: all .5s;
+  transition: all 0.5s;
 `
 const TextLogoCenter = styled(TextLogo)`
   position: fixed;
   user-select: none;
   z-index: 100;
-  transition: all .5s;
+  transition: all 0.5s;
   color: ${({ theme }) => theme.data.SIDEBAR_FONT};
   cursor: default;
 `
 
 const SearchInputWrapper = styled.div`
   color: ${({ theme }) => theme.data.SEARCH_FONT};
-  &.mask-on ${Mask}{ 
+  &.mask-on ${Mask} {
     opacity: 1;
   }
 
@@ -75,14 +75,18 @@ const InputHint = styled.div`
 const CategoryContainer = styled.div`
   position: fixed;
   z-index: 99;
-  left: ${({ mobile }) => mobile ? '15%' : '25%'};
+  left: ${({ mobile }) => (mobile ? '15%' : '25%')};
   top: calc(35% + 46px);
-  width: ${({ mobile }) => mobile ? '70%' : '50%'};
+  width: ${({ mobile }) => (mobile ? '70%' : '50%')};
 `
 
 const Search = ({ query, setQuery, theme }) => {
   const [searchOn, setSearchOn] = useState(false)
-  const [input, setInput, handleInputChange, handleEnterKey] = useSearch(query, setQuery, () => setSearchOn(false))
+  const [input, setInput, handleInputChange, handleEnterKey] = useSearch(
+    query,
+    setQuery,
+    () => setSearchOn(false)
+  )
   const [maskOn, setMaskOn] = useState(false)
   const [mobileOn, setMobileOn] = useState(false)
   const [searchHide, setSearchHide] = useState(false)
@@ -90,10 +94,12 @@ const Search = ({ query, setQuery, theme }) => {
   const searchInputCenterEl = useRef(null)
   const logoCenterEl = useRef(null)
 
-  const [parseInputToCategoryValue, handleCategoryChange] = useCategoryInput((newInput) => {
-    if (newInput !== input) setInput(newInput)
-    searchInputCenterEl.current.focus()
-  })
+  const [parseInputToCategoryValue, handleCategoryChange] = useCategoryInput(
+    (newInput) => {
+      if (newInput !== input) setInput(newInput)
+      searchInputCenterEl.current.focus()
+    }
+  )
 
   const className = classNames({
     'search-on': searchOn,
@@ -103,10 +109,14 @@ const Search = ({ query, setQuery, theme }) => {
 
   const applyStyleOnElements = () => {
     if (!searchInputEl || !searchInputCenterEl) return
-    const { top: stop, left: sleft } = searchInputEl.current.getBoundingClientRect()
+    const {
+      top: stop,
+      left: sleft
+    } = searchInputEl.current.getBoundingClientRect()
     const { offsetWidth: swidth, offsetHeight: sheight } = searchInputEl.current
     searchInputCenterEl.current.setAttribute(
-      'style', `
+      'style',
+      `
         top: ${stop}px;
         left: ${sleft}px;
         width: ${swidth}px;
@@ -121,7 +131,8 @@ const Search = ({ query, setQuery, theme }) => {
     if (isMobile()) {
       setMobileOn(true)
       logoCenterEl.current.setAttribute(
-        'style', `
+        'style',
+        `
           top: ${ltop}px;
           left: ${lleft}px;
           width: ${lwidth}px;
@@ -135,7 +146,8 @@ const Search = ({ query, setQuery, theme }) => {
     } else {
       setMobileOn(false)
       logoCenterEl.current.setAttribute(
-        'style', `
+        'style',
+        `
           top: ${ltop}px;
           left: ${lleft}px;
           width: ${lwidth}px;
@@ -148,7 +160,9 @@ const Search = ({ query, setQuery, theme }) => {
     if (!searchInputCenterEl) return
 
     const width = mobileOn ? '70%' : '50%'
-    searchInputCenterEl.current.setAttribute('style', `
+    searchInputCenterEl.current.setAttribute(
+      'style',
+      `
         left: calc(50% - ${width} / 2);
         top: 35%;
         width: ${width};
@@ -157,7 +171,8 @@ const Search = ({ query, setQuery, theme }) => {
     )
     if (!logoCenterEl) return
     logoCenterEl.current.setAttribute(
-      'style', `
+      'style',
+      `
         left: calc(50% - 110px);
         top: calc(35% - 110px);
         font-size: 52px;
@@ -165,7 +180,7 @@ const Search = ({ query, setQuery, theme }) => {
     )
   }
 
-  function getLogoEl () {
+  function getLogoEl() {
     const els = document.querySelectorAll('.logo-majo21')
     for (const el of els) {
       if (el.offsetWidth > 0) {
@@ -175,7 +190,7 @@ const Search = ({ query, setQuery, theme }) => {
     return els[0]
   }
 
-  function isMobile () {
+  function isMobile() {
     const el = getLogoEl()
     return el.className.includes('mobile')
   }
@@ -195,10 +210,13 @@ const Search = ({ query, setQuery, theme }) => {
   const onExited = () => {
     setSearchHide(false)
     const logoEl = getLogoEl()
-    logoEl && logoEl.setAttribute('style', `
+    logoEl &&
+      logoEl.setAttribute(
+        'style',
+        `
         opacity: 1;
       `
-    )
+      )
   }
 
   return (
@@ -248,7 +266,7 @@ const mapStateToProps = ({ global: { query } }) => ({
   query
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   setQuery: (query) => dispatch(setQuery(query))
 })
 
