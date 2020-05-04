@@ -6,7 +6,7 @@ import SearchContext from '../../contexts/search-context'
 import InputContext from '../../contexts/input-context'
 import useCategoryInput from '../../hooks/useCategoryInput'
 import ThemeSwitcher, { ThemeSwitcherWrapper } from './ThemeSwitcher'
-import Search from './MobileSearch'
+import MobileSearch from '../MobileSearch'
 import NavMenu from './NavMenu'
 import Category from '../Category'
 
@@ -60,7 +60,7 @@ const Header = () => {
       <MobileNavHeaderWrapper>
         <MobileNavHeaderLayout>
           <HeaderLeft>
-            <Search />
+            <MobileSearch />
           </HeaderLeft>
           <HeaderRight>
             <ThemeSwitcher />
