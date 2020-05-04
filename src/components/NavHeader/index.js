@@ -2,12 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Search from './Search'
-import ThemeSwitcher, { ThemeSwitcherWrapper } from './ThemeSwitcher'
-import NavMenu from './NavMenu'
+import ThemeSwitcher, { ThemeSwitcherWrapper } from '../ThemeSwitcher'
+import Nav from '../Nav'
 
 export const NavHeaderWrapper = styled.div`
   display: block;
-  
 `
 
 export const NavHeaderLayout = styled.div`
@@ -43,7 +42,7 @@ const Header = () => {
         </NavHeaderLeft>
         <NavHeaderRight>
           <ThemeSwitcher />
-          <NavMenu />
+          <Nav />
         </NavHeaderRight>
       </NavHeaderLayout>
     </NavHeaderWrapper>

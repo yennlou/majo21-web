@@ -13,7 +13,7 @@ import InputContext from './contexts/input-context'
 import Sidebar from './components/Sidebar'
 import NavHeader, { NavHeaderLayout } from './components/NavHeader'
 import MobileNavHeader from './components/NavHeader/MobileNavHeader'
-import { ThemeSwitcherWrapper } from './components/NavHeader/ThemeSwitcher'
+import { ThemeSwitcherWrapper } from './components/ThemeSwitcher'
 import { BlogEntryWrapper } from './components/BlogEntry'
 
 import { BlogTitle, BlogWrapper } from './components/Blog'
@@ -22,7 +22,10 @@ import { IndexWrapper } from './components/Pagination'
 import TabletHeader from './components/TabletHeader'
 import TabletFooter from './components/TabletFooter'
 
-import BlogListView, { BlogListViewWrapper, EmptyResult } from './views/BlogListView'
+import BlogListView, {
+  BlogListViewWrapper,
+  EmptyResult
+} from './views/BlogListView'
 import BlogView, { BlogViewWrapper } from './views/BlogView'
 import GalleryView, { GalleryViewWrapper } from './views/GalleryView'
 
@@ -38,12 +41,12 @@ const Layout = styled.div`
   display: flex;
   height: 100%;
 
-  @media(max-width: 1270px) {
+  @media (max-width: 1270px) {
     ${Main} {
       padding: 0 60px;
     }
   }
-  @media(max-width: 1020px) {
+  @media (max-width: 1020px) {
     ${Main} {
       padding: 0 60px 0 20px;
     }
@@ -51,12 +54,12 @@ const Layout = styled.div`
       margin-right: 30px;
     }
   }
-  @media(max-width: 940px) {
+  @media (max-width: 940px) {
     ${Main} {
       padding: 0 20px 10px 20px;
     }
   }
-  @media(max-width: 870px) {
+  @media (max-width: 870px) {
     flex-direction: column;
     overflow: scroll;
     ${Main} {
@@ -64,7 +67,7 @@ const Layout = styled.div`
       padding: 0 14px 0px;
       display: flex;
       flex-direction: column;
-    } 
+    }
     ${BlogListViewWrapper} {
       padding-top: 0px;
       padding-bottom: 20px;
@@ -82,7 +85,7 @@ const Layout = styled.div`
     }
     ${GalleryViewWrapper} {
       padding-top: 0px;
-      padding-bottom: 20px; 
+      padding-bottom: 20px;
     }
     ${BlogTitle} {
       margin-bottom: 16px;
@@ -134,11 +137,7 @@ const App = ({ theme, isCategoryFetched, fetchCategoryStartAsync }) => {
                 {!isMobile && <NavHeader />}
                 <BlogListView />
               </Route>
-              <Route
-                exact
-                path='/articles/:blogId'
-                component={BlogView}
-              />
+              <Route exact path='/articles/:blogId' component={BlogView} />
               <Route exact path='/gallery'>
                 {isTablet && <TabletHeader />}
                 {isMobile && <MobileNavHeader />}
@@ -154,12 +153,15 @@ const App = ({ theme, isCategoryFetched, fetchCategoryStartAsync }) => {
   )
 }
 
-const mapStateToProps = ({ global: { theme }, category: { isFetched: isCategoryFetched } }) => ({
+const mapStateToProps = ({
+  global: { theme },
+  category: { isFetched: isCategoryFetched }
+}) => ({
   theme,
   isCategoryFetched
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchCategoryStartAsync: () => dispatch(fetchCategoryStartAsync())
 })
 

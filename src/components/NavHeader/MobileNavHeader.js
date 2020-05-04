@@ -5,9 +5,9 @@ import { CSSTransition } from 'react-transition-group'
 import SearchContext from '../../contexts/search-context'
 import InputContext from '../../contexts/input-context'
 import useCategoryInput from '../../hooks/useCategoryInput'
-import ThemeSwitcher, { ThemeSwitcherWrapper } from './ThemeSwitcher'
+import ThemeSwitcher, { ThemeSwitcherWrapper } from '../ThemeSwitcher'
 import MobileSearch from '../MobileSearch'
-import NavMenu from './NavMenu'
+import Nav from '../Nav'
 import Category from '../Category'
 
 export const MobileNavHeaderLayout = styled.div`
@@ -64,7 +64,7 @@ const Header = () => {
           </HeaderLeft>
           <HeaderRight>
             <ThemeSwitcher />
-            <NavMenu />
+            <Nav />
           </HeaderRight>
         </MobileNavHeaderLayout>
         <CSSTransition
