@@ -4,7 +4,7 @@ import styled, { css, withTheme } from 'styled-components'
 
 import BaseLink from '../BaseLink'
 import Demo from '../Demo'
-import Footer from './Footer'
+import SidebarFooter from '../SidebarFooter'
 
 export const SidebarWrapper = styled.div(({ theme }) => {
   const { SIDEBAR_BG: bgColor, SIDEBAR_FONT: fontColor } = theme.data
@@ -18,7 +18,7 @@ export const SidebarWrapper = styled.div(({ theme }) => {
     align-items: center;
     min-height: 700px;
 
-    @media(max-width: 1020px) {
+    @media (max-width: 1020px) {
       flex-basis: 360px;
     }
   `
@@ -56,14 +56,15 @@ const Sidebar = ({ theme }) => {
   const history = useHistory()
   return (
     <SidebarWrapper>
-      <TextLogo className='logo-majo21' onClick={() => (history.push('/'))}>
+      <TextLogo className='logo-majo21' onClick={() => history.push('/')}>
         MAJO21
       </TextLogo>
       <Demo />
 
       <Contact>
         <ul>
-          <li>* GITHUB&nbsp; =&nbsp;
+          <li>
+            * GITHUB&nbsp; =&nbsp;
             <ContactLink
               target='_blank'
               rel='noopener noreferrer'
@@ -72,7 +73,8 @@ const Sidebar = ({ theme }) => {
               github.com/yennlou
             </ContactLink>
           </li>
-          <li>* TWITTER =&nbsp;
+          <li>
+            * TWITTER =&nbsp;
             <ContactLink
               target='_blank'
               rel='noopener noreferrer'
@@ -81,7 +83,8 @@ const Sidebar = ({ theme }) => {
               maaaajo21
             </ContactLink>
           </li>
-          <li>* DOUBAN&nbsp; =&nbsp;
+          <li>
+            * DOUBAN&nbsp; =&nbsp;
             <ContactLink
               target='_blank'
               rel='noopener noreferrer'
@@ -92,7 +95,7 @@ const Sidebar = ({ theme }) => {
           </li>
         </ul>
       </Contact>
-      <Footer />
+      <SidebarFooter />
     </SidebarWrapper>
   )
 }
