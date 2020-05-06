@@ -6,10 +6,8 @@ export const IndexWrapper = styled.div`
   justify-content: center;
   width: 30px;
   height: 30px;
-  color: ${({ theme, active }) =>
-    active ? theme.data.BG : theme.data.PAGINATION};
-  background: ${({ theme, active }) =>
-    active ? theme.data.PAGINATION : theme.data.BG};
+  color: ${({ active }) => (active ? 'var(--bg)' : 'var(--pagination)')};
+  background: ${({ active }) => (active ? 'var(--pagination)' : 'var(--bg)')};
   z-index: ${({ active }) => (active ? 1 : 0)};
   font-size: 14px;
   margin-bottom: 20px;

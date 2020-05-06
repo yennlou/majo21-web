@@ -1,20 +1,20 @@
 import styled from 'styled-components'
 
 const BaseLink = styled.a`
-  color: ${(props) => props.color || props.theme.data.BLOG_FONT};
-  background-color: ${(props) => props.bgColor || props.theme.data.BG};
+  color: ${(props) => props.color || 'var(--blog-font)'};
+  background-color: ${(props) => props.bgColor || 'var(--bg)'};
   padding: 4px;
   cursor: pointer;
   position: relative;
 
   &:active {
-    background-color: ${(props) => props.color || props.theme.data.BLOG_FONT};
-    color: ${(props) => props.bgColor || props.theme.data.BG};
+    background-color: ${(props) => props.color || 'var(--blog-font)'};
+    color: ${(props) => props.bgColor || 'var(--bg)'};
   }
   @media (hover: hover) {
     &:hover {
-      background-color: ${(props) => props.color || props.theme.data.BLOG_FONT};
-      color: ${(props) => props.bgColor || props.theme.data.BG};
+      background-color: ${(props) => props.color || 'var(--blog-font)'};
+      color: ${(props) => props.bgColor || 'var(--bg)'};
     }
   }
 `

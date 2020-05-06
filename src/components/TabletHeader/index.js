@@ -5,8 +5,8 @@ import Icon from '../Icon'
 
 export const TabletHeaderLayout = styled.div`
   display: flex;
-  color: ${({ theme }) => theme.data.BG};
-  background: ${({ theme }) => theme.data.SIDEBAR_FONT};
+  color: var(--bg);
+  background: var(--sidebar-font);
   justify-content: space-between;
   padding: 0 10px 0 8px;
 `
@@ -36,10 +36,27 @@ const TabletHeader = () => {
   return (
     <TabletHeaderWrapper>
       <TabletHeaderLayout>
-        <TextLogo className='logo-majo21 logo-majo21--mobile' onClick={() => (history.push('/'))}>MAJO21</TextLogo>
+        <TextLogo
+          className='logo-majo21 logo-majo21--mobile'
+          onClick={() => history.push('/')}
+        >
+          MAJO21
+        </TextLogo>
         <Contact>
-          <a target='_blank' rel='noopener noreferrer' href='https://twitter.com/maaaajo21'><Icon name='twitter' /></a>
-          <a target='_blank' rel='noopener noreferrer' href='https://github.com/yennlou'><Icon name='github' /></a>
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href='https://twitter.com/maaaajo21'
+          >
+            <Icon name='twitter' />
+          </a>
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href='https://github.com/yennlou'
+          >
+            <Icon name='github' />
+          </a>
         </Contact>
       </TabletHeaderLayout>
     </TabletHeaderWrapper>

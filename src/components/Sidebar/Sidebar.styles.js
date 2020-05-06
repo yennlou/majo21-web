@@ -1,24 +1,21 @@
 import React from 'react'
-import styled, { css, withTheme } from 'styled-components'
+import styled from 'styled-components'
 import BaseLink from '../BaseLink'
 
-export const SidebarWrapper = styled.div(({ theme }) => {
-  const { SIDEBAR_BG: bgColor, SIDEBAR_FONT: fontColor } = theme.data
-  return css`
-    height: 100%;
-    flex: 0 0 400px;
-    background-color: ${bgColor};
-    color: ${fontColor};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 700px;
+export const SidebarWrapper = styled.div`
+  height: 100%;
+  flex: 0 0 400px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-font);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 700px;
 
-    @media (max-width: 1020px) {
-      flex-basis: 360px;
-    }
-  `
-})
+  @media (max-width: 1020px) {
+    flex-basis: 360px;
+  }
+`
 
 export const TextLogo = styled.span`
   font-size: 36px;
@@ -34,7 +31,7 @@ export const Contact = styled.div`
   white-space: nowrap;
 `
 
-export const ContactLink = withTheme(({ children, theme, ...otherProps }) => {
+export const ContactLink = ({ children, theme, ...otherProps }) => {
   const Link = styled(BaseLink)`
     padding: 1px 4px;
     &:hover {
@@ -42,8 +39,8 @@ export const ContactLink = withTheme(({ children, theme, ...otherProps }) => {
     }
   `
   return (
-    <Link {...otherProps} color={theme.data.SIDEBAR_FONT}>
+    <Link {...otherProps} color='var(--sidebar-font)'>
       {children}
     </Link>
   )
-})
+}

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const BaseTag = styled.span`
   display: inline-block;
   padding: 4px 6px;
-  color: ${({ theme }) => theme.data.SEARCH_FONT};
+  color: var(--search-font);
   border: 1px solid currentColor;
   margin: 0 8px;
   font-size: 14px;
@@ -12,13 +12,13 @@ const BaseTag = styled.span`
   margin-bottom: 10px;
   &:active,
   &.selected {
-    background-color: ${({ theme }) => theme.data.SEARCH_FONT};
-    color: ${({ theme }) => theme.data.BG};
+    background-color: var(--search-font);
+    color: var(--bg);
   }
   @media (hover: hover) {
     &:hover {
-      background-color: ${({ theme }) => theme.data.SEARCH_FONT};
-      color: ${({ theme }) => theme.data.BG};
+      background-color: var(--search-font);
+      color: var(--bg);
     }
   }
 `

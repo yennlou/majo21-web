@@ -5,7 +5,7 @@ export const GalleryEntryItem = styled.div`
 `
 
 export const GalleryEntryWrapper = styled.div`
-  color: ${({ theme }) => theme.data.BLOG_FONT};
+  color: var(--blog-font);
   position: relative;
   font-size: 14px;
   box-shadow: 1px 1px 6px rgba(199, 74, 106, 0.5);
@@ -15,8 +15,8 @@ export const GalleryEntryWrapper = styled.div`
 export const Placeholder = styled.div`
   width: 100%;
   padding: 25%;
-  background-color: ${({ theme }) => theme.data.BG};
-  color: ${({ theme }) => theme.data.BLOG_FONT}33;
+  background-color: var(--bg);
+  color: var(--image-placeholder-font);
   font-size: 42px;
   display: flex;
   align-items: center;

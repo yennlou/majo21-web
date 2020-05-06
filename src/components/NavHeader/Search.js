@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
-import styled, { withTheme } from 'styled-components'
+import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
 import Category from '../Category'
@@ -11,11 +11,11 @@ import useCategoryInput from '../../hooks/useCategoryInput'
 import { setQuery } from '../../redux/global/actions'
 
 const SearchInput = styled.input`
-  color: ${({ theme }) => theme.data.SEARCH_FONT};
+  color: var(--search-font);
   padding: 6px;
   width: 100%;
   max-width: 300px;
-  background: ${({ theme }) => theme.data.SEARCH_FONT}44;
+  background: var(--search-font-shadow);
   border: none;
   outline: none;
 `
@@ -29,12 +29,12 @@ const Mask = styled.div`
   top: 0;
   opacity: 0;
   transition: opacity 0.5s ease-out;
-  background-color: ${({ theme }) => theme.data.BG};
+  background-color: var(--bg);
 `
 
 const SearchInputTop = styled(SearchInput)`
   ::placeholder {
-    color: ${({ theme }) => theme.data.SEARCH_FONT}80;
+    color: var(--search-placeholder);
   }
 `
 
@@ -50,12 +50,12 @@ const TextLogoCenter = styled(TextLogo)`
   user-select: none;
   z-index: 100;
   transition: all 0.5s;
-  color: ${({ theme }) => theme.data.SIDEBAR_FONT};
+  color: var(--sidebar-font);
   cursor: default;
 `
 
 const SearchInputWrapper = styled.div`
-  color: ${({ theme }) => theme.data.SEARCH_FONT};
+  color: var(--search-font);
   &.mask-on ${Mask} {
     opacity: 1;
   }
@@ -68,7 +68,7 @@ const SearchInputWrapper = styled.div`
 
 const InputHint = styled.div`
   font-size: 14px;
-  color: ${({ theme }) => theme.data.SEARCH_FONT}44;
+  color: var(--search-font-shadow);
   margin-bottom: 20px;
 `
 
@@ -80,7 +80,7 @@ const CategoryContainer = styled.div`
   width: ${({ mobile }) => (mobile ? '70%' : '50%')};
 `
 
-const Search = ({ query, setQuery, theme }) => {
+const Search = ({ query, setQuery }) => {
   const [searchOn, setSearchOn] = useState(false)
   const [input, setInput, handleInputChange, handleEnterKey] = useSearch(
     query,
@@ -137,7 +137,7 @@ const Search = ({ query, setQuery, theme }) => {
           left: ${lleft}px;
           width: ${lwidth}px;
           height: ${lheight}px;
-          color: ${theme.data.BG};
+          color: var(--bg);
           font-size: 42px;
           letter-spacing: 4px;
           padding: 0;
@@ -270,4 +270,4 @@ const mapDispatchToProps = (dispatch) => ({
   setQuery: (query) => dispatch(setQuery(query))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Search))
+export default connect(mapStateToProps, mapDispatchToProps)(Search)

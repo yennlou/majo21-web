@@ -18,12 +18,12 @@ export const Main = styled.div`
   flex-grow: 1;
   height: 100%;
   overflow: scroll;
-  background: ${({ theme }) => theme.data.BG};
+  background: var(--bg);
 `
 
 export const Layout = styled.div`
-  ${(props) => props.mode === 'dark' && themeDark}
-  ${(props) => props.mode === 'light' && themeLight}
+  ${(props) => props.theme === 'dark' && themeDark}
+  ${(props) => props.theme === 'light' && themeLight}
   display: flex;
   height: 100%;
 

@@ -13,7 +13,7 @@ export const SidebarFooterBG = styled(SVGCloud)`
   left: -80px;
 `
 export const Copyright = styled.div`
-  color: ${({ theme }) => theme.data.BG};
+  color: var(--bg);
   text-align: center;
   position: absolute;
   bottom: 24px;

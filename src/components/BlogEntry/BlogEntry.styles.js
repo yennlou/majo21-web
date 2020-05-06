@@ -23,8 +23,8 @@ export const BlogEntryWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  border: 2px solid ${({ theme }) => theme.data.BLOG_BORDER};
-  color: ${({ theme }) => theme.data.BLOG_FONT};
+  border: 2px solid var(--blog-border);
+  color: var(--blog-font);
 
   ${(props) =>
     props.isLoading &&
@@ -40,11 +40,11 @@ export const BlogEntryWrapper = styled.div`
     height: calc(100% + 4px);
     bottom: -18px;
     right: -18px;
-    border: 2px solid ${({ theme }) => theme.data.BLOG_BORDER}60;
+    border: 2px solid var(--blog-border-shadow);
   }
 
   ${Delimiter} {
-    fill: ${({ theme }) => theme.data.BLOG_FONT};
+    fill: var(--blog-font);
     height: 20px;
   }
 `
@@ -53,8 +53,8 @@ export const EntryHeader = styled.div`
   font-size: 36px;
   padding: 24px;
   padding-bottom: 14px;
-  color: ${({ theme }) => theme.data.BG};
-  background-color: ${({ theme }) => theme.data.BLOG_FONT};
+  color: var(--bg);
+  background-color: var(--blog-font);
   text-transform: uppercase;
   cursor: pointer;
 `
@@ -79,10 +79,10 @@ export const EntryBody = styled.div`
 
   a {
     cursor: pointer;
-    color: ${({ theme }) => theme.data.BLOG_FONT};
+    color: var(--blog-font);
     &:hover {
-      background-color: ${({ theme }) => theme.data.BLOG_LINK_BG};
-      color: ${({ theme }) => theme.data.BLOG_LINK};
+      background-color: var(--blog-link-bg);
+      color: var(--blog-link);
       text-decoration: none;
     }
   }

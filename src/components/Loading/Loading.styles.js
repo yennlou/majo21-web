@@ -6,13 +6,13 @@ export const Mask = styled.div`
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: ${({ theme }) => theme.data.BG}88;
+  background-color: var(--bg) 88;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 100;
   font-size: 42px;
-  color: ${({ theme }) => theme.data.NAV_FONT};
+  color: var(--nav-font);
 
   svg {
     animation: rotation-in-steps 1s steps(12) infinite;

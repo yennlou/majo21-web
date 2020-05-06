@@ -11,7 +11,7 @@ const ResetCss = createGlobalStyle`
   }
 
   body {
-    background-color: ${props => props.theme.data.BG};
+    background-color: var(--bg);
   }
 
   *,

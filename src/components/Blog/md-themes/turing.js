@@ -9,11 +9,19 @@ const theme = css`
     line-height: 1.4;
   }
 
-  h1, h2, h3, h4, h5, h6, p, li {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li {
     font-size: inherit;
   }
-  
-  h1, h2 {
+
+  h1,
+  h2 {
     text-align: center;
     line-height: 2;
     margin-top: 2em;
@@ -21,19 +29,24 @@ const theme = css`
   }
 
   h3 {
-    margin-bottom: 1em
+    margin-bottom: 1em;
   }
 
-  h1, h2:not(#toc), h3, em, th {
+  h1,
+  h2:not(#toc),
+  h3,
+  em,
+  th {
     text-decoration: underline;
   }
 
   hr {
-    border-color: ${({ theme }) => theme.data.BLOG_FONT};
+    border-color: var(--blog-font);
   }
 
-  blockquote, strong {
-    color: ${({ theme }) => theme.data.BLOG_STRONG};
+  blockquote,
+  strong {
+    color: var(--blog-strong);
   }
 
   blockquote {
@@ -42,10 +55,11 @@ const theme = css`
   }
 
   a {
-    color: ${({ theme }) => theme.data.BLOG_FONT};
+    padding: 0.1em 0.2em;
+    color: var(--blog-font);
     &:hover {
-      background-color: ${({ theme }) => theme.data.BLOG_LINK_BG};
-      color: ${({ theme }) => theme.data.BLOG_LINK};
+      background-color: var(--blog-link-bg);
+      color: var(--blog-link);
       text-decoration: none;
     }
   }
@@ -58,26 +72,29 @@ const theme = css`
     font-style: normal;
   }
 
-/* Numbering */
+  /* Numbering */
   & {
-    counter-reset: h2 
+    counter-reset: h2;
   }
 
   h2 {
-    counter-reset: h3 
+    counter-reset: h3;
   }
 
   h2:not(#toc):before {
     counter-increment: h2;
-    content: counter(h2) ". ";
+    content: counter(h2) '. ';
   }
 
   h3:before {
     counter-increment: h3;
-    content: counter(h2) "." counter(h3) ". ";
+    content: counter(h2) '.' counter(h3) '. ';
   }
 
-  p, ul, ol, pre {
+  p,
+  ul,
+  ol,
+  pre {
     margin: 1em 0;
     ul {
       margin: 0 0 0 2em;
@@ -85,14 +102,15 @@ const theme = css`
   }
 
   ul {
-    list-style-type: square 
+    list-style-type: square;
   }
 
   ol {
     list-style-type: decimal;
   }
 
-  ul, ol {
+  ul,
+  ol {
     margin-left: 2em;
     margin-right: 2em;
   }
@@ -101,15 +119,15 @@ const theme = css`
     padding: 0;
     overflow-x: scroll;
     color: #b39a1d;
-    background: ${({ theme }) => theme.data.BLOG_CODE_BG};
+    background: var(--blog-code-bg);
     font-family: menlo, monospace;
     font-weight: lighter;
-    margin: .4em 0em 1.6em;
-    border-radius: .5em;
+    margin: 0.4em 0em 1.6em;
+    border-radius: 0.5em;
     overflow: scroll;
 
     code {
-      display:inline-block;
+      display: inline-block;
       overflow: initial;
       padding: 0;
       margin: 1.6em 2em;
@@ -118,8 +136,8 @@ const theme = css`
   }
 
   code {
-    background: ${({ theme }) => theme.data.BLOG_CODE_BG};
-    color: ${({ theme }) => theme.data.BLOG_CODE};
+    background: var(--blog-code-bg);
+    color: var(--blog-code);
     padding: 0 4px;
     margin: 0 2px;
     border-radius: 4px;
@@ -142,7 +160,7 @@ const theme = css`
   .hljs-link,
   .hljs-meta {
     color: #c74a6a;
-    color: #B39A1D;
+    color: #b39a1d;
   }
 
   /* Paraíso Orange */
@@ -191,7 +209,7 @@ const theme = css`
     font-weight: bold;
   }
 
-  @media(max-width: 870px) {
+  @media (max-width: 870px) {
     pre {
       padding: 0;
       margin-left: -14px;
@@ -200,14 +218,13 @@ const theme = css`
       code {
         margin: 1.6em;
       }
-    } 
-    
+    }
+
     blockquote {
       margin-left: 1em;
       margin-right: 1em;
     }
   }
-
 `
 
 export default theme

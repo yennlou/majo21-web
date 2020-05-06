@@ -14,7 +14,7 @@ export const BlogListViewWrapper = styled.div`
 `
 
 export const EmptyResult = styled.div`
-  color: ${({ theme }) => theme.data.BLOG_FONT};
+  color: var(--blog-font);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,22 +22,39 @@ export const EmptyResult = styled.div`
   height: calc(100vh - 520px);
 `
 
-const BlogListView = ({ collection, isFetched, loading, fetchCollectionStartAsync }) => {
+const BlogListView = ({
+  collection,
+  isFetched,
+  loading,
+  fetchCollectionStartAsync
+}) => {
   useEffect(() => {
     if (isFetched) return
     fetchCollectionStartAsync()
   }, [])
-  const [currentPage, setCurrentPage, pageCount, currentItems] = usePagination(collection)
-  const loadingItems = [...Array(4).keys()].map((idx) => ({ id: idx, isLoading: true }))
-  const BlogListComponent = !isFetched || loading
-    ? (<BlogList data={loadingItems} />)
-    : collection.length
-      ? (<BlogList data={currentItems} />)
-      : (<EmptyResult>Ooops! No results found.</EmptyResult>)
+  const [currentPage, setCurrentPage, pageCount, currentItems] = usePagination(
+    collection
+  )
+  const loadingItems = [...Array(4).keys()].map((idx) => ({
+    id: idx,
+    isLoading: true
+  }))
+  const BlogListComponent =
+    !isFetched || loading ? (
+      <BlogList data={loadingItems} />
+    ) : collection.length ? (
+      <BlogList data={currentItems} />
+    ) : (
+      <EmptyResult>Ooops! No results found.</EmptyResult>
+    )
   return (
     <BlogListViewWrapper>
       {BlogListComponent}
-      <Pagination size={pageCount} value={currentPage} onChange={setCurrentPage} />
+      <Pagination
+        size={pageCount}
+        value={currentPage}
+        onChange={setCurrentPage}
+      />
     </BlogListViewWrapper>
   )
 }
@@ -48,11 +65,8 @@ const mapStateToProps = (state) => ({
   collection: selectBlogCollectionByQuery(state.global.query)(state)
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchCollectionStartAsync: () => dispatch(fetchCollectionStartAsync())
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BlogListView)
+export default connect(mapStateToProps, mapDispatchToProps)(BlogListView)

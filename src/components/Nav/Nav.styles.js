@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const NavList = styled.ul`
   display: flex;
   justify-content: space-between;
-  color: ${({ theme }) => theme.data.NAV_FONT};
+  color: var(--nav-font);
   margin-left: auto;
   text-transform: uppercase;
   letter-spacing: 1px;

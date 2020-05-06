@@ -13,8 +13,8 @@ export const CategoryTagGroup = styled.div`
 `
 
 export const CategoryTitle = styled.h3`
-  color: ${({ theme }) => theme.data.SEARCH_FONT};
-  border-bottom: 1px solid ${({ theme }) => theme.data.SEARCH_FONT}44;
+  color: var(--search-font);
+  border-bottom: 1px solid var(--search-font-shadow);
   padding-bottom: 6px;
   text-transform: uppercase;
   margin-bottom: 12px;

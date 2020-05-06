@@ -3,14 +3,14 @@ import Icon from '../Icon'
 
 export const SearchWrapper = styled.div`
   width: 100%;
-  color: ${({ theme }) => theme.pallete.CABARET};
+  color: var(--search-icon);
   ${Icon} {
     font-size: 28px;
     cursor: pointer;
   }
 
   .search-close {
-    color: ${({ theme }) => theme.data.BG};
+    color: var(--bg);
     position: absolute;
     right: 8px;
     top: 50%;
@@ -32,12 +32,12 @@ export const SearchWrapper = styled.div`
 `
 
 export const SearchInput = styled.input`
-  color: ${({ theme }) => theme.data.SEARCH_FONT};
+  color: var(--search-font);
   padding: 10px;
   position: absolute;
   top: 9px;
   width: 100%;
-  background: ${({ theme }) => theme.data.SEARCH_BG};
+  background: var(--search-bg);
   border: none;
   outline: none;
   font-size: 19px;
