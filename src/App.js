@@ -9,7 +9,7 @@ import GlobalStyle from './styles/GlobalStyle'
 import InputContext from './contexts/input-context'
 import Sidebar from './components/Sidebar'
 import NavHeader from './components/NavHeader'
-import MobileNavHeader from './components/NavHeader/MobileNavHeader'
+import MobileNavHeader from './components/MobileNavHeader'
 
 import TabletHeader from './components/TabletHeader'
 import TabletFooter from './components/TabletFooter'
