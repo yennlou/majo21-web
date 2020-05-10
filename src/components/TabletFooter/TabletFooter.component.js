@@ -1,9 +1,6 @@
 import React from 'react'
-import {
-  TabletFooterWrapper,
-  TabletFooterBody,
-  Delimiter
-} from './TabletFooter.styles'
+import Delimiter from '../Delimiter'
+import { TabletFooterWrapper, TabletFooterBody } from './TabletFooter.styles'
 
 const TabletFooter = () => (
   <TabletFooterWrapper>

@@ -2,13 +2,13 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 import BlogInfo from '../BlogInfo'
+import Delimiter from '../Delimiter'
 import {
   BlogEntryWrapper,
   EntryHeader,
   EntryTitle,
   EntryBody,
-  EntryLoadingWrapper,
-  Delimiter
+  EntryLoadingWrapper
 } from './BlogEntry.styles'
 
 const BlogEntryLoading = ({ isLoading, ...otherProps }) => (
