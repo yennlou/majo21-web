@@ -6,6 +6,7 @@ import Disqus from 'disqus-react'
 import BaseLink from '../../components/BaseLink'
 import Loading from '../../components/Loading'
 import Blog from '../../components/Blog'
+import BlogPrevNext from '../../components/BlogPrevNext'
 import {
   selectBlog,
   selectNextBlog,
@@ -13,6 +14,7 @@ import {
 } from '../../redux/blog/selectors'
 
 import { fetchCollectionStartAsync } from '../../redux/blog/actions'
+
 export const BlogViewWrapper = styled.div`
   padding: 40px 0 10px 0;
 `
@@ -22,51 +24,6 @@ const BackLink = ({ children, theme, ...otherProps }) => (
     {children}
   </BaseLink>
 )
-
-const PrevNextSection = ({ prevBlog, nextBlog }) => {
-  const SectionWrapper = styled.div`
-    margin-bottom: 20px;
-    font-weight: 600;
-    line-height: 1.6;
-    color: var(--blog-font);
-  `
-  const Link = styled(BaseLink)`
-    text-decoration: underline;
-    padding: 2px;
-    &:hover {
-      text-decoration: none;
-    }
-  `
-  const history = useHistory()
-  return (
-    <SectionWrapper>
-      {(prevBlog && (
-        <div>
-          Prev:&nbsp;
-          <Link
-            onClick={() => {
-              history.push(`/articles/${prevBlog.id}`)
-            }}
-          >
-            {prevBlog.title}
-          </Link>
-        </div>
-      )) || <div>&nbsp;</div>}
-      {(nextBlog && (
-        <div>
-          Next:&nbsp;
-          <Link
-            onClick={() => {
-              history.push(`/articles/${nextBlog.id}`)
-            }}
-          >
-            {nextBlog.title}
-          </Link>
-        </div>
-      )) || <div>&nbsp;</div>}
-    </SectionWrapper>
-  )
-}
 
 const BlogView = ({
   blog,
@@ -96,7 +53,7 @@ const BlogView = ({
       {!isFetched && <Loading />}
       <BackLink onClick={() => history.push('/')}>&lt; Back</BackLink>
       <Blog {...blog} />
-      <PrevNextSection prevBlog={prevBlog} nextBlog={nextBlog} />
+      <BlogPrevNext prevBlog={prevBlog} nextBlog={nextBlog} />
       <Disqus.DiscussionEmbed
         shortname={disqusShortname}
         config={disqusConfig}
