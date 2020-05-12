@@ -5,6 +5,7 @@ export default css`
   --color-whitesmoke: #f5f5f5;
   --color-cabaret: #c74a6a;
   --bg: #f5f5f5;
+  --mask: #f5f5f588;
   --sidebar-bg: #f5f5f5;
   --sidebar-font: #c74a6a;
   --nav-font: #c74a6a;

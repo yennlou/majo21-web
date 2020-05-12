@@ -6,7 +6,7 @@ export const Mask = styled.div`
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--bg) 88;
+  background-color: var(--mask);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -5,75 +5,38 @@ import BlogInfo from '../BlogInfo'
 import Delimiter from '../Delimiter'
 import {
   BlogEntryWrapper,
-  EntryHeader,
-  EntryTitle,
-  EntryBody,
-  EntryLoadingWrapper
+  BlogEntryHeader,
+  BlogEntryTitle,
+  BlogEntryBody
 } from './BlogEntry.styles'
 
-const BlogEntryLoading = ({ isLoading, ...otherProps }) => (
-  <EntryLoadingWrapper {...otherProps}>
-    <EntryHeader>
-      <EntryTitle>██████████████</EntryTitle>
-      <BlogInfo createdAt='█████████' readingTime='███████' />
-    </EntryHeader>
+const BlogEntry = ({ title, id, description, toc, history, ...otherProps }) => (
+  <BlogEntryWrapper {...otherProps}>
+    <BlogEntryHeader
+      onClick={() => {
+        history.push(`/articles/${id}`)
+      }}
+    >
+      <BlogEntryTitle>{title}</BlogEntryTitle>
+      <BlogInfo {...otherProps} />
+    </BlogEntryHeader>
     <Delimiter />
-    <EntryBody>
+    <BlogEntryBody>
       <ul>
-        <li>
-          <a>███████████</a>
-        </li>
-        <li>
-          <a>████████████████████████</a>
-        </li>
-        <li>
-          <a>██████████████████</a>
-        </li>
+        {toc.map((header) => {
+          if (!Array.isArray(header)) {
+            return (
+              <li key={header.id}>
+                <Link to={`/articles/${id}#${header.id}`}>
+                  {header.content}
+                </Link>
+              </li>
+            )
+          }
+        })}
       </ul>
-    </EntryBody>
-  </EntryLoadingWrapper>
+    </BlogEntryBody>
+  </BlogEntryWrapper>
 )
-
-const BlogEntry = ({
-  title,
-  id,
-  description,
-  toc,
-  history,
-  isLoading,
-  ...otherProps
-}) => {
-  if (isLoading) {
-    return <BlogEntryLoading />
-  }
-  return (
-    <BlogEntryWrapper {...otherProps}>
-      <EntryHeader
-        onClick={() => {
-          history.push(`/articles/${id}`)
-        }}
-      >
-        <EntryTitle>{title}</EntryTitle>
-        <BlogInfo {...otherProps} />
-      </EntryHeader>
-      <Delimiter />
-      <EntryBody>
-        <ul>
-          {toc.map((header) => {
-            if (!Array.isArray(header)) {
-              return (
-                <li key={header.id}>
-                  <Link to={`/articles/${id}#${header.id}`}>
-                    {header.content}
-                  </Link>
-                </li>
-              )
-            }
-          })}
-        </ul>
-      </EntryBody>
-    </BlogEntryWrapper>
-  )
-}
 
 export default withRouter(BlogEntry)

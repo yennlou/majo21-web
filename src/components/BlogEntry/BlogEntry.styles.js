@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { BlogInfoWrapper } from '../BlogInfo'
 import Delimiter from '../Delimiter'
 
 export const BlogEntryWrapper = styled.div`
@@ -33,7 +32,7 @@ export const BlogEntryWrapper = styled.div`
   }
 `
 
-export const EntryHeader = styled.div`
+export const BlogEntryHeader = styled.div`
   font-size: 36px;
   padding: 24px;
   padding-bottom: 14px;
@@ -43,12 +42,12 @@ export const EntryHeader = styled.div`
   cursor: pointer;
 `
 
-export const EntryTitle = styled.h3`
+export const BlogEntryTitle = styled.h3`
   font-size: 36px;
   margin-bottom: 20px;
 `
 
-export const EntryBody = styled.div`
+export const BlogEntryBody = styled.div`
   font-size: 18px;
   padding: 10px 50px 40px 50px;
   line-height: 1.6;
@@ -69,17 +68,5 @@ export const EntryBody = styled.div`
       color: var(--blog-link);
       text-decoration: none;
     }
-  }
-`
-
-export const EntryLoadingWrapper = styled(BlogEntryWrapper)`
-  opacity: 0.4;
-  ${EntryHeader}, a {
-    pointer-events: none;
-  }
-
-  ${EntryTitle}, ${BlogInfoWrapper}, li {
-    opacity: 0.8;
-    overflow: hidden;
   }
 `

@@ -6,6 +6,7 @@ import { selectBlogCollectionByQuery } from '../../redux/blog/selectors'
 import { fetchCollectionStartAsync } from '../../redux/blog/actions'
 import { BlogListViewWrapper, EmptyResult } from './BlogListView.styles'
 import BlogList from '../../components/BlogList'
+import BlogLoadingList from '../../components/BlogLoadingList'
 import Pagination from '../../components/Pagination'
 
 const BlogListView = ({
@@ -21,13 +22,9 @@ const BlogListView = ({
   const [currentPage, setCurrentPage, pageCount, currentItems] = usePagination(
     collection
   )
-  const loadingItems = [...Array(4).keys()].map((idx) => ({
-    id: idx,
-    isLoading: true
-  }))
   const BlogListComponent =
     !isFetched || loading ? (
-      <BlogList data={loadingItems} />
+      <BlogLoadingList />
     ) : collection.length ? (
       <BlogList data={currentItems} />
     ) : (
